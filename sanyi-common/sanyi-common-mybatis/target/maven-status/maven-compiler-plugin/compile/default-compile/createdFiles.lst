@@ -1,5 +1,0 @@
-com/sanyicloud/sanyi/common/mybatis/config/MybatisPlusMetaObjectHandler.class
-com/sanyicloud/sanyi/common/mybatis/resolver/SqlFilterArgumentResolver.class
-com/sanyicloud/sanyi/common/mybatis/base/BaseEntity.class
-com/sanyicloud/sanyi/common/mybatis/enums/Operator.class
-com/sanyicloud/sanyi/common/mybatis/MybatisAutoConfiguration.class

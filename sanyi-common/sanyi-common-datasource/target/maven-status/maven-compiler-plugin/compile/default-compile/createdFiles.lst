@@ -1,7 +1,0 @@
-com/sanyicloud/sanyi/common/datasource/config/LastParamDsProcessor.class
-META-INF/spring-configuration-metadata.json
-com/sanyicloud/sanyi/common/datasource/annotation/EnableDynamicDataSource.class
-com/sanyicloud/sanyi/common/datasource/DynamicDataSourceAutoConfiguration.class
-com/sanyicloud/sanyi/common/datasource/config/DataSourceProperties.class
-com/sanyicloud/sanyi/common/datasource/config/JdbcDynamicDataSourceProvider.class
-com/sanyicloud/sanyi/common/datasource/support/DataSourceConstants.class

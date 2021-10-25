@@ -1,9 +1,0 @@
-com/sanyicloud/sanyi/common/feign/ext/SanyiSentinelInvocationHandler.class
-com/sanyicloud/sanyi/common/feign/handle/SanyiUrlBlockHandler.class
-com/sanyicloud/sanyi/common/feign/ext/SanyiSentinelFeign$Builder.class
-com/sanyicloud/sanyi/common/feign/ext/SanyiSentinelFeign$Builder$1.class
-com/sanyicloud/sanyi/common/feign/parser/SanyiHeaderRequestOriginParser.class
-com/sanyicloud/sanyi/common/feign/annotation/EnableSanyiFeignClients.class
-com/sanyicloud/sanyi/common/feign/SanyiFeignAutoConfiguration.class
-com/sanyicloud/sanyi/common/feign/handle/GlobalBizExceptionHandler.class
-com/sanyicloud/sanyi/common/feign/ext/SanyiSentinelFeign.class
