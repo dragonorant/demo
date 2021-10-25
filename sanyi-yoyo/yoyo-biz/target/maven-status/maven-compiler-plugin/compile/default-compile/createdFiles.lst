@@ -1,0 +1,4 @@
+com/sanyicloud/SanyiYoYoApplication.class
+com/sanyicloud/yoyo/mapper/DemoMapper.class
+com/sanyicloud/yoyo/controller/DemoController.class
+com/sanyicloud/yoyo/service/TestService.class

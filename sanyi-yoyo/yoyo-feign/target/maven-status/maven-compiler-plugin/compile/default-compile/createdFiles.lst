@@ -1,0 +1,5 @@
+com/sanyicloud/yoyo/feign/fallback/DemoServiceFallbackFactory.class
+com/sanyicloud/yoyo/feign/fallback/DemoServiceFallbackImpl.class
+com/sanyicloud/yoyo/feign/DemoService.class
+com/sanyicloud/yoyo/entity/Demo.class
+com/sanyicloud/yoyo/entity/Demo$DemoBuilder.class

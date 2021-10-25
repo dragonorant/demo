@@ -1,0 +1,731 @@
+2021-10-22 15:50:23,544 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 15:50:24,151 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.properties] & group[DEFAULT_GROUP]
+2021-10-22 15:50:24,154 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.properties,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}]
+2021-10-22 15:50:24,164 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:659 - No active profile set, falling back to default profiles: default
+2021-10-22 15:50:25,298 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 15:50:25,302 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 15:50:25,352 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2021-10-22 15:50:25,598 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 15:50:26,032 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 15:50:26,120 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 15:50:26,227 [main] WARN  [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] AbstractApplicationContext.java:591 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'undertowServletWebServerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedUndertow.class]: Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: ContextPath must start with '/' and not end with '/'
+2021-10-22 15:50:26,244 [main] INFO  [o.s.b.a.l.ConditionEvaluationReportLoggingListener] ConditionEvaluationReportLoggingListener.java:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-10-22 15:50:26,285 [main] ERROR [org.springframework.boot.SpringApplication] SpringApplication.java:843 - Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'undertowServletWebServerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedUndertow.class]: Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: ContextPath must start with '/' and not end with '/'
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:163)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:577)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.sanyicloud.SanyiYoYoApplication.main(SanyiYoYoApplication.java:20)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'undertowServletWebServerFactory' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/ServletWebServerFactoryConfiguration$EmbeddedUndertow.class]: Initialization of bean failed; nested exception is java.lang.IllegalArgumentException: ContextPath must start with '/' and not end with '/'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:628)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getWebServerFactory(ServletWebServerApplicationContext.java:217)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:180)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:160)
+	... 8 common frames omitted
+Caused by: java.lang.IllegalArgumentException: ContextPath must start with '/' and not end with '/'
+	at org.springframework.boot.web.servlet.server.AbstractServletWebServerFactory.checkContextPath(AbstractServletWebServerFactory.java:138)
+	at org.springframework.boot.web.servlet.server.AbstractServletWebServerFactory.setContextPath(AbstractServletWebServerFactory.java:127)
+	at org.springframework.boot.context.properties.PropertyMapper$Source.to(PropertyMapper.java:291)
+	at org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryCustomizer.customize(ServletWebServerFactoryCustomizer.java:66)
+	at org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryCustomizer.customize(ServletWebServerFactoryCustomizer.java:39)
+	at org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor.lambda$postProcessBeforeInitialization$0(WebServerFactoryCustomizerBeanPostProcessor.java:72)
+	at org.springframework.boot.util.LambdaSafe$Callbacks.lambda$null$0(LambdaSafe.java:287)
+	at org.springframework.boot.util.LambdaSafe$LambdaSafeCallback.invoke(LambdaSafe.java:159)
+	at org.springframework.boot.util.LambdaSafe$Callbacks.lambda$invoke$1(LambdaSafe.java:286)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at java.util.Collections$UnmodifiableCollection.forEach(Collections.java:1082)
+	at org.springframework.boot.util.LambdaSafe$Callbacks.invoke(LambdaSafe.java:286)
+	at org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor.postProcessBeforeInitialization(WebServerFactoryCustomizerBeanPostProcessor.java:72)
+	at org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor.postProcessBeforeInitialization(WebServerFactoryCustomizerBeanPostProcessor.java:58)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:440)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1796)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	... 16 common frames omitted
+2021-10-22 15:51:15,224 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 15:51:15,832 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.properties] & group[DEFAULT_GROUP]
+2021-10-22 15:51:15,835 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.properties,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}]
+2021-10-22 15:51:15,846 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:659 - No active profile set, falling back to default profiles: default
+2021-10-22 15:51:16,805 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 15:51:16,809 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 15:51:16,852 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+2021-10-22 15:51:17,117 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 15:51:17,509 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 15:51:17,562 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 15:51:17,745 [main] WARN  [io.undertow.websockets.jsr] Bootstrap.java:68 - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-10-22 15:51:17,768 [main] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring embedded WebApplicationContext
+2021-10-22 15:51:17,769 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] ServletWebServerApplicationContext.java:290 - Root WebApplicationContext: initialization completed in 1895 ms
+2021-10-22 15:51:18,462 [main] INFO  [c.a.cloud.sentinel.SentinelWebAutoConfiguration] SentinelWebAutoConfiguration.java:80 - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+2021-10-22 15:51:18,986 [main] INFO  [org.redisson.Version] Version.java:41 - Redisson 3.16.3
+2021-10-22 15:51:19,013 [main] WARN  [i.n.resolver.dns.DnsServerAddressStreamProviders] DnsServerAddressStreamProviders.java:70 - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+2021-10-22 15:51:19,231 [redisson-netty-2-7] INFO  [o.r.connection.pool.MasterPubSubConnectionPool] ConnectionPool.java:166 - 1 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 15:51:19,260 [redisson-netty-2-3] INFO  [org.redisson.connection.pool.MasterConnectionPool] ConnectionPool.java:166 - 32 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 15:51:20,249 [main] WARN  [o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] LoadBalancerCacheAutoConfiguration.java:82 - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-10-22 15:51:20,396 [main] INFO  [o.s.b.actuate.endpoint.web.EndpointLinksResolver] EndpointLinksResolver.java:58 - Exposing 19 endpoint(s) beneath base path '/actuator'
+2021-10-22 15:51:20,509 [main] INFO  [io.undertow] Undertow.java:120 - starting server: Undertow - 2.2.10.Final
+2021-10-22 15:51:20,515 [main] INFO  [org.xnio] Xnio.java:95 - XNIO version 3.8.4.Final
+2021-10-22 15:51:20,521 [main] INFO  [org.xnio.nio] NioXnio.java:58 - XNIO NIO Implementation Version 3.8.4.Final
+2021-10-22 15:51:20,546 [main] INFO  [org.jboss.threads] Version.java:52 - JBoss Threads version 3.1.0.Final
+2021-10-22 15:51:20,592 [main] INFO  [o.s.boot.web.embedded.undertow.UndertowWebServer] UndertowWebServer.java:119 - Undertow started on port(s) 8080 (http) with context path '/yoyo'
+2021-10-22 15:51:20,603 [main] ERROR [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:79 - nacos registry, yoyo-biz register failed...NacosRegistration{nacosDiscoveryProperties=NacosDiscoveryProperties{serverAddr='localhost:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='yoyo-biz', weight=1.0, clusterName='DEFAULT', group='DEFAULT_GROUP', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='172.19.1.254', networkInterface='', port=8080, secure=false, accessKey='', secretKey='', heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null}},
+com.alibaba.nacos.api.exception.NacosException: failed to req API:/nacos/v1/ns/instance after all servers([localhost:8848]) tried: java.net.ConnectException: Connection refused (Connection refused)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:556)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:498)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:493)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.registerService(NamingProxy.java:246)
+	at com.alibaba.nacos.client.naming.NacosNamingService.registerInstance(NacosNamingService.java:212)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:74)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.register(AbstractAutoServiceRegistration.java:232)
+	at com.alibaba.cloud.nacos.registry.NacosAutoServiceRegistration.register(NacosAutoServiceRegistration.java:78)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.start(AbstractAutoServiceRegistration.java:133)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.bind(AbstractAutoServiceRegistration.java:98)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:86)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:47)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:421)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:46)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.sanyicloud.SanyiYoYoApplication.main(SanyiYoYoApplication.java:20)
+2021-10-22 15:51:20,604 [main] WARN  [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] AbstractApplicationContext.java:591 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is java.lang.reflect.UndeclaredThrowableException
+2021-10-22 15:51:29,671 [main] INFO  [io.undertow] Undertow.java:259 - stopping server: Undertow - 2.2.10.Final
+2021-10-22 15:51:29,690 [main] INFO  [o.s.b.a.l.ConditionEvaluationReportLoggingListener] ConditionEvaluationReportLoggingListener.java:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-10-22 15:51:29,718 [main] ERROR [org.springframework.boot.SpringApplication] SpringApplication.java:843 - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is java.lang.reflect.UndeclaredThrowableException
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.sanyicloud.SanyiYoYoApplication.main(SanyiYoYoApplication.java:20)
+Caused by: java.lang.reflect.UndeclaredThrowableException: null
+	at org.springframework.util.ReflectionUtils.rethrowRuntimeException(ReflectionUtils.java:147)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:83)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.register(AbstractAutoServiceRegistration.java:232)
+	at com.alibaba.cloud.nacos.registry.NacosAutoServiceRegistration.register(NacosAutoServiceRegistration.java:78)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.start(AbstractAutoServiceRegistration.java:133)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.bind(AbstractAutoServiceRegistration.java:98)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:86)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:47)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:421)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:46)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
+	... 14 common frames omitted
+Caused by: com.alibaba.nacos.api.exception.NacosException: failed to req API:/nacos/v1/ns/instance after all servers([localhost:8848]) tried: java.net.ConnectException: Connection refused (Connection refused)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:556)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:498)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:493)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.registerService(NamingProxy.java:246)
+	at com.alibaba.nacos.client.naming.NacosNamingService.registerInstance(NacosNamingService.java:212)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:74)
+	... 27 common frames omitted
+2021-10-22 15:52:10,719 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 15:52:11,325 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.properties] & group[DEFAULT_GROUP]
+2021-10-22 15:52:11,327 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.properties,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}]
+2021-10-22 15:52:11,336 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:659 - No active profile set, falling back to default profiles: default
+2021-10-22 15:52:12,404 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 15:52:12,407 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 15:52:12,442 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 18 ms. Found 0 Redis repository interfaces.
+2021-10-22 15:52:12,763 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 15:52:13,157 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 15:52:13,226 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 15:52:13,452 [main] WARN  [io.undertow.websockets.jsr] Bootstrap.java:68 - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-10-22 15:52:13,474 [main] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring embedded WebApplicationContext
+2021-10-22 15:52:13,475 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] ServletWebServerApplicationContext.java:290 - Root WebApplicationContext: initialization completed in 2114 ms
+2021-10-22 15:52:14,180 [main] INFO  [c.a.cloud.sentinel.SentinelWebAutoConfiguration] SentinelWebAutoConfiguration.java:80 - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+2021-10-22 15:52:14,670 [main] INFO  [org.redisson.Version] Version.java:41 - Redisson 3.16.3
+2021-10-22 15:52:14,704 [main] WARN  [i.n.resolver.dns.DnsServerAddressStreamProviders] DnsServerAddressStreamProviders.java:70 - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+2021-10-22 15:52:14,939 [redisson-netty-2-15] INFO  [o.r.connection.pool.MasterPubSubConnectionPool] ConnectionPool.java:166 - 1 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 15:52:14,976 [redisson-netty-2-2] INFO  [org.redisson.connection.pool.MasterConnectionPool] ConnectionPool.java:166 - 32 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 15:52:15,787 [main] WARN  [o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] LoadBalancerCacheAutoConfiguration.java:82 - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-10-22 15:52:15,924 [main] INFO  [o.s.b.actuate.endpoint.web.EndpointLinksResolver] EndpointLinksResolver.java:58 - Exposing 19 endpoint(s) beneath base path '/actuator'
+2021-10-22 15:52:16,033 [main] INFO  [io.undertow] Undertow.java:120 - starting server: Undertow - 2.2.10.Final
+2021-10-22 15:52:16,038 [main] INFO  [org.xnio] Xnio.java:95 - XNIO version 3.8.4.Final
+2021-10-22 15:52:16,044 [main] INFO  [org.xnio.nio] NioXnio.java:58 - XNIO NIO Implementation Version 3.8.4.Final
+2021-10-22 15:52:16,071 [main] INFO  [org.jboss.threads] Version.java:52 - JBoss Threads version 3.1.0.Final
+2021-10-22 15:52:16,108 [main] INFO  [o.s.boot.web.embedded.undertow.UndertowWebServer] UndertowWebServer.java:119 - Undertow started on port(s) 8080 (http) with context path '/yoyo'
+2021-10-22 15:52:16,117 [main] ERROR [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:79 - nacos registry, yoyo-biz register failed...NacosRegistration{nacosDiscoveryProperties=NacosDiscoveryProperties{serverAddr='localhost:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='yoyo-biz', weight=1.0, clusterName='DEFAULT', group='DEFAULT_GROUP', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='172.19.1.254', networkInterface='', port=8080, secure=false, accessKey='', secretKey='', heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null}},
+com.alibaba.nacos.api.exception.NacosException: failed to req API:/nacos/v1/ns/instance after all servers([localhost:8848]) tried: java.net.ConnectException: Connection refused (Connection refused)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:556)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:498)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:493)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.registerService(NamingProxy.java:246)
+	at com.alibaba.nacos.client.naming.NacosNamingService.registerInstance(NacosNamingService.java:212)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:74)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.register(AbstractAutoServiceRegistration.java:232)
+	at com.alibaba.cloud.nacos.registry.NacosAutoServiceRegistration.register(NacosAutoServiceRegistration.java:78)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.start(AbstractAutoServiceRegistration.java:133)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.bind(AbstractAutoServiceRegistration.java:98)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:86)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:47)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:421)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:46)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.sanyicloud.SanyiYoYoApplication.main(SanyiYoYoApplication.java:20)
+2021-10-22 15:52:16,118 [main] WARN  [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] AbstractApplicationContext.java:591 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is java.lang.reflect.UndeclaredThrowableException
+2021-10-22 15:52:25,204 [main] INFO  [io.undertow] Undertow.java:259 - stopping server: Undertow - 2.2.10.Final
+2021-10-22 15:52:25,235 [main] INFO  [o.s.b.a.l.ConditionEvaluationReportLoggingListener] ConditionEvaluationReportLoggingListener.java:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-10-22 15:52:25,261 [main] ERROR [org.springframework.boot.SpringApplication] SpringApplication.java:843 - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is java.lang.reflect.UndeclaredThrowableException
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.sanyicloud.SanyiYoYoApplication.main(SanyiYoYoApplication.java:20)
+Caused by: java.lang.reflect.UndeclaredThrowableException: null
+	at org.springframework.util.ReflectionUtils.rethrowRuntimeException(ReflectionUtils.java:147)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:83)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.register(AbstractAutoServiceRegistration.java:232)
+	at com.alibaba.cloud.nacos.registry.NacosAutoServiceRegistration.register(NacosAutoServiceRegistration.java:78)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.start(AbstractAutoServiceRegistration.java:133)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.bind(AbstractAutoServiceRegistration.java:98)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:86)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:47)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:421)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:46)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
+	... 14 common frames omitted
+Caused by: com.alibaba.nacos.api.exception.NacosException: failed to req API:/nacos/v1/ns/instance after all servers([localhost:8848]) tried: java.net.ConnectException: Connection refused (Connection refused)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:556)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:498)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:493)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.registerService(NamingProxy.java:246)
+	at com.alibaba.nacos.client.naming.NacosNamingService.registerInstance(NacosNamingService.java:212)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:74)
+	... 27 common frames omitted
+2021-10-22 16:11:06,628 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 16:11:07,234 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.properties] & group[DEFAULT_GROUP]
+2021-10-22 16:11:07,237 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.properties,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}]
+2021-10-22 16:11:07,247 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:659 - No active profile set, falling back to default profiles: default
+2021-10-22 16:11:08,173 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 16:11:08,175 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 16:11:08,204 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2021-10-22 16:11:08,433 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 16:11:08,809 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 16:11:08,857 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 16:11:09,007 [main] WARN  [io.undertow.websockets.jsr] Bootstrap.java:68 - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-10-22 16:11:09,027 [main] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring embedded WebApplicationContext
+2021-10-22 16:11:09,027 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] ServletWebServerApplicationContext.java:290 - Root WebApplicationContext: initialization completed in 1754 ms
+2021-10-22 16:11:09,796 [main] INFO  [c.a.cloud.sentinel.SentinelWebAutoConfiguration] SentinelWebAutoConfiguration.java:80 - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+2021-10-22 16:11:10,360 [main] INFO  [org.redisson.Version] Version.java:41 - Redisson 3.16.3
+2021-10-22 16:11:10,393 [main] WARN  [i.n.resolver.dns.DnsServerAddressStreamProviders] DnsServerAddressStreamProviders.java:70 - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+2021-10-22 16:11:10,627 [redisson-netty-2-15] INFO  [o.r.connection.pool.MasterPubSubConnectionPool] ConnectionPool.java:166 - 1 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 16:11:10,745 [redisson-netty-2-3] INFO  [org.redisson.connection.pool.MasterConnectionPool] ConnectionPool.java:166 - 32 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 16:11:11,570 [main] WARN  [o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] LoadBalancerCacheAutoConfiguration.java:82 - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-10-22 16:11:11,705 [main] INFO  [o.s.b.actuate.endpoint.web.EndpointLinksResolver] EndpointLinksResolver.java:58 - Exposing 19 endpoint(s) beneath base path '/actuator'
+2021-10-22 16:11:11,819 [main] INFO  [io.undertow] Undertow.java:120 - starting server: Undertow - 2.2.10.Final
+2021-10-22 16:11:11,824 [main] INFO  [org.xnio] Xnio.java:95 - XNIO version 3.8.4.Final
+2021-10-22 16:11:11,832 [main] INFO  [org.xnio.nio] NioXnio.java:58 - XNIO NIO Implementation Version 3.8.4.Final
+2021-10-22 16:11:11,858 [main] INFO  [org.jboss.threads] Version.java:52 - JBoss Threads version 3.1.0.Final
+2021-10-22 16:11:11,898 [main] INFO  [o.s.boot.web.embedded.undertow.UndertowWebServer] UndertowWebServer.java:119 - Undertow started on port(s) 8088 (http) with context path '/yoyo'
+2021-10-22 16:11:11,908 [main] ERROR [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:79 - nacos registry, yoyo-biz register failed...NacosRegistration{nacosDiscoveryProperties=NacosDiscoveryProperties{serverAddr='localhost:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='yoyo-biz', weight=1.0, clusterName='DEFAULT', group='DEFAULT_GROUP', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='172.19.1.254', networkInterface='', port=8088, secure=false, accessKey='', secretKey='', heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null}},
+com.alibaba.nacos.api.exception.NacosException: failed to req API:/nacos/v1/ns/instance after all servers([localhost:8848]) tried: java.net.ConnectException: Connection refused (Connection refused)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:556)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:498)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:493)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.registerService(NamingProxy.java:246)
+	at com.alibaba.nacos.client.naming.NacosNamingService.registerInstance(NacosNamingService.java:212)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:74)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.register(AbstractAutoServiceRegistration.java:232)
+	at com.alibaba.cloud.nacos.registry.NacosAutoServiceRegistration.register(NacosAutoServiceRegistration.java:78)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.start(AbstractAutoServiceRegistration.java:133)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.bind(AbstractAutoServiceRegistration.java:98)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:86)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:47)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:421)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:46)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.sanyicloud.SanyiYoYoApplication.main(SanyiYoYoApplication.java:20)
+2021-10-22 16:11:11,909 [main] WARN  [o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext] AbstractApplicationContext.java:591 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is java.lang.reflect.UndeclaredThrowableException
+2021-10-22 16:11:20,978 [main] INFO  [io.undertow] Undertow.java:259 - stopping server: Undertow - 2.2.10.Final
+2021-10-22 16:11:21,004 [main] INFO  [o.s.b.a.l.ConditionEvaluationReportLoggingListener] ConditionEvaluationReportLoggingListener.java:136 - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-10-22 16:11:21,029 [main] ERROR [org.springframework.boot.SpringApplication] SpringApplication.java:843 - Application run failed
+org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is java.lang.reflect.UndeclaredThrowableException
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:181)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$200(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:356)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.context.support.DefaultLifecycleProcessor.startBeans(DefaultLifecycleProcessor.java:155)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onRefresh(DefaultLifecycleProcessor.java:123)
+	at org.springframework.context.support.AbstractApplicationContext.finishRefresh(AbstractApplicationContext.java:935)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:586)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:434)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:338)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1343)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1332)
+	at com.sanyicloud.SanyiYoYoApplication.main(SanyiYoYoApplication.java:20)
+Caused by: java.lang.reflect.UndeclaredThrowableException: null
+	at org.springframework.util.ReflectionUtils.rethrowRuntimeException(ReflectionUtils.java:147)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:83)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.register(AbstractAutoServiceRegistration.java:232)
+	at com.alibaba.cloud.nacos.registry.NacosAutoServiceRegistration.register(NacosAutoServiceRegistration.java:78)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.start(AbstractAutoServiceRegistration.java:133)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.bind(AbstractAutoServiceRegistration.java:98)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:86)
+	at org.springframework.cloud.client.serviceregistry.AbstractAutoServiceRegistration.onApplicationEvent(AbstractAutoServiceRegistration.java:47)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:421)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:378)
+	at org.springframework.boot.web.servlet.context.WebServerStartStopLifecycle.start(WebServerStartStopLifecycle.java:46)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStart(DefaultLifecycleProcessor.java:178)
+	... 14 common frames omitted
+Caused by: com.alibaba.nacos.api.exception.NacosException: failed to req API:/nacos/v1/ns/instance after all servers([localhost:8848]) tried: java.net.ConnectException: Connection refused (Connection refused)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:556)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:498)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.reqApi(NamingProxy.java:493)
+	at com.alibaba.nacos.client.naming.net.NamingProxy.registerService(NamingProxy.java:246)
+	at com.alibaba.nacos.client.naming.NacosNamingService.registerInstance(NacosNamingService.java:212)
+	at com.alibaba.cloud.nacos.registry.NacosServiceRegistry.register(NacosServiceRegistry.java:74)
+	... 27 common frames omitted
+2021-10-22 16:21:18,248 [background-preinit] INFO  [org.hibernate.validator.internal.util.Version] Version.java:21 - HV000001: Hibernate Validator 6.2.0.Final
+2021-10-22 16:21:19,498 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 16:21:19,504 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.yml] & group[DEFAULT_GROUP]
+2021-10-22 16:21:19,513 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz-dev.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-application-dev.yml,DEFAULT_GROUP'}]
+2021-10-22 16:21:19,519 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:663 - The following profiles are active: dev
+2021-10-22 16:21:20,529 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 16:21:20,531 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 16:21:20,556 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2021-10-22 16:21:20,814 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 16:21:21,164 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 16:21:21,213 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 16:21:21,366 [main] WARN  [io.undertow.websockets.jsr] Bootstrap.java:68 - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-10-22 16:21:21,389 [main] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring embedded WebApplicationContext
+2021-10-22 16:21:21,389 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] ServletWebServerApplicationContext.java:290 - Root WebApplicationContext: initialization completed in 1844 ms
+2021-10-22 16:21:22,091 [main] INFO  [c.a.cloud.sentinel.SentinelWebAutoConfiguration] SentinelWebAutoConfiguration.java:80 - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+2021-10-22 16:21:22,562 [main] INFO  [org.redisson.Version] Version.java:41 - Redisson 3.16.3
+2021-10-22 16:21:22,591 [main] WARN  [i.n.resolver.dns.DnsServerAddressStreamProviders] DnsServerAddressStreamProviders.java:70 - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+2021-10-22 16:21:22,857 [redisson-netty-2-7] INFO  [o.r.connection.pool.MasterPubSubConnectionPool] ConnectionPool.java:166 - 1 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 16:21:22,910 [redisson-netty-2-1] INFO  [org.redisson.connection.pool.MasterConnectionPool] ConnectionPool.java:166 - 32 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 16:21:23,668 [main] WARN  [o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] LoadBalancerCacheAutoConfiguration.java:82 - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-10-22 16:21:23,817 [main] INFO  [o.s.b.actuate.endpoint.web.EndpointLinksResolver] EndpointLinksResolver.java:58 - Exposing 19 endpoint(s) beneath base path '/actuator'
+2021-10-22 16:21:23,948 [main] INFO  [io.undertow] Undertow.java:120 - starting server: Undertow - 2.2.10.Final
+2021-10-22 16:21:23,954 [main] INFO  [org.xnio] Xnio.java:95 - XNIO version 3.8.4.Final
+2021-10-22 16:21:23,960 [main] INFO  [org.xnio.nio] NioXnio.java:58 - XNIO NIO Implementation Version 3.8.4.Final
+2021-10-22 16:21:23,987 [main] INFO  [org.jboss.threads] Version.java:52 - JBoss Threads version 3.1.0.Final
+2021-10-22 16:21:24,025 [main] INFO  [o.s.boot.web.embedded.undertow.UndertowWebServer] UndertowWebServer.java:119 - Undertow started on port(s) 8088 (http) with context path '/yoyo'
+2021-10-22 16:21:24,036 [main] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:75 - nacos registry, DEFAULT_GROUP yoyo-biz 172.19.1.254:8088 register finished
+2021-10-22 16:21:24,053 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] StartupInfoLogger.java:61 - Started SanyiYoYoApplication in 7.857 seconds (JVM running for 8.501)
+2021-10-22 16:21:24,539 [RMI TCP Connection(7)-172.19.1.254] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-22 16:21:24,539 [RMI TCP Connection(7)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:525 - Initializing Servlet 'dispatcherServlet'
+2021-10-22 16:21:24,542 [RMI TCP Connection(7)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:547 - Completed initialization in 2 ms
+2021-10-22 16:21:24,566 [RMI TCP Connection(6)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:110 - HikariPool-1 - Starting...
+2021-10-22 16:21:24,738 [RMI TCP Connection(6)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:123 - HikariPool-1 - Start completed.
+2021-10-22 16:21:46,493 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 16:32:28,321 [SpringApplicationShutdownHook] INFO  [io.undertow] Undertow.java:259 - stopping server: Undertow - 2.2.10.Final
+2021-10-22 16:32:28,325 [SpringApplicationShutdownHook] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Destroying Spring FrameworkServlet 'dispatcherServlet'
+2021-10-22 16:32:28,330 [SpringApplicationShutdownHook] ERROR [com.alibaba.cloud.nacos.discovery.NacosWatch] NacosWatch.java:170 - namingService unsubscribe failed, properties:NacosDiscoveryProperties{serverAddr='172.19.1.251:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='yoyo-biz', weight=1.0, clusterName='DEFAULT', group='DEFAULT_GROUP', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='172.19.1.254', networkInterface='', port=8088, secure=false, accessKey='', secretKey='', heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null}
+java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+	at io.undertow.servlet.spec.ServletContextImpl.getDeploymentInfo(ServletContextImpl.java:211)
+	at io.undertow.servlet.spec.ServletContextImpl.getInitParameterNames(ServletContextImpl.java:449)
+	at org.springframework.web.context.support.ServletContextPropertySource.getPropertyNames(ServletContextPropertySource.java:41)
+	at com.alibaba.spring.util.PropertySourcesUtils.getPropertyNames(PropertySourcesUtils.java:130)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:103)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:57)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.enrichNacosDiscoveryProperties(NacosDiscoveryProperties.java:616)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.getNacosProperties(NacosDiscoveryProperties.java:610)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:165)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:97)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$300(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1067)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106)
+	at java.lang.Thread.run(Thread.java:748)
+2021-10-22 16:32:28,365 [SpringApplicationShutdownHook] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:90 - De-registering from Nacos Server now...
+2021-10-22 16:32:28,365 [SpringApplicationShutdownHook] WARN  [o.s.c.annotation.CommonAnnotationBeanPostProcessor] InitDestroyAnnotationBeanPostProcessor.java:185 - Destroy method on bean with name 'nacosAutoServiceRegistration' threw an exception: java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+2021-10-22 16:32:36,926 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:350 - HikariPool-1 - Shutdown initiated...
+2021-10-22 16:32:36,969 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:352 - HikariPool-1 - Shutdown completed.
+2021-10-22 16:56:54,703 [background-preinit] INFO  [org.hibernate.validator.internal.util.Version] Version.java:21 - HV000001: Hibernate Validator 6.2.0.Final
+2021-10-22 16:56:55,205 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 16:56:55,210 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.yml] & group[DEFAULT_GROUP]
+2021-10-22 16:56:55,217 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz-dev.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-application-dev.yml,DEFAULT_GROUP'}]
+2021-10-22 16:56:55,222 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:663 - The following profiles are active: dev
+2021-10-22 16:56:56,213 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 16:56:56,216 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 16:56:56,254 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 23 ms. Found 0 Redis repository interfaces.
+2021-10-22 16:56:56,555 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 16:56:56,946 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 16:56:57,001 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 16:56:57,195 [main] WARN  [io.undertow.websockets.jsr] Bootstrap.java:68 - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-10-22 16:56:57,223 [main] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring embedded WebApplicationContext
+2021-10-22 16:56:57,223 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] ServletWebServerApplicationContext.java:290 - Root WebApplicationContext: initialization completed in 1963 ms
+2021-10-22 16:56:58,087 [main] INFO  [c.a.cloud.sentinel.SentinelWebAutoConfiguration] SentinelWebAutoConfiguration.java:80 - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+2021-10-22 16:56:58,624 [main] INFO  [org.redisson.Version] Version.java:41 - Redisson 3.16.3
+2021-10-22 16:56:58,658 [main] WARN  [i.n.resolver.dns.DnsServerAddressStreamProviders] DnsServerAddressStreamProviders.java:70 - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+2021-10-22 16:56:58,868 [redisson-netty-2-13] INFO  [o.r.connection.pool.MasterPubSubConnectionPool] ConnectionPool.java:166 - 1 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 16:56:58,895 [redisson-netty-2-3] INFO  [org.redisson.connection.pool.MasterConnectionPool] ConnectionPool.java:166 - 32 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 16:56:59,682 [main] WARN  [o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] LoadBalancerCacheAutoConfiguration.java:82 - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-10-22 16:56:59,840 [main] INFO  [o.s.b.actuate.endpoint.web.EndpointLinksResolver] EndpointLinksResolver.java:58 - Exposing 19 endpoint(s) beneath base path '/actuator'
+2021-10-22 16:56:59,969 [main] INFO  [io.undertow] Undertow.java:120 - starting server: Undertow - 2.2.10.Final
+2021-10-22 16:56:59,977 [main] INFO  [org.xnio] Xnio.java:95 - XNIO version 3.8.4.Final
+2021-10-22 16:56:59,986 [main] INFO  [org.xnio.nio] NioXnio.java:58 - XNIO NIO Implementation Version 3.8.4.Final
+2021-10-22 16:57:00,022 [main] INFO  [org.jboss.threads] Version.java:52 - JBoss Threads version 3.1.0.Final
+2021-10-22 16:57:00,071 [main] INFO  [o.s.boot.web.embedded.undertow.UndertowWebServer] UndertowWebServer.java:119 - Undertow started on port(s) 4000 (http)
+2021-10-22 16:57:00,194 [main] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:75 - nacos registry, DEFAULT_GROUP yoyo-biz 172.19.1.254:4000 register finished
+2021-10-22 16:57:00,219 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] StartupInfoLogger.java:61 - Started SanyiYoYoApplication in 6.415 seconds (JVM running for 7.083)
+2021-10-22 16:57:00,616 [RMI TCP Connection(3)-172.19.1.254] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-22 16:57:00,617 [RMI TCP Connection(3)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:525 - Initializing Servlet 'dispatcherServlet'
+2021-10-22 16:57:00,620 [RMI TCP Connection(3)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:547 - Completed initialization in 3 ms
+2021-10-22 16:57:00,643 [RMI TCP Connection(2)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:110 - HikariPool-1 - Starting...
+2021-10-22 16:57:00,836 [RMI TCP Connection(2)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:123 - HikariPool-1 - Start completed.
+2021-10-22 16:57:51,460 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 16:58:06,421 [SpringApplicationShutdownHook] INFO  [io.undertow] Undertow.java:259 - stopping server: Undertow - 2.2.10.Final
+2021-10-22 16:58:06,427 [SpringApplicationShutdownHook] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Destroying Spring FrameworkServlet 'dispatcherServlet'
+2021-10-22 16:58:06,430 [SpringApplicationShutdownHook] ERROR [com.alibaba.cloud.nacos.discovery.NacosWatch] NacosWatch.java:170 - namingService unsubscribe failed, properties:NacosDiscoveryProperties{serverAddr='172.19.1.251:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='yoyo-biz', weight=1.0, clusterName='DEFAULT', group='DEFAULT_GROUP', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='172.19.1.254', networkInterface='', port=4000, secure=false, accessKey='', secretKey='', heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null}
+java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+	at io.undertow.servlet.spec.ServletContextImpl.getDeploymentInfo(ServletContextImpl.java:211)
+	at io.undertow.servlet.spec.ServletContextImpl.getInitParameterNames(ServletContextImpl.java:449)
+	at org.springframework.web.context.support.ServletContextPropertySource.getPropertyNames(ServletContextPropertySource.java:41)
+	at com.alibaba.spring.util.PropertySourcesUtils.getPropertyNames(PropertySourcesUtils.java:130)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:103)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:57)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.enrichNacosDiscoveryProperties(NacosDiscoveryProperties.java:616)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.getNacosProperties(NacosDiscoveryProperties.java:610)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:165)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:97)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$300(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1067)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106)
+	at java.lang.Thread.run(Thread.java:748)
+2021-10-22 16:58:06,467 [SpringApplicationShutdownHook] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:90 - De-registering from Nacos Server now...
+2021-10-22 16:58:06,468 [SpringApplicationShutdownHook] WARN  [o.s.c.annotation.CommonAnnotationBeanPostProcessor] InitDestroyAnnotationBeanPostProcessor.java:185 - Destroy method on bean with name 'nacosAutoServiceRegistration' threw an exception: java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+2021-10-22 16:58:14,103 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:350 - HikariPool-1 - Shutdown initiated...
+2021-10-22 16:58:14,121 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:352 - HikariPool-1 - Shutdown completed.
+2021-10-22 17:39:08,078 [background-preinit] INFO  [org.hibernate.validator.internal.util.Version] Version.java:21 - HV000001: Hibernate Validator 6.2.0.Final
+2021-10-22 17:39:08,580 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 17:39:08,585 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.yml] & group[DEFAULT_GROUP]
+2021-10-22 17:39:08,593 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz-dev.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-application-dev.yml,DEFAULT_GROUP'}]
+2021-10-22 17:39:08,599 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:663 - The following profiles are active: dev
+2021-10-22 17:39:09,596 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 17:39:09,598 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 17:39:09,643 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 27 ms. Found 0 Redis repository interfaces.
+2021-10-22 17:39:09,946 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 17:39:10,324 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 17:39:10,384 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 17:39:10,564 [main] WARN  [io.undertow.websockets.jsr] Bootstrap.java:68 - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-10-22 17:39:10,588 [main] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring embedded WebApplicationContext
+2021-10-22 17:39:10,588 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] ServletWebServerApplicationContext.java:290 - Root WebApplicationContext: initialization completed in 1968 ms
+2021-10-22 17:39:11,355 [main] INFO  [c.a.cloud.sentinel.SentinelWebAutoConfiguration] SentinelWebAutoConfiguration.java:80 - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+2021-10-22 17:39:11,806 [main] INFO  [org.redisson.Version] Version.java:41 - Redisson 3.16.3
+2021-10-22 17:39:11,834 [main] WARN  [i.n.resolver.dns.DnsServerAddressStreamProviders] DnsServerAddressStreamProviders.java:70 - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+2021-10-22 17:39:12,048 [redisson-netty-2-7] INFO  [o.r.connection.pool.MasterPubSubConnectionPool] ConnectionPool.java:166 - 1 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 17:39:12,076 [redisson-netty-2-2] INFO  [org.redisson.connection.pool.MasterConnectionPool] ConnectionPool.java:166 - 32 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 17:39:12,852 [main] WARN  [o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] LoadBalancerCacheAutoConfiguration.java:82 - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-10-22 17:39:12,995 [main] INFO  [o.s.b.actuate.endpoint.web.EndpointLinksResolver] EndpointLinksResolver.java:58 - Exposing 19 endpoint(s) beneath base path '/actuator'
+2021-10-22 17:39:13,119 [main] INFO  [io.undertow] Undertow.java:120 - starting server: Undertow - 2.2.10.Final
+2021-10-22 17:39:13,125 [main] INFO  [org.xnio] Xnio.java:95 - XNIO version 3.8.4.Final
+2021-10-22 17:39:13,131 [main] INFO  [org.xnio.nio] NioXnio.java:58 - XNIO NIO Implementation Version 3.8.4.Final
+2021-10-22 17:39:13,158 [main] INFO  [org.jboss.threads] Version.java:52 - JBoss Threads version 3.1.0.Final
+2021-10-22 17:39:13,198 [main] INFO  [o.s.boot.web.embedded.undertow.UndertowWebServer] UndertowWebServer.java:119 - Undertow started on port(s) 4000 (http)
+2021-10-22 17:39:13,209 [main] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:75 - nacos registry, DEFAULT_GROUP yoyo-biz 172.19.1.254:4000 register finished
+2021-10-22 17:39:13,226 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] StartupInfoLogger.java:61 - Started SanyiYoYoApplication in 5.979 seconds (JVM running for 6.947)
+2021-10-22 17:39:13,495 [RMI TCP Connection(2)-172.19.1.254] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-22 17:39:13,496 [RMI TCP Connection(2)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:525 - Initializing Servlet 'dispatcherServlet'
+2021-10-22 17:39:13,498 [RMI TCP Connection(2)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:547 - Completed initialization in 2 ms
+2021-10-22 17:39:13,520 [RMI TCP Connection(3)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:110 - HikariPool-1 - Starting...
+2021-10-22 17:39:13,688 [RMI TCP Connection(3)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:123 - HikariPool-1 - Start completed.
+2021-10-22 17:39:59,987 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:40:01,566 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:40:02,471 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:40:02,998 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:40:03,153 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:40:04,246 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:40:05,370 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:40:06,147 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:43:52,420 [SpringApplicationShutdownHook] INFO  [io.undertow] Undertow.java:259 - stopping server: Undertow - 2.2.10.Final
+2021-10-22 17:43:52,425 [SpringApplicationShutdownHook] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Destroying Spring FrameworkServlet 'dispatcherServlet'
+2021-10-22 17:43:52,429 [SpringApplicationShutdownHook] ERROR [com.alibaba.cloud.nacos.discovery.NacosWatch] NacosWatch.java:170 - namingService unsubscribe failed, properties:NacosDiscoveryProperties{serverAddr='172.19.1.251:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='yoyo-biz', weight=1.0, clusterName='DEFAULT', group='DEFAULT_GROUP', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='172.19.1.254', networkInterface='', port=4000, secure=false, accessKey='', secretKey='', heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null}
+java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+	at io.undertow.servlet.spec.ServletContextImpl.getDeploymentInfo(ServletContextImpl.java:211)
+	at io.undertow.servlet.spec.ServletContextImpl.getInitParameterNames(ServletContextImpl.java:449)
+	at org.springframework.web.context.support.ServletContextPropertySource.getPropertyNames(ServletContextPropertySource.java:41)
+	at com.alibaba.spring.util.PropertySourcesUtils.getPropertyNames(PropertySourcesUtils.java:130)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:103)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:57)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.enrichNacosDiscoveryProperties(NacosDiscoveryProperties.java:616)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.getNacosProperties(NacosDiscoveryProperties.java:610)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:165)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:97)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$300(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1067)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106)
+	at java.lang.Thread.run(Thread.java:748)
+2021-10-22 17:43:52,477 [SpringApplicationShutdownHook] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:90 - De-registering from Nacos Server now...
+2021-10-22 17:43:52,478 [SpringApplicationShutdownHook] WARN  [o.s.c.annotation.CommonAnnotationBeanPostProcessor] InitDestroyAnnotationBeanPostProcessor.java:185 - Destroy method on bean with name 'nacosAutoServiceRegistration' threw an exception: java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+2021-10-22 17:43:57,574 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:350 - HikariPool-1 - Shutdown initiated...
+2021-10-22 17:43:57,587 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:352 - HikariPool-1 - Shutdown completed.
+2021-10-22 17:44:05,019 [background-preinit] INFO  [org.hibernate.validator.internal.util.Version] Version.java:21 - HV000001: Hibernate Validator 6.2.0.Final
+2021-10-22 17:44:05,666 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 17:44:05,673 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.yml] & group[DEFAULT_GROUP]
+2021-10-22 17:44:05,680 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz-dev.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-application-dev.yml,DEFAULT_GROUP'}]
+2021-10-22 17:44:05,685 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:663 - The following profiles are active: dev
+2021-10-22 17:44:06,796 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 17:44:06,799 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 17:44:06,833 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 18 ms. Found 0 Redis repository interfaces.
+2021-10-22 17:44:07,122 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 17:44:07,567 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 17:44:07,625 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 17:44:07,816 [main] WARN  [io.undertow.websockets.jsr] Bootstrap.java:68 - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-10-22 17:44:07,842 [main] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring embedded WebApplicationContext
+2021-10-22 17:44:07,843 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] ServletWebServerApplicationContext.java:290 - Root WebApplicationContext: initialization completed in 2134 ms
+2021-10-22 17:44:08,581 [main] INFO  [c.a.cloud.sentinel.SentinelWebAutoConfiguration] SentinelWebAutoConfiguration.java:80 - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+2021-10-22 17:44:09,002 [main] INFO  [org.redisson.Version] Version.java:41 - Redisson 3.16.3
+2021-10-22 17:44:09,027 [main] WARN  [i.n.resolver.dns.DnsServerAddressStreamProviders] DnsServerAddressStreamProviders.java:70 - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+2021-10-22 17:44:09,240 [redisson-netty-2-13] INFO  [o.r.connection.pool.MasterPubSubConnectionPool] ConnectionPool.java:166 - 1 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 17:44:09,281 [redisson-netty-2-1] INFO  [org.redisson.connection.pool.MasterConnectionPool] ConnectionPool.java:166 - 32 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 17:44:10,062 [main] WARN  [o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] LoadBalancerCacheAutoConfiguration.java:82 - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-10-22 17:44:10,208 [main] INFO  [o.s.b.actuate.endpoint.web.EndpointLinksResolver] EndpointLinksResolver.java:58 - Exposing 19 endpoint(s) beneath base path '/actuator'
+2021-10-22 17:44:10,345 [main] INFO  [io.undertow] Undertow.java:120 - starting server: Undertow - 2.2.10.Final
+2021-10-22 17:44:10,350 [main] INFO  [org.xnio] Xnio.java:95 - XNIO version 3.8.4.Final
+2021-10-22 17:44:10,356 [main] INFO  [org.xnio.nio] NioXnio.java:58 - XNIO NIO Implementation Version 3.8.4.Final
+2021-10-22 17:44:10,381 [main] INFO  [org.jboss.threads] Version.java:52 - JBoss Threads version 3.1.0.Final
+2021-10-22 17:44:10,421 [main] INFO  [o.s.boot.web.embedded.undertow.UndertowWebServer] UndertowWebServer.java:119 - Undertow started on port(s) 4000 (http)
+2021-10-22 17:44:10,432 [main] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:75 - nacos registry, DEFAULT_GROUP yoyo-biz 172.19.1.254:4000 register finished
+2021-10-22 17:44:10,450 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] StartupInfoLogger.java:61 - Started SanyiYoYoApplication in 6.429 seconds (JVM running for 7.281)
+2021-10-22 17:44:10,923 [RMI TCP Connection(3)-172.19.1.254] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-22 17:44:10,923 [RMI TCP Connection(3)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:525 - Initializing Servlet 'dispatcherServlet'
+2021-10-22 17:44:10,925 [RMI TCP Connection(3)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:547 - Completed initialization in 2 ms
+2021-10-22 17:44:10,948 [RMI TCP Connection(2)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:110 - HikariPool-1 - Starting...
+2021-10-22 17:44:11,129 [RMI TCP Connection(2)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:123 - HikariPool-1 - Start completed.
+2021-10-22 17:44:36,542 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:44:38,867 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:44:39,675 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:44:40,221 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:44:40,692 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:44:41,150 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:44:41,787 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:44:42,267 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:44:42,963 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:02,548 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:04,769 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:05,538 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:06,029 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:07,154 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:08,836 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:09,762 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:10,471 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:49:11,213 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:44,589 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:45,627 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:46,464 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:47,191 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:48,598 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:49,295 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:50,505 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:51,262 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:52,033 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:54,658 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 17:59:55,580 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - null
+2021-10-22 18:32:51,986 [SpringApplicationShutdownHook] INFO  [io.undertow] Undertow.java:259 - stopping server: Undertow - 2.2.10.Final
+2021-10-22 18:32:51,991 [SpringApplicationShutdownHook] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Destroying Spring FrameworkServlet 'dispatcherServlet'
+2021-10-22 18:32:51,995 [SpringApplicationShutdownHook] ERROR [com.alibaba.cloud.nacos.discovery.NacosWatch] NacosWatch.java:170 - namingService unsubscribe failed, properties:NacosDiscoveryProperties{serverAddr='172.19.1.251:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='yoyo-biz', weight=1.0, clusterName='DEFAULT', group='DEFAULT_GROUP', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='172.19.1.254', networkInterface='', port=4000, secure=false, accessKey='', secretKey='', heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null}
+java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+	at io.undertow.servlet.spec.ServletContextImpl.getDeploymentInfo(ServletContextImpl.java:211)
+	at io.undertow.servlet.spec.ServletContextImpl.getInitParameterNames(ServletContextImpl.java:449)
+	at org.springframework.web.context.support.ServletContextPropertySource.getPropertyNames(ServletContextPropertySource.java:41)
+	at com.alibaba.spring.util.PropertySourcesUtils.getPropertyNames(PropertySourcesUtils.java:130)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:103)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:57)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.enrichNacosDiscoveryProperties(NacosDiscoveryProperties.java:616)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.getNacosProperties(NacosDiscoveryProperties.java:610)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:165)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:97)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$300(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1067)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106)
+	at java.lang.Thread.run(Thread.java:748)
+2021-10-22 18:32:52,032 [SpringApplicationShutdownHook] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:90 - De-registering from Nacos Server now...
+2021-10-22 18:32:52,033 [SpringApplicationShutdownHook] WARN  [o.s.c.annotation.CommonAnnotationBeanPostProcessor] InitDestroyAnnotationBeanPostProcessor.java:185 - Destroy method on bean with name 'nacosAutoServiceRegistration' threw an exception: java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+2021-10-22 18:32:58,710 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:350 - HikariPool-1 - Shutdown initiated...
+2021-10-22 18:32:58,715 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:352 - HikariPool-1 - Shutdown completed.
+2021-10-22 18:49:39,072 [background-preinit] INFO  [org.hibernate.validator.internal.util.Version] Version.java:21 - HV000001: Hibernate Validator 6.2.0.Final
+2021-10-22 18:49:39,652 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz] & group[DEFAULT_GROUP]
+2021-10-22 18:49:39,656 [main] WARN  [c.a.cloud.nacos.client.NacosPropertySourceBuilder] NacosPropertySourceBuilder.java:87 - Ignore the empty nacos configuration and get it based on dataId[yoyo-biz.yml] & group[DEFAULT_GROUP]
+2021-10-22 18:49:39,664 [main] INFO  [o.s.c.b.c.PropertySourceBootstrapConfiguration] PropertySourceBootstrapConfiguration.java:109 - Located property source: [BootstrapPropertySource {name='bootstrapProperties-yoyo-biz-dev.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz.yml,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-yoyo-biz,DEFAULT_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-application-dev.yml,DEFAULT_GROUP'}]
+2021-10-22 18:49:39,672 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] SpringApplication.java:663 - The following profiles are active: dev
+2021-10-22 18:49:40,813 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:262 - Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-10-22 18:49:40,817 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:132 - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-10-22 18:49:40,849 [main] INFO  [o.s.d.r.config.RepositoryConfigurationDelegate] RepositoryConfigurationDelegate.java:201 - Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2021-10-22 18:49:41,187 [main] INFO  [o.springframework.cloud.context.scope.GenericScope] GenericScope.java:283 - BeanFactory id=dc78ebff-1e51-38de-9286-283ec55e5910
+2021-10-22 18:49:41,578 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'spring.cloud.sentinel-com.alibaba.cloud.sentinel.SentinelProperties' of type [com.alibaba.cloud.sentinel.SentinelProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 18:49:41,655 [main] INFO  [o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker] PostProcessorRegistrationDelegate.java:376 - Bean 'com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration' of type [com.alibaba.cloud.sentinel.custom.SentinelAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021-10-22 18:49:41,828 [main] WARN  [io.undertow.websockets.jsr] Bootstrap.java:68 - UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-10-22 18:49:41,851 [main] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring embedded WebApplicationContext
+2021-10-22 18:49:41,851 [main] INFO  [o.s.b.w.s.c.ServletWebServerApplicationContext] ServletWebServerApplicationContext.java:290 - Root WebApplicationContext: initialization completed in 2150 ms
+2021-10-22 18:49:42,623 [main] INFO  [c.a.cloud.sentinel.SentinelWebAutoConfiguration] SentinelWebAutoConfiguration.java:80 - [Sentinel Starter] register SentinelWebInterceptor with urlPatterns: [/**].
+2021-10-22 18:49:43,234 [main] INFO  [org.redisson.Version] Version.java:41 - Redisson 3.16.3
+2021-10-22 18:49:43,273 [main] WARN  [i.n.resolver.dns.DnsServerAddressStreamProviders] DnsServerAddressStreamProviders.java:70 - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS.
+2021-10-22 18:49:43,549 [redisson-netty-2-15] INFO  [o.r.connection.pool.MasterPubSubConnectionPool] ConnectionPool.java:166 - 1 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 18:49:43,587 [redisson-netty-2-3] INFO  [org.redisson.connection.pool.MasterConnectionPool] ConnectionPool.java:166 - 32 connections initialized for 172.19.1.251/172.19.1.251:6379
+2021-10-22 18:49:44,406 [main] WARN  [o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger] LoadBalancerCacheAutoConfiguration.java:82 - Spring Cloud LoadBalancer is currently working with the default cache. You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2021-10-22 18:49:44,558 [main] INFO  [o.s.b.actuate.endpoint.web.EndpointLinksResolver] EndpointLinksResolver.java:58 - Exposing 19 endpoint(s) beneath base path '/actuator'
+2021-10-22 18:49:44,696 [main] INFO  [io.undertow] Undertow.java:120 - starting server: Undertow - 2.2.10.Final
+2021-10-22 18:49:44,703 [main] INFO  [org.xnio] Xnio.java:95 - XNIO version 3.8.4.Final
+2021-10-22 18:49:44,712 [main] INFO  [org.xnio.nio] NioXnio.java:58 - XNIO NIO Implementation Version 3.8.4.Final
+2021-10-22 18:49:44,741 [main] INFO  [org.jboss.threads] Version.java:52 - JBoss Threads version 3.1.0.Final
+2021-10-22 18:49:44,780 [main] INFO  [o.s.boot.web.embedded.undertow.UndertowWebServer] UndertowWebServer.java:119 - Undertow started on port(s) 4000 (http)
+2021-10-22 18:49:44,790 [main] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:75 - nacos registry, DEFAULT_GROUP yoyo-biz 172.19.1.254:4000 register finished
+2021-10-22 18:49:44,809 [main] INFO  [com.sanyicloud.SanyiYoYoApplication] StartupInfoLogger.java:61 - Started SanyiYoYoApplication in 6.87 seconds (JVM running for 7.505)
+2021-10-22 18:49:45,291 [RMI TCP Connection(2)-172.19.1.254] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-10-22 18:49:45,292 [RMI TCP Connection(2)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:525 - Initializing Servlet 'dispatcherServlet'
+2021-10-22 18:49:45,295 [RMI TCP Connection(2)-172.19.1.254] INFO  [org.springframework.web.servlet.DispatcherServlet] FrameworkServlet.java:547 - Completed initialization in 3 ms
+2021-10-22 18:49:45,318 [RMI TCP Connection(3)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:110 - HikariPool-1 - Starting...
+2021-10-22 18:49:45,497 [RMI TCP Connection(3)-172.19.1.254] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:123 - HikariPool-1 - Start completed.
+2021-10-22 18:56:07,770 [XNIO-1 task-1] INFO  [com.sanyicloud.yoyo.service.TestService] TestService.java:22 - ssss
+2021-10-22 18:56:50,815 [SpringApplicationShutdownHook] INFO  [io.undertow] Undertow.java:259 - stopping server: Undertow - 2.2.10.Final
+2021-10-22 18:56:50,819 [SpringApplicationShutdownHook] INFO  [io.undertow.servlet] ServletContextImpl.java:382 - Destroying Spring FrameworkServlet 'dispatcherServlet'
+2021-10-22 18:56:50,823 [SpringApplicationShutdownHook] ERROR [com.alibaba.cloud.nacos.discovery.NacosWatch] NacosWatch.java:170 - namingService unsubscribe failed, properties:NacosDiscoveryProperties{serverAddr='172.19.1.251:8848', endpoint='', namespace='', watchDelay=30000, logName='', service='yoyo-biz', weight=1.0, clusterName='DEFAULT', group='DEFAULT_GROUP', namingLoadCacheAtStart='false', metadata={preserved.register.source=SPRING_CLOUD}, registerEnabled=true, ip='172.19.1.254', networkInterface='', port=4000, secure=false, accessKey='', secretKey='', heartBeatInterval=null, heartBeatTimeout=null, ipDeleteTimeout=null}
+java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+	at io.undertow.servlet.spec.ServletContextImpl.getDeploymentInfo(ServletContextImpl.java:211)
+	at io.undertow.servlet.spec.ServletContextImpl.getInitParameterNames(ServletContextImpl.java:449)
+	at org.springframework.web.context.support.ServletContextPropertySource.getPropertyNames(ServletContextPropertySource.java:41)
+	at com.alibaba.spring.util.PropertySourcesUtils.getPropertyNames(PropertySourcesUtils.java:130)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:103)
+	at com.alibaba.spring.util.PropertySourcesUtils.getSubProperties(PropertySourcesUtils.java:57)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.enrichNacosDiscoveryProperties(NacosDiscoveryProperties.java:616)
+	at com.alibaba.cloud.nacos.NacosDiscoveryProperties.getNacosProperties(NacosDiscoveryProperties.java:610)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:165)
+	at com.alibaba.cloud.nacos.discovery.NacosWatch.stop(NacosWatch.java:97)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor.access$300(DefaultLifecycleProcessor.java:54)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1067)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:172)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1021)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:137)
+	at java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:106)
+	at java.lang.Thread.run(Thread.java:748)
+2021-10-22 18:56:50,853 [SpringApplicationShutdownHook] INFO  [c.a.cloud.nacos.registry.NacosServiceRegistry] NacosServiceRegistry.java:90 - De-registering from Nacos Server now...
+2021-10-22 18:56:50,853 [SpringApplicationShutdownHook] WARN  [o.s.c.annotation.CommonAnnotationBeanPostProcessor] InitDestroyAnnotationBeanPostProcessor.java:185 - Destroy method on bean with name 'nacosAutoServiceRegistration' threw an exception: java.lang.IllegalStateException: UT015023: This Context has been already destroyed
+2021-10-22 18:56:58,929 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:350 - HikariPool-1 - Shutdown initiated...
+2021-10-22 18:56:58,942 [SpringApplicationShutdownHook] INFO  [com.zaxxer.hikari.HikariDataSource] HikariDataSource.java:352 - HikariPool-1 - Shutdown completed.
