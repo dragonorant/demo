@@ -1,6 +1,8 @@
 ### Java template
 # Compiled class file
 *.class
+!**/src/main/**/target/
+!**/src/test/**/target/
 
 # Log file
 *.log
@@ -12,12 +14,6 @@
 *.iws
 *.iml
 *.ipr
-
-#忽略所有.svn目录
-.svn/
-#忽略所有target目录
-target/
-
 
 # BlueJ files
 *.ctxt
