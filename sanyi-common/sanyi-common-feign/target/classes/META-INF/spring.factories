@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.sanyicloud.sanyi.common.feign.SanyiFeignAutoConfiguration,\
+  com.sanyicloud.sanyi.common.feign.handle.GlobalBizExceptionHandler

@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "spring.redis.redisson",
+      "type": "com.sanyicloud.sanyi.common.redisson.RedissonProperties",
+      "sourceType": "com.sanyicloud.sanyi.common.redisson.RedissonProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "spring.redis.redisson.config",
+      "type": "java.lang.String",
+      "sourceType": "com.sanyicloud.sanyi.common.redisson.RedissonProperties"
+    },
+    {
+      "name": "spring.redis.redisson.file",
+      "type": "java.lang.String",
+      "sourceType": "com.sanyicloud.sanyi.common.redisson.RedissonProperties"
+    }
+  ],
+  "hints": []
+}

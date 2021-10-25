@@ -1,0 +1,7 @@
+/Users/zhaowenyuan/Downloads/sanyicloud/sanyi-common/sanyi-common-feign/src/main/java/com/sanyicloud/sanyi/common/feign/ext/SanyiSentinelInvocationHandler.java
+/Users/zhaowenyuan/Downloads/sanyicloud/sanyi-common/sanyi-common-feign/src/main/java/com/sanyicloud/sanyi/common/feign/handle/SanyiUrlBlockHandler.java
+/Users/zhaowenyuan/Downloads/sanyicloud/sanyi-common/sanyi-common-feign/src/main/java/com/sanyicloud/sanyi/common/feign/parser/SanyiHeaderRequestOriginParser.java
+/Users/zhaowenyuan/Downloads/sanyicloud/sanyi-common/sanyi-common-feign/src/main/java/com/sanyicloud/sanyi/common/feign/ext/SanyiSentinelFeign.java
+/Users/zhaowenyuan/Downloads/sanyicloud/sanyi-common/sanyi-common-feign/src/main/java/com/sanyicloud/sanyi/common/feign/annotation/EnableSanyiFeignClients.java
+/Users/zhaowenyuan/Downloads/sanyicloud/sanyi-common/sanyi-common-feign/src/main/java/com/sanyicloud/sanyi/common/feign/handle/GlobalBizExceptionHandler.java
+/Users/zhaowenyuan/Downloads/sanyicloud/sanyi-common/sanyi-common-feign/src/main/java/com/sanyicloud/sanyi/common/feign/SanyiFeignAutoConfiguration.java
