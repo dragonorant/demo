@@ -1,5 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.sanyicloud.sanyi.common.redisson.RedissonAutoConfiguration,\
-  com.sanyicloud.sanyi.common.core.config.JacksonConfiguration,\
-  com.sanyicloud.sanyi.common.core.config.WebMvcConfiguration,\
-  com.sanyicloud.sanyi.common.core.util.SpringContextHolder
