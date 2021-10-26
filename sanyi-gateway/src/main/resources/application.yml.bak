@@ -1,5 +1,9 @@
+# Spring 相关
 spring:
   redis:
+    host: 172.19.1.251
+    port: 6379
+    database: 10
     redisson:
       config: |
         singleServerConfig:
@@ -22,67 +26,105 @@ spring:
         nettyThreads: 0
         codec: !<org.redisson.codec.JsonJacksonCodec> {}
         "transportMode": "NIO"
+
   cloud:
     loadbalancer:
       retry:
         enabled: true
     gateway:
-      globalcors:
-        cors-configurations:
-          '[*]':
-            allow-credentials: true
-            allowed-origins: "*"
-            allowed-headers: "*"
-            allowed-methods:
-              - OPTIONS
-              - GET
-              - POST
-              - PUT
-              - DELETE
       discovery:
         locator:
-          enabled: true  # 是否开启，默认为 false 关闭
-          url-expression: "'lb://' + serviceId" # 路由的目标地址的表达式，默认为 "'lb://' + serviceId"
+          # 配置之后访问时无需大写
           lower-case-service-id: true
+          enabled: true  # 是否开启，默认为 false 关闭
+      # 跨域配置
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedHeaders: "*"
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+                POST
+                DELETE
+                PUT
+                OPTION
       routes:
         - id: yoyo-biz
           uri: lb://yoyo-biz
           predicates:
             - Path=/yoyo/*
-          # filters:
-          #   # 限流配置
-          #   - name: RequestRateLimiter
-          #     args:
-          #       key-resolver: '#{@remoteAddrKeyResolver}'
-          #       redis-rate-limiter.replenishRate: 0
-          #       redis-rate-limiter.burstCapacity: 0
+            # 必须携带参数
+            - Query=_request
+            # 时间节点之前
+            - Before=2099-03-18T17:32:58.129+08:00[Asia/Shanghai]
+            # 时间节点之后
+            - After=2018-03-18T17:32:58.129+08:00[Asia/Shanghai]
+            # 过滤掉数量路径
+            #- StripPrefix=1
+            # 添加指定路径
+            #- PrefixPath=/root
         # 认证中心
         - id: pig-auth
           uri: lb://pig-auth
           predicates:
             - Path=/auth/**
-          filters:
-            # 验证码处理
-            - ValidateCodeGatewayFilter
-            # 前端密码解密
-            - PasswordDecoderFilter
         #UPMS 模块
         - id: pig-upms-biz
           uri: lb://pig-upms-biz
           predicates:
             - Path=/admin/**
-          filters:
-            # 限流配置
-            - name: RequestRateLimiter
-              args:
-                key-resolver: '#{@remoteAddrKeyResolver}'
-                redis-rate-limiter.replenishRate: 100
-                redis-rate-limiter.burstCapacity: 200
+      # 过滤器设置
       default-filters:
-        - name:
-gateway:
-  encode-key: 'thanks,pig4cloud'
-  ignore-clients:
-    - yoyo-biz
+        - name: RequestRateLimiter
+          args:
+            # how many requests per second you want a user to be allowed to do, without any dropped requests
+            # 每秒允许用户执行多少请求，不允许删除任何请求，这是令牌桶被填满的速率
+            redis-rate-limiter.replenishRate: 10
+            # the maximum number of requests a user is allowed to do in a single second
+            # 用户在一秒钟内允许执行的最大请求数，这是令牌桶可以容纳的令牌数量。将此值设置为0将阻止所有请求。
+            redis-rate-limiter.burstCapacity: 20
+            # how many tokens a request costs. This is the number of tokens taken from the bucket for each request and defaults to 1.
+            # 一个请求需要多少令牌 这是为每个请求从桶中获取的令牌数量，默认为1。
+            redis-rate-limiter.requestedTokens: 1
+            key-resolver: "#{@remoteAddrKeyResolver}"
+    # sentinel 配置
+    sentinel:
+      eager: true
+      transport:
+        dashboard: 172.19.1.251:8858
+        port: 8858
 
+# feign 配置
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
 
+# mybaits-plus配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  global-config:
+    db-config:
+      id-type: auto
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  type-handlers-package: com.sanyicloud.sanyi.common.mybatis.handler
+  type-enums-package: com.sanyicloud

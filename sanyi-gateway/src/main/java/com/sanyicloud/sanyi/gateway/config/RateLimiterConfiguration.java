@@ -38,7 +38,7 @@ public class RateLimiterConfiguration {
 	 * @link {https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/#the-requestratelimiter-gatewayfilter-factory}
 	 */
 	@Bean
-	public KeyResolver remoteAddKeyResolver() {
+	public KeyResolver remoteAddrKeyResolver() {
 		return exchange -> Mono
 				.just(Objects.requireNonNull(Objects.requireNonNull(exchange.getRequest().getRemoteAddress()))
 						.getAddress().getHostAddress());
