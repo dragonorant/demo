@@ -41,25 +41,25 @@ public class CheckGatewayFilterFactory extends AbstractGatewayFilterFactory<Obje
     @SneakyThrows
     private void checkRequest(ServerHttpRequest request){
         MultiValueMap<String, String> queryParams = request.getQueryParams();
-
         // 接口请求的时间戳
         String _request = queryParams.getFirst(MUST_REQUEST_TIMESTAMP);
         if (CharSequenceUtil.isBlank(_request)){
             throw new CheckedException("请求时间戳不能为空");
         }
-        // 请求携带时间戳 -- 这个是客户端的，先出来，也就是他应该小
-        long request_timestamp = Long.parseLong(_request);
-        // UTC 时间的 时间戳 -- 这个是服务端的，后出来，他应该大
-        long timestamp = LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli();
-        if (request_timestamp > timestamp){
-            throw new CheckedException("请求非法");
-        }
-        // 10 秒前的请求
-        if (timestamp - request_timestamp > 10000){
-            throw new CheckedException("请求超时");
-        }
         // 为 sanyicloud 时，不进行参数校验
         if (!_request.equals("sanyicloud")){
+            // 请求携带时间戳 -- 这个是客户端的，先出来，也就是他应该小
+            long request_timestamp = Long.parseLong(_request);
+            // UTC 时间的 时间戳 -- 这个是服务端的，后出来，他应该大
+            long timestamp = LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli();
+            if (request_timestamp > timestamp){
+                throw new CheckedException("请求非法");
+            }
+            log.info("timestamp:{},request_timestamp:{}",timestamp,request_timestamp);
+            // 10 秒前的请求
+            if (timestamp - request_timestamp > 10000){
+                throw new CheckedException("请求超时");
+            }
             String _random = queryParams.getFirst(MUST_REQUEST_RANDOM);
             if (CharSequenceUtil.isBlank(_random)){
                 throw new CheckedException("请求随机字符串不能为空");
@@ -74,5 +74,9 @@ public class CheckGatewayFilterFactory extends AbstractGatewayFilterFactory<Obje
                 throw new CheckedException("参数校验失败");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli());
     }
 }
