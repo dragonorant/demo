@@ -3,6 +3,7 @@ package com.sanyicloud.sanyi.gateway.filter;
 import cn.hutool.core.text.CharSequenceUtil;
 import com.sanyicloud.sanyi.common.core.constant.CacheConstants;
 import com.sanyicloud.sanyi.common.core.exception.CheckedException;
+import com.sanyicloud.sanyi.common.core.util.DateUtils;
 import com.sanyicloud.sanyi.common.core.util.MD5Utils;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -11,9 +12,6 @@ import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.util.MultiValueMap;
-
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 /**
  * by zhaowenyuan create 2021/10/26 09:45
@@ -51,7 +49,7 @@ public class CheckGatewayFilterFactory extends AbstractGatewayFilterFactory<Obje
             // 请求携带时间戳 -- 这个是客户端的，先出来，也就是他应该小
             long request_timestamp = Long.parseLong(_request);
             // UTC 时间的 时间戳 -- 这个是服务端的，后出来，他应该大
-            long timestamp = LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli();
+            long timestamp = DateUtils.getZoneOfMillis();
             if (request_timestamp > timestamp){
                 throw new CheckedException("请求非法");
             }
@@ -74,9 +72,5 @@ public class CheckGatewayFilterFactory extends AbstractGatewayFilterFactory<Obje
                 throw new CheckedException("参数校验失败");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli());
     }
 }

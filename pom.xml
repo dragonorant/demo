@@ -12,6 +12,7 @@
         <module>sanyi-common</module>
         <module>sanyi-gateway</module>
         <module>sanyi-yoyo</module>
+        <module>sanyi-visual</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -44,6 +45,7 @@
         <fastjson.version>1.2.75</fastjson.version>
         <redisson.version>3.16.3</redisson.version>
         <common.version>1.0.0</common.version>
+        <sharding-sphere.version>5.0.0-beta</sharding-sphere.version>
     </properties>
 
     <!-- 以下依赖 全局所有的模块都会引入  -->
@@ -109,6 +111,12 @@
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.apache.shardingsphere/sharding-jdbc-spring-boot-starter -->
+            <dependency>
+                <groupId>org.apache.shardingsphere</groupId>
+                <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+                <version>${sharding-sphere.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

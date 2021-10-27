@@ -10,7 +10,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * by zhaowenyuan create 2021/10/22 12:19
  */
-@EnableSanyiFeignClients
+@EnableSanyiFeignClients(basePackages = "com.sanyicloud.yoyo")
 @EnableDiscoveryClient
 @SpringBootApplication
 @ServletComponentScan
