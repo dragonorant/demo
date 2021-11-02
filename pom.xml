@@ -12,7 +12,6 @@
         <module>sanyi-common</module>
         <module>sanyi-gateway</module>
         <module>sanyi-yoyo</module>
-        <module>sanyi-visual</module>
     </modules>
     <packaging>pom</packaging>
 
