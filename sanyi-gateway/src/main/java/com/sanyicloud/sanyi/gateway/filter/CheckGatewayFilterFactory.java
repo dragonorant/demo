@@ -5,12 +5,13 @@ import com.sanyicloud.sanyi.common.core.constant.CacheConstants;
 import com.sanyicloud.sanyi.common.core.exception.CheckedException;
 import com.sanyicloud.sanyi.common.core.util.DateUtils;
 import com.sanyicloud.sanyi.common.core.util.MD5Utils;
-import com.sanyocloud.account.feign.AccountService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.apache.commons.lang3.StringUtils;
+import org.redisson.api.RBucket;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
@@ -44,7 +45,7 @@ public class CheckGatewayFilterFactory extends AbstractGatewayFilterFactory<Obje
     private static final String MUST_REQUEST_SIGN = "_sign";
 
     @Autowired
-    AccountService accountService;
+    RedissonClient redissonClient;
 
     @Override
     public GatewayFilter apply(Object config) {
@@ -75,9 +76,11 @@ public class CheckGatewayFilterFactory extends AbstractGatewayFilterFactory<Obje
         if (StringUtils.isEmpty(sanyiToken)){
             throw new CheckedException("鉴权失败");
         }
-
-        accountService.getAccountByToken(sanyiToken);
-
+        // todo 从 redis 读取token ,判断token 的有效性
+        RBucket<Object> bucket = redissonClient.getBucket("token:" + sanyiToken);
+        if (bucket.isExists()){
+            throw new CheckedException("鉴权失败");
+        }
 
     }
 

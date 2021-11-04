@@ -15,14 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient(contextId = "accountService",value = ServiceNameConstants.ACCOUNT_SERVICE,
         fallbackFactory = AccountFallbackFactory.class,
         path = "/yoyo/account")
-@RequestMapping(value = "/v1")
 public interface AccountService {
     /**
      * 通过token 获取账号信息
      * @param token
      * @return
      */
-    @GetMapping(value = "/token")
     Result<String> getAccountByToken(String token);
 
     /**
@@ -30,7 +28,6 @@ public interface AccountService {
      * @param accountBO
      * @return
      */
-    @PostMapping(value = "/topic/login")
     Result<String> login(AccountBO accountBO);
 
 }
