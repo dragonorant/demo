@@ -51,12 +51,6 @@
             <artifactId>spring-cloud-starter-loadbalancer</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.pig4cloud.plugin</groupId>
-            <artifactId>captcha-spring-boot-starter</artifactId>
-            <version>${captcha.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.sanyicloud</groupId>
             <artifactId>sanyi-common-core</artifactId>
             <version>${common.version}</version>
@@ -66,6 +60,11 @@
                     <artifactId>spring-webmvc</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.sanyicloud</groupId>
+            <artifactId>account-feign</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>

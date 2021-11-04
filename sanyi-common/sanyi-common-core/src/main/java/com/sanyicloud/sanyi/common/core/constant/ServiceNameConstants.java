@@ -34,5 +34,9 @@ public interface ServiceNameConstants {
 
 
 	String YOYO_SERVICE = "yoyo_service";
+	/**
+	 * yoyo-account-service
+	 */
+	String ACCOUNT_SERVICE = "account_service";
 
 }

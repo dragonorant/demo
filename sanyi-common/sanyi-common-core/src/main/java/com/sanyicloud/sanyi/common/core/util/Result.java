@@ -49,31 +49,31 @@ public class Result<T> implements Serializable {
 	private T data;
 
 	public static <T> Result<T> ok() {
-		return restResult(null, CommonConstants.SUCCESS, null);
+		return restResult(null, CommonConstants.SUCCESS_CODE, CommonConstants.SUCCESS_MSG);
 	}
 
 	public static <T> Result<T> ok(T data) {
-		return restResult(data, CommonConstants.SUCCESS, null);
+		return restResult(data, CommonConstants.SUCCESS_CODE, CommonConstants.SUCCESS_MSG);
 	}
 
 	public static <T> Result<T> ok(T data, String msg) {
-		return restResult(data, CommonConstants.SUCCESS, msg);
+		return restResult(data, CommonConstants.SUCCESS_CODE, CommonConstants.SUCCESS_MSG);
 	}
 
 	public static <T> Result<T> failed() {
-		return restResult(null, CommonConstants.FAIL, null);
+		return restResult(null, CommonConstants.FAIL_CODE, CommonConstants.FAIL_MSG);
 	}
 
 	public static <T> Result<T> failed(String msg) {
-		return restResult(null, CommonConstants.FAIL, msg);
+		return restResult(null, CommonConstants.FAIL_CODE, msg);
 	}
 
 	public static <T> Result<T> failed(T data) {
-		return restResult(data, CommonConstants.FAIL, null);
+		return restResult(data, CommonConstants.FAIL_CODE, CommonConstants.FAIL_MSG);
 	}
 
 	public static <T> Result<T> failed(T data, String msg) {
-		return restResult(data, CommonConstants.FAIL, msg);
+		return restResult(data, CommonConstants.FAIL_CODE, msg);
 	}
 
 	private static <T> Result<T> restResult(T data, int code, String msg) {

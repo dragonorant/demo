@@ -32,9 +32,6 @@ import reactor.netty.ReactorNetty;
 public class SanyiGatewayApplication {
 
 	public static void main(String[] args) {
-		System.setProperty(ReactorNetty.NATIVE,"false");
-		System.setProperty(ReactorNetty.IO_WORKER_COUNT, "6");
-		System.setProperty(ReactorNetty.IO_SELECT_COUNT, "6");
 		SpringApplication.run(SanyiGatewayApplication.class, args);
 	}
 

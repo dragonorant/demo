@@ -9,17 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>sanyi-yoyo</artifactId>
+    <artifactId>sanyi-account</artifactId>
     <packaging>pom</packaging>
+    <description>叁一账号相关</description>
+
     <modules>
-        <module>yoyo-feign</module>
-        <module>yoyo-service</module>
+        <module>account-feign</module>
+        <module>account-service</module>
     </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <yoyo.version>1.0.0</yoyo.version>
         <account.version>1.0.0</account.version>
     </properties>
 
@@ -35,5 +36,6 @@
             <version>${common.version}</version>
         </dependency>
     </dependencies>
+
 
 </project>

@@ -70,12 +70,16 @@ public interface CommonConstants {
 	/**
 	 * 成功标记
 	 */
-	Integer SUCCESS = 0;
+	Integer SUCCESS_CODE = 0;
+
+	String SUCCESS_MSG = "success";
 
 	/**
 	 * 失败标记
 	 */
-	Integer FAIL = 1;
+	Integer FAIL_CODE = 1;
+
+	String FAIL_MSG = "fail";
 
 	/**
 	 * 验证码前缀

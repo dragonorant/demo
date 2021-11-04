@@ -12,6 +12,7 @@
         <module>sanyi-common</module>
         <module>sanyi-gateway</module>
         <module>sanyi-yoyo</module>
+        <module>sanyi-account</module>
     </modules>
     <packaging>pom</packaging>
 

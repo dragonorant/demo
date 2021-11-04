@@ -3,13 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>sanyi-yoyo</artifactId>
+        <artifactId>sanyi-account</artifactId>
         <groupId>com.sanyicloud</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>yoyo-service</artifactId>
+    <artifactId>account-service</artifactId>
+    <description>账号处理相关逻辑</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -19,14 +20,10 @@
     <dependencies>
         <dependency>
             <groupId>com.sanyicloud</groupId>
-            <artifactId>yoyo-feign</artifactId>
-            <version>${yoyo.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sanyicloud</groupId>
             <artifactId>account-feign</artifactId>
             <version>${account.version}</version>
         </dependency>
+
         <!--注册中心客户端-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
