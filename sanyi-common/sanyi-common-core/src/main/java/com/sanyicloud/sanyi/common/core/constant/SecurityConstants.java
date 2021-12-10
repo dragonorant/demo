@@ -28,16 +28,6 @@ public interface SecurityConstants {
 	String ROLE = "ROLE_";
 
 	/**
-	 * 前缀
-	 */
-	String PROJECT_PREFIX = "pig_";
-
-	/**
-	 * 项目的license
-	 */
-	String PROJECT_LICENSE = "made by pig";
-
-	/**
 	 * 内部
 	 */
 	String FROM_IN = "Y";

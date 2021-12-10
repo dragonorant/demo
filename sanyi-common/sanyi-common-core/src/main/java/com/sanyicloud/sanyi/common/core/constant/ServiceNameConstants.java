@@ -22,17 +22,6 @@ package com.sanyicloud.sanyi.common.core.constant;
  */
 public interface ServiceNameConstants {
 
-	/**
-	 * 认证服务的SERVICEID
-	 */
-	String AUTH_SERVICE = "pig-auth";
-
-	/**
-	 * UMPS模块
-	 */
-	String UMPS_SERVICE = "pig-upms-biz";
-
-
 	String YOYO_SERVICE = "yoyo_service";
 	/**
 	 * yoyo-account-service
