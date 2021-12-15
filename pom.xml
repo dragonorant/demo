@@ -38,7 +38,6 @@
         <docker.registry>192.168.0.100</docker.registry>
         <docker.username>username</docker.username>
         <docker.password>password</docker.password>
-        <git.commit.plugin>2.2.5</git.commit.plugin>
         <spring.checkstyle.plugin>0.0.28</spring.checkstyle.plugin>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <fastjson.version>1.2.75</fastjson.version>
@@ -123,47 +122,39 @@
     <build>
         <finalName>${project.name}</finalName>
         <resources>
-        <resource>
-            <directory>src/main/resources</directory>
-            <filtering>true</filtering>
-        </resource>
-    </resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring-boot.version}</version>
-                <configuration>
-                    <finalName>${project.build.finalName}</finalName>
-                    <layers>
-                        <enabled>true</enabled>
-                    </layers>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </pluginManagement>
-        <plugins>
-    <!--打包jar 与git commit 关联插件-->
-        <plugin>
-        <groupId>pl.project13.maven</groupId>
-        <artifactId>git-commit-id-plugin</artifactId>
-        <version>${git.commit.plugin}</version>
-    </plugin>
-        <!--代码格式插件，默认使用spring 规则-->
-        <plugin>
-            <groupId>io.spring.javaformat</groupId>
-            <artifactId>spring-javaformat-maven-plugin</artifactId>
-            <version>${spring.checkstyle.plugin}</version>
-        </plugin>
-    </plugins>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <configuration>
+                        <finalName>${project.build.finalName}</finalName>
+                        <layers>
+                            <enabled>true</enabled>
+                        </layers>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!--代码格式插件，默认使用spring 规则-->
+                <plugin>
+                    <groupId>io.spring.javaformat</groupId>
+                    <artifactId>spring-javaformat-maven-plugin</artifactId>
+                    <version>${spring.checkstyle.plugin}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <profiles>
