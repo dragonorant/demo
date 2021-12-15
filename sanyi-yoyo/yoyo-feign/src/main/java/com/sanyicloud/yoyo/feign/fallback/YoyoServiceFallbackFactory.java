@@ -1,7 +1,7 @@
 package com.sanyicloud.yoyo.feign.fallback;
 
 import com.sanyicloud.sanyi.common.core.util.Result;
-import com.sanyicloud.yoyo.feign.DemoService;
+import com.sanyicloud.yoyo.feign.YoyoService;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
@@ -12,17 +12,17 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class DemoServiceFallbackFactory implements FallbackFactory<DemoService>{
+public class YoyoServiceFallbackFactory implements FallbackFactory<YoyoService>{
 
     @Override
-    public DemoService create(Throwable cause) {
-        DemoServiceFallbackImpl demoServiceFallback = new DemoServiceFallbackImpl();
+    public YoyoService create(Throwable cause) {
+        YoyoServiceFallbackImpl demoServiceFallback = new YoyoServiceFallbackImpl();
         demoServiceFallback.setCause(cause);
         return demoServiceFallback;
     }
 }
 @Component
-class DemoServiceFallbackImpl implements DemoService {
+class YoyoServiceFallbackImpl implements YoyoService {
 
     @Setter
     private Throwable cause;

@@ -22,10 +22,10 @@ package com.sanyicloud.sanyi.common.core.constant;
  */
 public interface ServiceNameConstants {
 
-	String YOYO_SERVICE = "yoyo_service";
+	String YOYO_SERVICE = "yoyo-service";
 	/**
 	 * yoyo-account-service
 	 */
-	String ACCOUNT_SERVICE = "account_service";
+	String ACCOUNT_SERVICE = "account-service";
 
 }
