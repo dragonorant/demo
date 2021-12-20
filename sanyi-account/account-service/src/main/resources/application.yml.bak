@@ -26,6 +26,7 @@ spring:
     props:
       sql-show: true
     rules:
+      # 分库
       replica-query:
         data-sources:
           yoyo:
@@ -37,6 +38,23 @@ spring:
             type: ROUND_ROBIN
             props:
               workId: 1
+      # 分表
+      sharding:
+        sharding-algorithms:
+          sanyi_report_table:
+            type: interval
+            props:
+              datetime-pattern: yyyy-MM
+              datetime-lower: 2021-10
+              datetime-upper: 2099-12
+              sharding-suffix-pattern: yyyy-MM
+              datetime-interval-unit: MONTHS
+        tables:
+          sanyi_report_table:
+            table-strategy:
+              standard:
+                sharding-column: report_date
+                shardong-alorithm-name: sanyi_report_table
   redis:
     redisson:
       config: |
