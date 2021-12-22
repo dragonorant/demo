@@ -25,7 +25,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring-boot-admin.version>2.5.2</spring-boot-admin.version>
+        <spring-boot-admin.version>2.5.4</spring-boot-admin.version>
         <hutool.version>5.7.13</hutool.version>
         <dynamic-ds.version>3.4.1</dynamic-ds.version>
         <captcha.version>2.2.0</captcha.version>
@@ -45,7 +45,7 @@
         <fastjson.version>1.2.75</fastjson.version>
         <redisson.version>3.16.3</redisson.version>
         <common.version>1.0.0</common.version>
-        <sharding-sphere.version>5.0.0-beta</sharding-sphere.version>
+        <sharding-sphere.version>5.0.0</sharding-sphere.version>
     </properties>
 
     <!-- 以下依赖 全局所有的模块都会引入  -->

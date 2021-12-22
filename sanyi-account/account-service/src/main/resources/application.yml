@@ -10,51 +10,55 @@ spring:
 #    url: jdbc:mysql://172.19.1.251:3306/yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
   shardingsphere:
     datasource:
-      common:
+#      common:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+      names: master
+      master:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-      names: master,slave
-      master:
         username: root
         password: root
         ## 使用 lvs 搭建高可用
-        jdbc-url: jdbc:mysql://172.19.1.251:3306/yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-      slave: # 直接 slave 123
-        username: root
-        password: root
-        jdbc-url: jdbc:mysql://172.19.1.250:3306/yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+        jdbc-url: jdbc:mysql://172.19.1.251:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+#      slave: # 直接 slave 123
+#        username: root
+#        password: root
+#        jdbc-url: jdbc:mysql://172.19.1.250:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
     props:
       sql-show: true
     rules:
-      # 分库
-      replica-query:
-        data-sources:
-          yoyo:
-            primary-data-source-name: master
-            replica-data-source-names: slave
-            load-balancers-name: round-robin
-        load-balancers:
-          round-robin:
-            type: ROUND_ROBIN
-            props:
-              workId: 1
+#      # 读写分离
+#      readwrite-splitting:
+#        data-sources:
+#          yoyo:
+#            primary-data-source-name: master
+#            replica-data-source-names: slave
+#            load-balancers-name: round-robin
+#        load-balancers:
+#          round-robin:
+#            type: ROUND_ROBIN
+#            props:
+#              workId: 1
       # 分表
       sharding:
         sharding-algorithms:
-          sanyi_report_table:
-            type: interval
+          tables:
+            type: INTERVAL
             props:
-              datetime-pattern: yyyy-MM
-              datetime-lower: 2021-10
-              datetime-upper: 2099-12
+              datetime-pattern: yyyy-MM-dd HH:mm:ss
+              datetime-lower: 2021-10-01 00:00:00
+              datetime-upper: 2099-12-31 00:00:00
               sharding-suffix-pattern: yyyy-MM
               datetime-interval-unit: MONTHS
-        tables:
-          sanyi_report_table:
-            table-strategy:
-              standard:
-                sharding-column: report_date
-                shardong-alorithm-name: sanyi_report_table
+              datetime-interval-amount: 1
+            yoyo_account:
+              actual_data_nodes: master.yoyo_account_${2021..2023}-$->{['01','02','03','04','05','06','07','08','09','10','11','12']}
+              table-strategy:
+                standard:
+                  sharding-column: create_time
+                  shardong-alorithm-name: table-inline
+
   redis:
     redisson:
       config: |
