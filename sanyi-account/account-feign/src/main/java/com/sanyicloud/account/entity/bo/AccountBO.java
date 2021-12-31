@@ -1,4 +1,4 @@
-package com.sanyocloud.account.entity.bo;
+package com.sanyicloud.account.entity.bo;
 
 import lombok.Data;
 
@@ -19,7 +19,7 @@ public class AccountBO {
      * 设备类型
      */
     @NotNull(message = "设备类型不能为空")
-    private String deviceType;
+    private Short deviceType;
 
     /**
      * 昵称
@@ -32,4 +32,5 @@ public class AccountBO {
      */
     @NotNull(message = "头像编号不能为空")
     private String avatar;
+
 }

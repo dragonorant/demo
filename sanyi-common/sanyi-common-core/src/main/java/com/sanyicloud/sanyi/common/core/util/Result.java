@@ -25,14 +25,13 @@ import java.io.Serializable;
 /**
  * 响应信息主体
  *
- * @param <T>
  * @author lengleng
  */
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class Result<T> implements Serializable {
+public class Result implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -46,38 +45,38 @@ public class Result<T> implements Serializable {
 
 	@Getter
 	@Setter
-	private T data;
+	private Object data;
 
-	public static <T> Result<T> ok() {
+	public static Result ok() {
 		return restResult(null, CommonConstants.SUCCESS_CODE, CommonConstants.SUCCESS_MSG);
 	}
 
-	public static <T> Result<T> ok(T data) {
+	public static  Result ok(Object data) {
 		return restResult(data, CommonConstants.SUCCESS_CODE, CommonConstants.SUCCESS_MSG);
 	}
 
-	public static <T> Result<T> ok(T data, String msg) {
+	public static  Result ok(Object data, String msg) {
 		return restResult(data, CommonConstants.SUCCESS_CODE, CommonConstants.SUCCESS_MSG);
 	}
 
-	public static <T> Result<T> failed() {
+	public static  Result failed() {
 		return restResult(null, CommonConstants.FAIL_CODE, CommonConstants.FAIL_MSG);
 	}
 
-	public static <T> Result<T> failed(String msg) {
+	public static  Result failed(String msg) {
 		return restResult(null, CommonConstants.FAIL_CODE, msg);
 	}
 
-	public static <T> Result<T> failed(T data) {
+	public static  Result failed(Object data) {
 		return restResult(data, CommonConstants.FAIL_CODE, CommonConstants.FAIL_MSG);
 	}
 
-	public static <T> Result<T> failed(T data, String msg) {
+	public static  Result failed(Object data, String msg) {
 		return restResult(data, CommonConstants.FAIL_CODE, msg);
 	}
 
-	private static <T> Result<T> restResult(T data, int code, String msg) {
-		Result<T> apiResult = new Result<>();
+	private static  Result restResult(Object data, int code, String msg) {
+		Result apiResult = new Result();
 		apiResult.setCode(code);
 		apiResult.setData(data);
 		apiResult.setMsg(msg);

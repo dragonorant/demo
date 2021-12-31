@@ -45,6 +45,9 @@
 		<encoder>
 			<pattern>%date [%thread] %-5level [%logger{50}] %file:%line - %msg%n</pattern>
 		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
 	</appender>
 
 	<!-- Log file error output -->
@@ -59,7 +62,7 @@
 			<pattern>%date [%thread] %-5level [%logger{50}] %file:%line - %msg%n</pattern>
 		</encoder>
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-			<level>ERROR</level>
+			<level>debug</level>
 		</filter>
 	</appender>
 
@@ -85,7 +88,7 @@
 	</logger>
 
 	<!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
-	<root level="INFO">
+	<root level="info">
 		<appender-ref ref="console"/>
 		<appender-ref ref="debug"/>
 		<appender-ref ref="error"/>

@@ -13,7 +13,7 @@ spring:
 #      common:
 #        type: com.zaxxer.hikari.HikariDataSource
 #        driver-class-name: com.mysql.cj.jdbc.Driver
-      names: master
+      names: master,slave
       master:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
@@ -21,44 +21,74 @@ spring:
         password: root
         ## 使用 lvs 搭建高可用
         jdbc-url: jdbc:mysql://172.19.1.251:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-#      slave: # 直接 slave 123
-#        username: root
-#        password: root
-#        jdbc-url: jdbc:mysql://172.19.1.250:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+      slave: # 直接 slave 123
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: root
+        jdbc-url: jdbc:mysql://172.19.1.250:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
     props:
       sql-show: true
     rules:
-#      # 读写分离
-#      readwrite-splitting:
-#        data-sources:
-#          yoyo:
-#            primary-data-source-name: master
-#            replica-data-source-names: slave
-#            load-balancers-name: round-robin
-#        load-balancers:
-#          round-robin:
-#            type: ROUND_ROBIN
-#            props:
-#              workId: 1
-      # 分表
-      sharding:
-        sharding-algorithms:
-          tables:
-            type: INTERVAL
+      # 读写分离
+      readwrite_splitting:
+        data-sources:
+          yoyo_account:
+            auto-aware-data-source-name: master,slave
+            write-data-source-name: master
+            read-data-source-names: slave
+            load-balancers-name: round-robin
+        load-balancers:
+          round-robin:
+            type: ROUND_ROBIN
             props:
-              datetime-pattern: yyyy-MM-dd HH:mm:ss
-              datetime-lower: 2021-10-01 00:00:00
-              datetime-upper: 2099-12-31 00:00:00
-              sharding-suffix-pattern: yyyy-MM
-              datetime-interval-unit: MONTHS
-              datetime-interval-amount: 1
-            yoyo_account:
-              actual_data_nodes: master.yoyo_account_${2021..2023}-$->{['01','02','03','04','05','06','07','08','09','10','11','12']}
-              table-strategy:
-                standard:
-                  sharding-column: create_time
-                  shardong-alorithm-name: table-inline
+              workId: 1
+      sharding:
+        tables:
+          yoyo_account:
+            actual-data-nodes: master.yoyo_account_$->{0..4}
+            table-strategy:
+              standard:
+                sharding-column: account_id
+                sharding-algorithm-name: account-inline
+          yoyo_third:
+            actual-data-nodes: master.yoyo_third_$->{0..4}
+            table-strategy:
+              standard:
+                sharding-column: account_id
+                sharding-algorithm-name: third-inline
+        sharding-algorithms:
+          account-inline:
+            type: HASH_MOD
+            props:
+              sharding-count: 5
+          third-inline:
+            type: HASH_MOD
+            props:
+              sharding-count: 5
+        binding-tables[0]: yoyo_account,yoyo_third
+      # 日期分表
+    enabled: true
+  #      sharding:
+#        tables:
+#          yoyo_account:
+#            actual-data-nodes: master.yoyo_account_$->{2021..2023}_$->{['01','02','03','04','05','06','07','08','09','10','11','12']}
+#            table-strategy:
+#              standard:
+#                sharding-column: create_time
+#                sharding-algorithm-name: table-interval
+#        sharding-algorithms:
+#          table-interval:
+#            type: INTERVAL
+#            props:
+#              datetime-pattern: "yyyy-MM-dd HH:mm:ss"
+#              datetime-lower: "2021-01-01 00:00:00"
+#              datetime-upper: "2023-12-31 23:59:59"
+#              sharding-suffix-pattern: "yyyy_MM"
+#              datetime-interval-amount: "1"
+#              datetime-interval-unit: "MONTHS"
 
+  #
   redis:
     redisson:
       config: |
@@ -123,4 +153,4 @@ mybatis-plus:
   type-enums-package: com.sanyicloud
 server:
   servlet:
-    context-path: /yoyo
+    context-path: /yoyo/account

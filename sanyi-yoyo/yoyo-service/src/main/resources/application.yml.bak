@@ -99,6 +99,4 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
   type-handlers-package: com.sanyicloud.sanyi.common.mybatis.handler
   type-enums-package: com.sanyicloud
-server:
-  servlet:
-    context-path: /yoyo
+

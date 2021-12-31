@@ -67,7 +67,7 @@ public interface CommonConstants {
 	/**
 	 * 失败标记
 	 */
-	Integer FAIL_CODE = 1;
+	Integer FAIL_CODE = 500;
 
 	String FAIL_MSG = "fail";
 

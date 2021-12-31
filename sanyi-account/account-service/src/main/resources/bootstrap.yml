@@ -1,8 +1,13 @@
 server:
-  port: 4005
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 1000
+      min-spare: 30
+    connection-timeout: 5000ms
+  port: 8080
   servlet:
     context-path: /yoyo/account
-
 spring:
   application:
     name: @artifactId@

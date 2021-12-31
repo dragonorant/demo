@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-   com.sanyocloud.account.feign.fallback.AccountServiceFallbackImpl
+   com.sanyicloud.account.feign.fallback.AccountServiceFallbackImpl
