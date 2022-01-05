@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 /**
     * yoyo 三方账号 — 可以是 设备号 或者 是三方账号的 唯一值 每个 三方账号对应一个 yoyo_account 账号 
@@ -22,7 +21,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class YoyoThird implements Serializable {
+public class SanyiThird implements Serializable {
     /**
     * 自增id
     */

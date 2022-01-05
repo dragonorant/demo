@@ -1,8 +1,8 @@
 package com.sanyicloud.account.entity.vo;
 
 import com.sanyicloud.account.entity.bo.AccountBO;
-import com.sanyicloud.account.entity.po.YoyoAccount;
-import com.sanyicloud.account.entity.po.YoyoThird;
+import com.sanyicloud.account.entity.po.SanyiAccount;
+import com.sanyicloud.account.entity.po.SanyiThird;
 import lombok.Data;
 
 /**
@@ -15,13 +15,13 @@ public class AccountVO extends AccountBO {
      */
     private String accountId;
 
-    public static AccountVO covert(YoyoAccount yoyoAccount, YoyoThird yoyoThird){
+    public static AccountVO covert(SanyiAccount sanyiAccount, SanyiThird sanyiThird){
         AccountVO accountVO = new AccountVO();
-        accountVO.setAccountId(yoyoAccount.getAccountId());
-        accountVO.setAvatar(yoyoAccount.getAvatar());
-        accountVO.setNickname(yoyoAccount.getNickname());
-        accountVO.setDeviceNum(yoyoThird.getDeviceNum());
-        accountVO.setDeviceType(yoyoThird.getDeviceType());
+        accountVO.setAccountId(sanyiAccount.getAccountId());
+        accountVO.setAvatar(sanyiAccount.getAvatar());
+        accountVO.setNickname(sanyiAccount.getNickname());
+        accountVO.setDeviceNum(sanyiThird.getDeviceNum());
+        accountVO.setDeviceType(sanyiThird.getDeviceType());
         return accountVO;
     }
 

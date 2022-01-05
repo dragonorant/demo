@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.sanyicloud.account.mapper.YoyoAccountMapper">
-  <resultMap id="BaseResultMap" type="com.sanyicloud.account.entity.po.YoyoAccount">
+<mapper namespace="com.sanyicloud.account.mapper.SanyiAccountMapper">
+  <resultMap id="BaseResultMap" type="com.sanyicloud.account.entity.po.SanyiAccount">
     <!--@mbg.generated-->
     <!--@Table yoyo_account_0-->
     <result column="account_id" jdbcType="VARCHAR" property="accountId" />

@@ -21,7 +21,7 @@ account_0 对应的 必定是 third_0
 @NoArgsConstructor
 @ToString
 @Builder
-public class YoyoAccount implements Serializable {
+public class SanyiAccount implements Serializable {
 
     /**
     * 根据 设备号计算出来的 账号id

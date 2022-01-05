@@ -1,13 +1,11 @@
 package com.sanyicloud.account.controller.v1;
 
 import com.sanyicloud.account.entity.bo.AccountBO;
-import com.sanyicloud.account.entity.po.YoyoAccount;
-import com.sanyicloud.account.service.YoyoAccountService;
+import com.sanyicloud.account.service.SanyiAccountService;
 import com.sanyicloud.sanyi.common.core.util.IdUtils;
 import com.sanyicloud.sanyi.common.core.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,23 +14,16 @@ import javax.validation.Valid;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.Enumeration;
-import java.util.Map;
 
 /**
  * by zhaowenyuan create 2021/11/4 12:12
  */
 @Slf4j
 @RestController
+@RequestMapping(value = "/v1")
 public class AccountController {
     @Autowired
-    YoyoAccountService yoyoAccountService;
-
-    @GetMapping(value = "/token")
-    public Result getAccountByToken(String token)
-    {
-        log.info("token->{}",token);
-        return null;
-    }
+    SanyiAccountService yoyoAccountService;
 
     /**
      * 设备号登录 ｜ 注册 存在即登录, 不存在即注册

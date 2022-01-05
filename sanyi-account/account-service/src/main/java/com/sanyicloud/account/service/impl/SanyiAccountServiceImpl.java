@@ -3,12 +3,12 @@ package com.sanyicloud.account.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sanyicloud.account.entity.bo.AccountBO;
-import com.sanyicloud.account.entity.po.YoyoAccount;
-import com.sanyicloud.account.entity.po.YoyoThird;
+import com.sanyicloud.account.entity.po.SanyiAccount;
+import com.sanyicloud.account.entity.po.SanyiThird;
 import com.sanyicloud.account.entity.vo.AccountVO;
-import com.sanyicloud.account.mapper.YoyoAccountMapper;
-import com.sanyicloud.account.service.YoyoAccountService;
-import com.sanyicloud.account.service.YoyoThirdService;
+import com.sanyicloud.account.mapper.SanyiAccountMapper;
+import com.sanyicloud.account.service.SanyiAccountService;
+import com.sanyicloud.account.service.SanyiThirdService;
 import com.sanyicloud.sanyi.common.core.util.IdUtils;
 import com.sanyicloud.sanyi.common.core.util.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -23,10 +23,10 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Slf4j
 @Service
-public class YoyoAccountServiceImpl extends ServiceImpl<YoyoAccountMapper, YoyoAccount> implements YoyoAccountService {
+public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, SanyiAccount> implements SanyiAccountService {
 
     @Autowired
-    YoyoThirdService yoyoThirdService;
+    SanyiThirdService sanyiThirdService;
     @Autowired
     RedissonClient redissonClient;
 
@@ -37,44 +37,44 @@ public class YoyoAccountServiceImpl extends ServiceImpl<YoyoAccountMapper, YoyoA
         Short deviceType = accountBO.getDeviceType();
         // 以其作为 accountId
         String accountId = IdUtils.strConvertNum(deviceNum);
-        YoyoAccount yoyoAccount = this.baseMapper.selectOne(
-                new LambdaQueryWrapper<YoyoAccount>()
-                        .eq(YoyoAccount::getAccountId, accountId)
+        SanyiAccount sanyiAccount = this.baseMapper.selectOne(
+                new LambdaQueryWrapper<SanyiAccount>()
+                        .eq(SanyiAccount::getAccountId, accountId)
         );
         // 如果不为空 -- 则说明为 登录
-        if (ObjectUtils.isNotEmpty(yoyoAccount)){
-            YoyoThird yoyoThird = yoyoThirdService.getOne(
-                    new LambdaQueryWrapper<YoyoThird>()
-                            .eq(YoyoThird::getAccountId, accountId)
-                            .eq(YoyoThird::getDeviceNum, deviceNum)
-                            .eq(YoyoThird::getDeviceType, accountBO.getDeviceType())
+        if (ObjectUtils.isNotEmpty(sanyiAccount)){
+            SanyiThird sanyiThird = sanyiThirdService.getOne(
+                    new LambdaQueryWrapper<SanyiThird>()
+                            .eq(SanyiThird::getAccountId, accountId)
+                            .eq(SanyiThird::getDeviceNum, deviceNum)
+                            .eq(SanyiThird::getDeviceType, accountBO.getDeviceType())
             );
             // 则说明此账号存在
-            if (ObjectUtils.isNotEmpty(yoyoThird)){
-                return Result.ok(AccountVO.covert(yoyoAccount,yoyoThird));
+            if (ObjectUtils.isNotEmpty(sanyiThird)){
+                return Result.ok(AccountVO.covert(sanyiAccount,sanyiThird));
             }
         }
-        yoyoAccount = YoyoAccount.builder()
+        sanyiAccount = SanyiAccount.builder()
                 .accountId(accountId)
                 .avatar(accountBO.getAvatar())
                 .nickname(accountBO.getNickname())
                 .build();
-        YoyoThird yoyoThird = YoyoThird.builder()
+        SanyiThird sanyiThird = SanyiThird.builder()
                 .accountId(accountId)
                 .deviceNum(deviceNum)
                 .deviceType(deviceType)
                 .build();
 
-        createAccount(yoyoThird, yoyoAccount);
+        createAccount(sanyiThird, sanyiAccount);
 
-        return Result.ok(AccountVO.covert(yoyoAccount,yoyoThird));
+        return Result.ok(AccountVO.covert(sanyiAccount,sanyiThird));
     }
 
     @Transactional
-    public void createAccount(YoyoThird yoyoThird, YoyoAccount yoyoAccount)
+    public void createAccount(SanyiThird sanyiThird, SanyiAccount sanyiAccount)
     {
-        yoyoThirdService.save(yoyoThird);
-        this.baseMapper.insert(yoyoAccount);
+        sanyiThirdService.save(sanyiThird);
+        this.baseMapper.insert(sanyiAccount);
     }
 
 }
