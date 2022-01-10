@@ -19,6 +19,7 @@ package com.sanyicloud.sanyi.gateway.filter;
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import com.alibaba.fastjson.JSONObject;
+import com.sanyicloud.sanyi.common.core.constant.CommonConstants;
 import com.sanyicloud.sanyi.common.core.exception.CheckedException;
 import com.sanyicloud.sanyi.common.core.util.DateUtils;
 import com.sanyicloud.sanyi.common.core.util.TokenUtils;
@@ -52,21 +53,16 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
- * @author lengleng
- * @date 2019/2/1
  * <p>
  * 全局拦截器，作用所有的微服务
+ * 针对性 进行请求头效验, 对于需要传递 token 值的接口都需要进行效验
+ * 并且 将其 传递到 下一个项目的 body 或者 query 中
  * <p>
- * 1. 对请求头中参数进行处理 from 参数进行清洗 2. 重写StripPrefix = 1,支持全局
- * <p>
- * 支持swagger添加X-Forwarded-Prefix header （F SR2 已经支持，不需要自己维护）
  */
 @Slf4j
 @RequiredArgsConstructor
 public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
 
-    private static final String HEAD_TOKEN_KEY = "sanyiToken";
-    private static final String ACCOUNT_ID = "accountId";
     @Value("${server.servlet.context-path}")
     private String CONTEXT_PATH;
 
@@ -92,7 +88,6 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
             return checkToken(exchange, chain);
         }
         log.info("白名单:{}", newPath);
-
         return chain.filter(exchange);
     }
 
@@ -106,7 +101,7 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
         ServerHttpRequest request = exchange.getRequest();
         HttpHeaders headers = request.getHeaders();
         // 请求投 携带的 token
-        String sanyiToken = headers.getFirst(HEAD_TOKEN_KEY);
+        String sanyiToken = headers.getFirst(CommonConstants.HEAD_TOKEN_KEY);
         if (org.apache.commons.lang3.StringUtils.isEmpty(sanyiToken)) {
             throw new CheckedException("鉴权失败");
         }
@@ -152,7 +147,7 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
                     } else {
                         jsonObject = new JSONObject();
                     }
-                    jsonObject.put(ACCOUNT_ID, accountId);
+                    jsonObject.put(CommonConstants.ACCOUNT_ID, accountId);
                     return Mono.just(jsonObject.toJSONString());
                 }
                 return Mono.empty();
@@ -203,7 +198,7 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
             query.append(rawQuery);
             query.append("&");
         }
-        query.append(ACCOUNT_ID)
+        query.append(CommonConstants.ACCOUNT_ID)
                 .append("=")
                 .append(accountId);
         return UriComponentsBuilder.fromUri(uri).replaceQuery(query.toString()).build(true).toUri();
