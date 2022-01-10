@@ -17,7 +17,10 @@
 
 <configuration debug="false" scan="false">
 	<springProperty scop="context" name="spring.application.name" source="spring.application.name" defaultValue=""/>
+	<springProperty scope="context" name="plumelog.kafka.hosts" source="plumelog.kafka.hosts" />
+	<property name="log.hosts" value="${plumelog.kafka.hosts}" />
 	<property name="log.path" value="logs/${spring.application.name}"/>
+
 	<!-- 彩色日志格式 -->
 	<property name="CONSOLE_LOG_PATTERN"
 			  value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
@@ -86,10 +89,11 @@
 	<logger name="com.alibaba.nacos" level="OFF">
 		<appender-ref ref="error"/>
 	</logger>
-<!-- plume log 配置	-->
+
+	<!-- 使用kafka启用下面配置 -->
 	<!--	<appender name="plumelog" class="com.plumelog.logback.appender.KafkaAppender">-->
-	<!--		<appName>topic-service</appName>-->
-	<!--		<kafkaHosts>172.19.1.251:9093</kafkaHosts>-->
+	<!--		<appName>${spring.application.name}</appName>-->
+	<!--		<kafkaHosts>${log.hosts}</kafkaHosts>-->
 	<!--	</appender>-->
 
 	<!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
