@@ -42,13 +42,9 @@
             <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-        </dependency>
-        <!-- LB 扩展 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+            <groupId>com.sanyicloud</groupId>
+            <artifactId>sanyi-common-feign</artifactId>
+            <version>${common.version}</version>
         </dependency>
         <dependency>
             <groupId>com.sanyicloud</groupId>

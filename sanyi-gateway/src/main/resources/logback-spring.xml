@@ -27,10 +27,13 @@
 					converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
 	<conversionRule conversionWord="wEx"
 					converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+
 	<!-- Console log output -->
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+			<Pattern>${CONSOLE_LOG_PATTERN}</Pattern>
+			<!-- 设置字符集 -->
+			<charset>UTF-8</charset>
 		</encoder>
 	</appender>
 
@@ -84,11 +87,18 @@
 		<appender-ref ref="error"/>
 	</logger>
 
+	<!-- 使用kafka启用下面配置 -->
+<!--	<appender name="plumelog" class="com.plumelog.logback.appender.KafkaAppender">-->
+<!--		<appName>${spring.application.name}</appName>-->
+<!--		<kafkaHosts>172.19.1.251:9093</kafkaHosts>-->
+<!--	</appender>-->
+
 	<!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
 	<root level="INFO">
 		<appender-ref ref="console"/>
-		<appender-ref ref="debug"/>
-		<appender-ref ref="error"/>
+
 		<appender-ref ref="info"/>
+		<!-- 输出plumelog -->
+<!--		<appender-ref ref="plumelog"/>-->
 	</root>
 </configuration>

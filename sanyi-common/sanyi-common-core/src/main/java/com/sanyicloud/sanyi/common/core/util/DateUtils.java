@@ -10,18 +10,6 @@ import java.util.Date;
  * 时间工具类
  */
 public class DateUtils {
-
-    /** 时间格式(yyyy-MM-dd) */
-    public final static String DATE_PATTERN = "yyyy-MM-dd";
-    /** 时间格式(yyyy-MM-dd HH:mm:ss) */
-    public final static String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
-
-    public final static String ISO_DATE_TIME_PATTERN = "yyyy-MM-dd'T'HH:mm:ss'Z'";
-
-    public final static String DATE_PATTERN_2 = "yyyyMMdd";
-
-    public final static String DEFAULT_TIME_ZONE = "GMT";
-
     /**
      * 获取 指定时区的时间戳
      * @author ant

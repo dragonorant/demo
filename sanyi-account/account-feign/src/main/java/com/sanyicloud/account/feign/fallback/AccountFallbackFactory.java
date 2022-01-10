@@ -28,11 +28,6 @@ class AccountServiceFallbackImpl implements AccountService{
     private Throwable cause;
 
     @Override
-    public Result getAccountByToken(String token) {
-        return Result.failed("请稍后再试");
-    }
-
-    @Override
     public Result login(AccountBO accountBO) {
         return Result.failed("请稍后再试");
     }

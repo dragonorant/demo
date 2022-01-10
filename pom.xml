@@ -11,20 +11,20 @@
     <modules>
         <module>sanyi-common</module>
         <module>sanyi-gateway</module>
-        <module>sanyi-yoyo</module>
+        <module>sanyi-yoyo-topic</module>
         <module>sanyi-account</module>
+        <module>sanyi-game</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
-        <!--2.6.1 会 sentinel 循环依赖，懒得解决-->
-        <spring-boot.version>2.5.5</spring-boot.version>
-        <!--2.6.1 会 sentinel 循环依赖，懒得解决-->
-        <spring-cloud.version>2020.0.4</spring-cloud.version>
-        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <spring-boot.version>2.5.5</spring-boot.version>
+        <spring-cloud.version>2020.0.4</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.1</spring-cloud-alibaba.version>
         <spring-boot-admin.version>2.5.4</spring-boot-admin.version>
         <hutool.version>5.7.13</hutool.version>
         <dynamic-ds.version>3.4.1</dynamic-ds.version>
@@ -34,18 +34,13 @@
         <nacos.version>2.0.3</nacos.version>
         <jasypt.version>2.1.0</jasypt.version>
         <swagger.fox.version>3.0.0</swagger.fox.version>
-        <xxl-job.version>2.3.0</xxl-job.version>
-        <docker.plugin.version>0.32.0</docker.plugin.version>
-        <docker.host>http://192.168.0.100:2375</docker.host>
-        <docker.registry>192.168.0.100</docker.registry>
-        <docker.username>username</docker.username>
-        <docker.password>password</docker.password>
         <spring.checkstyle.plugin>0.0.28</spring.checkstyle.plugin>
         <mybatis-plus.version>3.4.3.4</mybatis-plus.version>
         <fastjson.version>1.2.75</fastjson.version>
         <redisson.version>3.16.3</redisson.version>
         <common.version>1.0.0</common.version>
         <sharding-sphere.version>5.0.0</sharding-sphere.version>
+        <plumelog.version>3.5.2</plumelog.version>
     </properties>
 
     <!-- 以下依赖 全局所有的模块都会引入  -->
@@ -83,6 +78,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.plumelog</groupId>
+            <artifactId>plumelog-logback</artifactId>
+            <version>${plumelog.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
     </dependencies>
 

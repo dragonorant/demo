@@ -13,12 +13,6 @@ import org.springframework.cloud.openfeign.FeignClient;
         fallbackFactory = AccountFallbackFactory.class,
         path = "/yoyo/account")
 public interface AccountService {
-    /**
-     * 通过token 获取账号信息
-     * @param token
-     * @return
-     */
-    Result getAccountByToken(String token);
 
     /**
      * 等同于账号登录

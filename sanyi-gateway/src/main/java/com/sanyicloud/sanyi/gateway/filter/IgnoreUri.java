@@ -15,34 +15,13 @@ import java.util.stream.Collectors;
 @Slf4j
 @UtilityClass
 public class IgnoreUri {
-    // api路径 白名单
-    private final List<String> FULL_PATH = new ArrayList<>();
     // 是否效验 token 如添加到 此集合中, 则不对 sanyiToken 的有效性进行效验 -- 即无法通过 sanyiToken 获取对应的 accountId
     private final List<String> TOKEN_PATH = new ArrayList<>();
 
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     static {
-// ------------------------------------------------------------------
-        FULL_PATH.add("/yoyo/account");
-// ------------------------------------------------------------------
-        TOKEN_PATH.add("/yoyo/account/login");
-    }
-
-    /**
-     * api 白名单
-     *
-     * 路径 总共分为这些
-     *
-     * @param url 请求路径
-     */
-    public boolean isIgnoreUrl(String url) {
-        for (String whitePath : FULL_PATH) {
-            if (pathMatcher.match(whitePath, url)) {
-                return true;
-            }
-        }
-        return false;
+        TOKEN_PATH.add("/yoyo/account/v1/login");
     }
 
     public boolean tokenUrl(String url){

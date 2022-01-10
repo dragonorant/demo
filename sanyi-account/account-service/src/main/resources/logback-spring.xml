@@ -87,11 +87,18 @@
 		<appender-ref ref="error"/>
 	</logger>
 
+	<!--	<appender name="plumelog" class="com.plumelog.logback.appender.KafkaAppender">-->
+	<!--		<appName>topic-service</appName>-->
+	<!--		<kafkaHosts>172.19.1.251:9093</kafkaHosts>-->
+	<!--	</appender>-->
+
 	<!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
 	<root level="info">
 		<appender-ref ref="console"/>
 		<appender-ref ref="debug"/>
 		<appender-ref ref="error"/>
 		<appender-ref ref="info"/>
+
+<!--		<appender-ref ref="plumelog"/>-->
 	</root>
 </configuration>

@@ -22,7 +22,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.sanyicloud.sanyi.common.core.exception.CheckedException;
 import com.sanyicloud.sanyi.common.core.util.DateUtils;
 import com.sanyicloud.sanyi.common.core.util.TokenUtils;
-import io.netty.buffer.ByteBufAllocator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,14 +32,11 @@ import org.springframework.cloud.gateway.support.BodyInserterContext;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.buffer.*;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ReactiveHttpOutputMessage;
-import org.springframework.http.codec.HttpMessageReader;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpRequestDecorator;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.HandlerStrategies;
@@ -52,10 +48,7 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -94,15 +87,11 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
         String newPath = "/" + Arrays.stream(StringUtils.tokenizeToStringArray(rawPath, "/"))
                 .skip(CONTEXT_PATH.length())
                 .collect(Collectors.joining("/"));
-        if (IgnoreUri.isIgnoreUrl(newPath)) {
-            log.info("白名单:{}", newPath);
-            return chain.filter(exchange);
-        }
-
         // 是否效验 请求头中的 token 有效性
         if (!IgnoreUri.tokenUrl(newPath)) {
             return checkToken(exchange, chain);
         }
+        log.info("白名单:{}", newPath);
 
         return chain.filter(exchange);
     }
@@ -112,7 +101,8 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
         return -1000;
     }
 
-    private Mono<Void> checkToken(ServerWebExchange exchange, GatewayFilterChain chain) {
+    private Mono<Void> checkToken(ServerWebExchange exchange, GatewayFilterChain chain)
+    {
         ServerHttpRequest request = exchange.getRequest();
         HttpHeaders headers = request.getHeaders();
         // 请求投 携带的 token
@@ -138,15 +128,19 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
         if (difference > 300 || difference < -300) {
             throw new CheckedException("请求超时");
         }
-        return modifyRequestBody(exchange, chain, split[0]);
+        return modifyRequest(exchange, chain, split[0]);
     }
 
-    private Mono<Void> modifyRequestBody(ServerWebExchange exchange, GatewayFilterChain chain, String accountId) {
+    /**
+     * 修改 请求 -- 包括 post 、get、put、del 等
+     */
+    private Mono<Void> modifyRequest(ServerWebExchange exchange, GatewayFilterChain chain, String accountId)
+    {
         ServerHttpRequest request = exchange.getRequest();
 
         ServerRequest serverRequest = ServerRequest.create(exchange, HandlerStrategies.withDefaults().messageReaders());
         MediaType mediaType = exchange.getRequest().getHeaders().getContentType();
-        // 为 json 时 -- 添加到 body 中
+        // 不为 文件上传时 才进行修改 body 等
         if (!MediaType.MULTIPART_FORM_DATA.isCompatibleWith(mediaType)) {
             //重点
             Mono<String> modifiedBody = serverRequest.bodyToMono(String.class).flatMap(body -> {
@@ -169,7 +163,11 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
             headers.remove(HttpHeaders.CONTENT_LENGTH);
             CachedBodyOutputMessage outputMessage = new CachedBodyOutputMessage(exchange, headers);
             return bodyInserter.insert(outputMessage, new BodyInserterContext()).then(Mono.defer(() -> {
-                ServerHttpRequest decorator = new ServerHttpRequestDecorator(exchange.getRequest()) {
+                URI newUri = getUri(request, accountId);
+                return chain.filter(exchange
+                        .mutate()
+                        .request(
+                                new ServerHttpRequestDecorator(exchange.getRequest()) {
                     public HttpHeaders getHeaders() {
                         long contentLength = headers.getContentLength();
                         HttpHeaders httpHeaders = new HttpHeaders();
@@ -181,20 +179,22 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
                         }
                         return httpHeaders;
                     }
-
                     public Flux<DataBuffer> getBody() {
                         return outputMessage.getBody();
                     }
-                };
-                URI newUri = getUri(request, accountId);
-                return chain.filter(exchange.mutate().request(decorator.mutate().uri(newUri).build()).build());
+                }
+                                        .mutate()
+                                        .uri(newUri)
+                                        .build())
+                        .build());
             }));
         }
         URI newUri = getUri(request, accountId);
         return chain.filter(exchange.mutate().request(request.mutate().uri(newUri).build()).build());
     }
 
-    private URI getUri(ServerHttpRequest request, String accountId) {
+    private URI getUri(ServerHttpRequest request, String accountId)
+    {
         URI uri = request.getURI();
         String rawQuery = uri.getRawQuery();
         StringBuilder query = new StringBuilder();
@@ -208,30 +208,6 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
                 .append(accountId);
         return UriComponentsBuilder.fromUri(uri).replaceQuery(query.toString()).build(true).toUri();
     }
-
-    private String decodeFormRequest(String str, List<String> keysList) {
-        if ("{}".equals(str)) {
-            return null;
-        }
-        Map<String, Object> map = Arrays.stream(str.split("&"))
-                .map(s -> s.split("="))
-                .collect(Collectors.toMap(arr -> arr[0], arr -> (arr.length > 1 ? arr[1] : "")));
-        List<String> strings = new ArrayList<>();
-        StringBuilder builderStr = new StringBuilder();
-        map.forEach((k, v) -> {
-            if (builderStr.length() > 0) {
-                builderStr.append("&");
-            }
-            Object val = v;
-            if (keysList.contains(k) && v != null && !StringUtils.isEmpty(v.toString())) {
-                //TODO  修改信息
-                val = "idform";
-            }
-            builderStr.append(k).append("=").append(val);
-        });
-        return builderStr.toString();
-    }
-
 
     public static void main(String[] args) {
         SymmetricCrypto aes = new SymmetricCrypto(SymmetricAlgorithm.AES, "sane_cloud_token".getBytes(StandardCharsets.UTF_8));

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sanyicloud.yoyo.topic.mapper.YoyoTopicMapper">
+  <resultMap id="BaseResultMap" type="com.sanyicloud.yoyo.topic.entity.po.YoyoTopic">
+    <!--@mbg.generated-->
+    <!--@Table yoyo_topic-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="topic_name" jdbcType="VARCHAR" property="topicName" />
+    <result column="topic_rule" jdbcType="VARCHAR" property="topicRule" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="del_state" jdbcType="BOOLEAN" property="delState" />
+    <result column="enable_state" jdbcType="SMALLINT" property="enableState" />
+    <result column="upload_start_time" jdbcType="TIMESTAMP" property="uploadStartTime" />
+    <result column="upload_end_time" jdbcType="TIMESTAMP" property="uploadEndTime" />
+    <result column="compare_start_time" jdbcType="TIMESTAMP" property="compareStartTime" />
+    <result column="compare_end_time" jdbcType="TIMESTAMP" property="compareEndTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, topic_name, topic_rule, start_time, end_time, create_time, update_time, del_state, 
+    enable_state, upload_start_time, upload_end_time, compare_start_time, compare_end_time
+  </sql>
+
+</mapper>

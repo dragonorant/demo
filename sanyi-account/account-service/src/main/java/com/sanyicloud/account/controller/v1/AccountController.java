@@ -3,6 +3,7 @@ package com.sanyicloud.account.controller.v1;
 import com.sanyicloud.account.entity.bo.AccountBO;
 import com.sanyicloud.account.service.SanyiAccountService;
 import com.sanyicloud.sanyi.common.core.util.IdUtils;
+import com.sanyicloud.sanyi.common.core.util.RequestUtils;
 import com.sanyicloud.sanyi.common.core.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import java.util.Enumeration;
 @RequestMapping(value = "/v1")
 public class AccountController {
     @Autowired
-    SanyiAccountService yoyoAccountService;
+    SanyiAccountService sanyiAccountService;
 
     /**
      * 设备号登录 ｜ 注册 存在即登录, 不存在即注册
@@ -35,70 +36,16 @@ public class AccountController {
     @PostMapping(value = "/login")
     public Result login(@RequestBody @Valid AccountBO accountBO)
     {
-        return yoyoAccountService.login(accountBO);
+        return sanyiAccountService.login(accountBO);
     }
 
     @RequestMapping(value = "/demo")
     public void demo(HttpServletRequest request, @RequestParam String accountId, MultipartFile file){
         Enumeration<String> parameterNames = request.getParameterNames();
-        String s = ReadAsChars(request);
+        String s = RequestUtils.ReadAsChars(request);
         System.out.println(s);
     }
-
-    // 字符串读取
-    // 方法一
-    public static String ReadAsChars(HttpServletRequest request)
-    {
-
-        BufferedReader br = null;
-        StringBuilder sb = new StringBuilder("");
-        try
-        {
-            br = request.getReader();
-            String str;
-            while ((str = br.readLine()) != null)
-            {
-                sb.append(str);
-            }
-            br.close();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            if (null != br)
-            {
-                try
-                {
-                    br.close();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return sb.toString();
-    }
-
     public static void main(String[] args) {
-//        OkHttpClient client = new OkHttpClient().newBuilder()
-//                .build();
-//        MediaType mediaType = MediaType.parse("application/json");
-//        String query = "?startDate=" + "2021-12-10" +"&endDate=" + "2021-12-15";
-//        Request request = new Request.Builder()
-//                .url("http://localhost:4005/yoyo/account/v1/demo")
-//                .get()
-//                .addHeader("Content-Type", "application/json")
-//                .build();
-//        try {
-//            Response response = client.newCall(request).execute();
-//            log.info("response : {}", response);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
         String s = IdUtils.strConvertNum("s");
         System.out.println(s);
         System.out.println(s.length());

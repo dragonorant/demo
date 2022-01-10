@@ -1,0 +1,122 @@
+# 数据源
+spring:
+  application:
+    name: @artifactId@
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    username: root
+#    password: root
+#    url: jdbc:mysql://172.19.1.251:3306/yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+  shardingsphere:
+    datasource:
+      names: master,slave
+      master:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: root
+        ## 使用 lvs 搭建高可用
+        jdbc-url: jdbc:mysql://172.19.1.251:3306/sanyi_yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+      slave: # 直接 slave 123
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: root
+        jdbc-url: jdbc:mysql://172.19.1.250:3306/sanyi_yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    props:
+      sql-show: true
+    rules:
+      # 读写分离
+      readwrite_splitting:
+        data-sources:
+          sanyi_yoyo:
+            auto-aware-data-source-name: master,slave
+            write-data-source-name: master
+            read-data-source-names: slave
+            load-balancers-name: round-robin
+        load-balancers:
+          round-robin:
+            type: ROUND_ROBIN
+            props:
+              workId: 1
+      sharding:
+        tables:
+          yoyo_topic_entry:
+            actual-data-nodes: master.yoyo_topic_entry
+            table-strategy:
+              standard:
+                sharding-column: topic_id
+                sharding-algorithm-name: topic-inline
+        sharding-algorithms:
+          topic-inline:
+            type: CLASS_BASED
+            props:
+              strategy: STANDARD
+              algorithmClassName: com.sanyicloud.yoyo.config.TopicAlgorithmClassName
+              table-name-prefix: yoyo_topic_entry_
+        binding-tables[0]: yoyo_topic_entry
+
+  redis:
+    redisson:
+      config: |
+        singleServerConfig:
+          idleConnectionTimeout: 10000
+          connectTimeout: 10000
+          timeout: 3000
+          retryAttempts: 3
+          retryInterval: 1500
+          password: null
+          subscriptionsPerConnection: 5
+          clientName: null
+          address: "redis://172.19.1.251:6379"
+          subscriptionConnectionMinimumIdleSize: 1
+          subscriptionConnectionPoolSize: 50
+          connectionMinimumIdleSize: 32
+          connectionPoolSize: 64
+          database: 0
+          dnsMonitoringInterval: 5000
+        threads: 0
+        nettyThreads: 0
+        codec: !<org.redisson.codec.JsonJacksonCodec> {}
+        "transportMode": "NIO"
+  cloud:
+    sentinel:
+      eager: true
+      transport:
+        dashboard: pig-sentinel:5003
+
+# feign 配置
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
+
+# mybaits-plus配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  global-config:
+    db-config:
+      id-type: INPUT
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  type-handlers-package: com.sanyicloud.sanyi.common.mybatis.handler
+  type-enums-package: com.sanyicloud
+

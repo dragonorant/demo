@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sanyicloud.yoyo.topic.mapper.YoyoTopicEntryMapper">
+  <resultMap id="BaseResultMap" type="com.sanyicloud.yoyo.topic.entity.po.YoyoTopicEntry">
+    <!--@mbg.generated-->
+    <!--@Table yoyo_topic_entry_0-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pothunter_id" jdbcType="VARCHAR" property="pothunterId" />
+    <result column="entries_detail" jdbcType="VARCHAR" property="entriesDetail" />
+    <result column="entries_vote_num" jdbcType="BIGINT" property="entriesVoteNum" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="topic_id" jdbcType="INTEGER" property="topicId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, pothunter_id, entries_detail, entries_vote_num, create_time, update_time, topic_id
+  </sql>
+</mapper>
