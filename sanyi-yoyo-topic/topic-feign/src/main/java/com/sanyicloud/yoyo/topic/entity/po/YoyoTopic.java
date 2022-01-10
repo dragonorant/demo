@@ -1,11 +1,10 @@
 package com.sanyicloud.yoyo.topic.entity.po;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.sanyicloud.yoyo.topic.entity.enums.EnableStateEnum;
+import com.sanyicloud.yoyo.topic.entity.enums.EnableStatusEnum;
 import lombok.*;
 
 /**
@@ -64,13 +63,18 @@ public class YoyoTopic implements Serializable {
     private Boolean delState;
 
     /**
+     * 是否发布, true 已发布, false 未发布
+     */
+    private Boolean releaseState;
+
+    /**
     * 主题赛状态
         0 已结束
         1 进行中
         2 未开始
      只有 未开始状态的 主题赛才可以进行修改
     */
-    private EnableStateEnum enableState;
+    private EnableStatusEnum enableStatus;
 
     /**
     * 上传开始时间 -- 必须大于等于开始时间 小于等于结束时间
@@ -93,4 +97,5 @@ public class YoyoTopic implements Serializable {
     private LocalDateTime compareEndTime;
 
     private static final long serialVersionUID = 1L;
+
 }

@@ -12,7 +12,7 @@
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="del_state" jdbcType="BOOLEAN" property="delState" />
-    <result column="enable_state" jdbcType="SMALLINT" property="enableState" />
+    <result column="enable_state" jdbcType="SMALLINT" property="enableStatus" />
     <result column="upload_start_time" jdbcType="TIMESTAMP" property="uploadStartTime" />
     <result column="upload_end_time" jdbcType="TIMESTAMP" property="uploadEndTime" />
     <result column="compare_start_time" jdbcType="TIMESTAMP" property="compareStartTime" />

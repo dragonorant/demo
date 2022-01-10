@@ -7,10 +7,7 @@ import com.sanyicloud.yoyo.topic.mapper.YoyoTopicEntryMapper;
 import com.sanyicloud.yoyo.topic.service.YoyoTopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -21,10 +18,6 @@ import javax.validation.Valid;
 @RequestMapping(value = "/v1")
 @RestController
 public class TopicController {
-
-    @Autowired
-    YoyoTopicEntryMapper yoyoTopicEntryMapper;
-
     @Autowired
     YoyoTopicService yoyoTopicService;
 
@@ -34,13 +27,26 @@ public class TopicController {
         throw new RuntimeException("测试抛出一次");
     }
 
-    @PostMapping(value = "/{topicId}")
-    public Result editTopic(@PathVariable Integer topicId,
-                            @Valid TopicBO topicBO)
+    /**
+     * 获取主题赛首页列表
+     */
+    @GetMapping(value = "/home")
+    public Result home()
     {
-        yoyoTopicService.editTopic(topicId, topicBO);
-        return Result.ok();
+        return yoyoTopicService.home();
     }
+
+    /**
+     * 获取主题赛列表
+     */
+    @GetMapping(value = "/list")
+    public Result listTopic(@RequestParam(value = "code", required = false) Short code,
+                            @RequestParam(value = "page", required = false, defaultValue = "1") Integer page,
+                            @RequestParam(value = "pageSize", required = false, defaultValue = "3") Integer pageSize)
+    {
+        return yoyoTopicService.listTopic(code, page, pageSize);
+    }
+
 
 
 }

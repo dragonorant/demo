@@ -21,6 +21,8 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 响应信息主体
@@ -81,6 +83,29 @@ public class Result implements Serializable {
 		apiResult.setData(data);
 		apiResult.setMsg(msg);
 		return apiResult;
+	}
+
+	public static ResultMap responseData(){
+		return new ResultMap();
+	}
+
+	public static class ResultMap {
+		private final Map<String, Object> resultMap = new HashMap<>();
+
+		public ResultMap addParam(String key, Object value){
+			this.resultMap.put(key, value);
+			return this;
+		}
+
+		public ResultMap addParams(Map<String, Object> params) {
+			this.resultMap.putAll(params);
+			return this;
+		}
+
+		public Result build(){
+			return Result.ok(this.resultMap);
+		}
+
 	}
 
 }

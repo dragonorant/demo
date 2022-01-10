@@ -71,6 +71,10 @@ public interface CommonConstants {
 
 	String FAIL_MSG = "fail";
 
+	String HEAD_TOKEN_KEY = "sanyiToken";
+
+	String ACCOUNT_ID = "accountId";
+
 	/**
 	 * 验证码前缀
 	 */

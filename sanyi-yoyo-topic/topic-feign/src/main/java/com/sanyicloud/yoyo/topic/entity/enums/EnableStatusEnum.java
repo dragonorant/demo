@@ -3,6 +3,7 @@ package com.sanyicloud.yoyo.topic.entity.enums;
 import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.IEnum;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.sanyicloud.sanyi.common.core.util.EnumUtils;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -11,19 +12,20 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public enum EnableStateEnum implements IEnum<Short> {
-    COMPLETE((short) 0,"已结束"),
+public enum EnableStatusEnum implements IEnum<Short>, EnumUtils.CodeEnum {
+    PREVIOUS((short) 0,"已结束"),
     ONGOING((short) 1, "进行中"),
-    NOT_STARTED((short) 2,"未开始"),
+    FUTURE((short) 2,"未开始"),
     ;
     @EnumValue
-    private final Short type;
+    private final Short code;
 
     @JsonValue
     private final String desc;
 
     @Override
     public Short getValue() {
-        return this.type;
+        return this.code;
     }
+
 }
