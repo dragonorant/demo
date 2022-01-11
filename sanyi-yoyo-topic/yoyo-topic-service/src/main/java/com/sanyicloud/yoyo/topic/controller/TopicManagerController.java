@@ -2,6 +2,8 @@ package com.sanyicloud.yoyo.topic.controller;
 
 import com.sanyicloud.sanyi.common.core.util.Result;
 import com.sanyicloud.yoyo.topic.entity.bo.TopicBO;
+import com.sanyicloud.yoyo.topic.service.YoyoManagerTopicService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +17,9 @@ import javax.validation.Valid;
 @RestController
 public class TopicManagerController {
 
+    @Autowired
+    YoyoManagerTopicService yoyoManagerTopicService;
+
     /**
      * todo -- 需要 添加 主题赛奖励信息的 创建
      * @param topicId 主题赛id
@@ -25,7 +30,7 @@ public class TopicManagerController {
     public Result editTopic(@PathVariable Integer topicId,
                             @Valid TopicBO topicBO)
     {
-        yoyoTopicService.editTopic(topicId, topicBO);
+        yoyoManagerTopicService.editTopic(topicId, topicBO);
         return Result.ok();
     }
 }

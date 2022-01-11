@@ -22,8 +22,4 @@ spring:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
   profiles:
     active: @profiles.active@
-plumelog:
-  appName: gateway_log
-  redisHost: 172.19.1.251:6379
-  redisAuth:
-  redisDb: 2
+

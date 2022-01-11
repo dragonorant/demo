@@ -94,7 +94,6 @@ spring:
       transport:
         dashboard: 172.19.1.251:8858
         port: 8858
-
 # feign 配置
 feign:
   sentinel:
@@ -113,7 +112,6 @@ feign:
       enabled: true
     response:
       enabled: true
-
 # mybaits-plus配置
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
@@ -128,3 +126,8 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
   type-handlers-package: com.sanyicloud.sanyi.common.mybatis.handler
   type-enums-package: com.sanyicloud
+logging:
+  config: classpath:logback-nacos.xml
+plumelog:
+  kafka:
+    hosts: 172.19.1.251:9093

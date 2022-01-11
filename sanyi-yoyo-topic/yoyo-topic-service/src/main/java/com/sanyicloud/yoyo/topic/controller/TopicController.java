@@ -1,15 +1,10 @@
 package com.sanyicloud.yoyo.topic.controller;
 
 import com.sanyicloud.sanyi.common.core.util.Result;
-import com.sanyicloud.yoyo.topic.entity.bo.TopicBO;
-import com.sanyicloud.yoyo.topic.entity.po.YoyoTopicEntry;
-import com.sanyicloud.yoyo.topic.mapper.YoyoTopicEntryMapper;
 import com.sanyicloud.yoyo.topic.service.YoyoTopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 /**
  * by zhaowenyuan create 2021/11/3 15:59
@@ -47,6 +42,16 @@ public class TopicController {
         return yoyoTopicService.listTopic(code, page, pageSize);
     }
 
+    /**
+     * 根据 主题Id 获取主题赛的奖励信息
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "/reward/{id}")
+    public Result rewardTopic(@PathVariable Integer id)
+    {
+        return yoyoTopicService.rewardTopic(id);
+    }
 
 
 }

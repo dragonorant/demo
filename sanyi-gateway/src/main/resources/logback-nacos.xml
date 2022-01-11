@@ -17,7 +17,7 @@
 
 <configuration debug="false" scan="false">
 	<springProperty scop="context" name="spring.application.name" source="spring.application.name" defaultValue=""/>
-	<springProperty scope="context" name="plumelog.kafka.hosts" source="plumelog.kafka.hosts" />
+	<springProperty scope="context" name="plumelog.kafka.hosts" source="plumelog.kafka.hosts"/>
 	<property name="log.hosts" value="${plumelog.kafka.hosts}" />
 	<property name="log.path" value="logs/${spring.application.name}"/>
 
@@ -90,18 +90,18 @@
 		<appender-ref ref="error"/>
 	</logger>
 
-
 	<!-- 使用kafka启用下面配置 -->
-	<!--	<appender name="plumelog" class="com.plumelog.logback.appender.KafkaAppender">-->
-	<!--		<appName>${spring.application.name}</appName>-->
-	<!--		<kafkaHosts>${log.hosts}</kafkaHosts>-->
-	<!--	</appender>-->
+	<appender name="plumelog" class="com.plumelog.logback.appender.KafkaAppender">
+		<appName>${spring.application.name}</appName>
+		<kafkaHosts>${log.hosts}</kafkaHosts>
+	</appender>
 
 	<!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
 	<root level="INFO">
 		<appender-ref ref="console"/>
 
 		<appender-ref ref="info"/>
+
 		<!-- 输出plumelog -->
 <!--		<appender-ref ref="plumelog"/>-->
 	</root>

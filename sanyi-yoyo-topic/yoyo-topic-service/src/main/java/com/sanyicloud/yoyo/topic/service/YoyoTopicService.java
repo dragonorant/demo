@@ -41,4 +41,8 @@ public interface YoyoTopicService extends IService<YoyoTopic> {
                 );
         return Result.ok(new PageUtils(page));
     }
+
+    default Result rewardTopic(Integer id){
+        return Result.ok();
+    }
 }

@@ -12,8 +12,8 @@
     <artifactId>sanyi-yoyo-topic</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>topic-feign</module>
-        <module>topic-service</module>
+        <module>yoyo-topic-feign</module>
+        <module>yoyo-topic-service</module>
     </modules>
 
     <properties>
