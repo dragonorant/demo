@@ -1,4 +1,4 @@
-package com.sanyicloud.sanyi.gateway.filter;
+package com.sanyicloud.gateway.filter;
 
 import com.sanyicloud.sanyi.common.core.constant.CommonConstants;
 import com.sanyicloud.sanyi.common.core.util.IPUtils;
@@ -11,8 +11,6 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 /**
  * @author zhangran

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sanyicloud.sanyi.gateway.handler;
+package com.sanyicloud.gateway.handler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

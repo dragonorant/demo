@@ -1,13 +1,11 @@
-package com.sanyicloud.sanyi.gateway.filter;
+package com.sanyicloud.gateway.filter;
 
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * by zhaowenyuan create 2021/11/4 10:24

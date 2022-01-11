@@ -15,8 +15,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @ServletComponentScan
 @MapperScan("com.sanyicloud.**.mapper")
-public class SanyiYoYoApplication {
+public class SanyiYoYoTopicApplication {
     public static void main(String[] args) {
-        SpringApplication.run(SanyiYoYoApplication.class,args);
+        SpringApplication.run(SanyiYoYoTopicApplication.class,args);
     }
 }

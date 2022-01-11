@@ -1,8 +1,8 @@
-package com.sanyicloud.sanyi.gateway.config;
+package com.sanyicloud.gateway.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sanyicloud.sanyi.gateway.filter.SanyiRequestGlobalFilter;
-import com.sanyicloud.sanyi.gateway.handler.GlobalExceptionHandler;
+import com.sanyicloud.gateway.filter.SanyiRequestGlobalFilter;
+import com.sanyicloud.gateway.handler.GlobalExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

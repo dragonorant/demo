@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sanyicloud.sanyi.gateway.filter;
+package com.sanyicloud.gateway.filter;
 
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
