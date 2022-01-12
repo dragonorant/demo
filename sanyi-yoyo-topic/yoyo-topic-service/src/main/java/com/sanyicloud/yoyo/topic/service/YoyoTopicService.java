@@ -45,4 +45,5 @@ public interface YoyoTopicService extends IService<TYoyoTopic> {
     default Result rewardTopic(Integer id){
         return Result.ok();
     }
+
 }

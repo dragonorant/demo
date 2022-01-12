@@ -69,16 +69,16 @@ public interface YoyoManagerTopicService extends IService<TYoyoTopic> {
      * 新增主题赛
      * 此处可以 添加注解 用于后端日志控制
      */
-    default void saveTopic(TYoyoTopic TYoyoTopic){
-        this.saveOrUpdate(TYoyoTopic);
+    default void saveTopic(TYoyoTopic tYoyoTopic){
+        this.saveOrUpdate(tYoyoTopic);
     }
 
     /**
      * 修改 主题赛
-     * @param TYoyoTopic 主题赛所需参数
+     * @param tYoyoTopic 主题赛所需参数
      */
-    default void updateTopic(TYoyoTopic TYoyoTopic){
-        this.saveOrUpdate(TYoyoTopic);
+    default void updateTopic(TYoyoTopic tYoyoTopic){
+        this.saveOrUpdate(tYoyoTopic);
     }
 
     /**
