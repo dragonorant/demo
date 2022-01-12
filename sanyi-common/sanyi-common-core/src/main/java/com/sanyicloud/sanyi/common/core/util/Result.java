@@ -77,7 +77,7 @@ public class Result implements Serializable {
 		return restResult(data, CommonConstants.FAIL_CODE, msg);
 	}
 
-	private static  Result restResult(Object data, int code, String msg) {
+	public static  Result restResult(Object data, int code, String msg) {
 		Result apiResult = new Result();
 		apiResult.setCode(code);
 		apiResult.setData(data);
