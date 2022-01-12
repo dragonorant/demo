@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.sanyicloud.yoyo.topic.mapper.YoyoTopicEntryMapper">
-  <resultMap id="BaseResultMap" type="com.sanyicloud.yoyo.topic.entity.po.YoyoTopicEntry">
+  <resultMap id="BaseResultMap" type="com.sanyicloud.yoyo.topic.entity.po.TYoyoTopicEntry">
     <!--@mbg.generated-->
     <!--@Table yoyo_topic_entry_0-->
     <id column="id" jdbcType="INTEGER" property="id" />

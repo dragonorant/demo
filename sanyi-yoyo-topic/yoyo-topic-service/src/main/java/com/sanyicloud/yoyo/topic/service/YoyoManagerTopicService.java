@@ -4,23 +4,21 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sanyicloud.sanyi.common.core.exception.ResultException;
-import com.sanyicloud.sanyi.common.core.util.Result;
 import com.sanyicloud.yoyo.topic.entity.bo.TopicBO;
-import com.sanyicloud.yoyo.topic.entity.enums.EnableStatusEnum;
-import com.sanyicloud.yoyo.topic.entity.po.YoyoTopic;
+import com.sanyicloud.yoyo.topic.entity.po.TYoyoTopic;
 import org.apache.commons.lang3.ObjectUtils;
 
 /**
  * by zhaowenyuan create 2022/1/6 12:01
  */
-public interface YoyoManagerTopicService extends IService<YoyoTopic> {
-    LambdaQueryWrapper<YoyoTopic> queryMapper = new LambdaQueryWrapper<YoyoTopic>();
+public interface YoyoManagerTopicService extends IService<TYoyoTopic> {
+    LambdaQueryWrapper<TYoyoTopic> queryMapper = new LambdaQueryWrapper<TYoyoTopic>();
 
     default void editTopic(Integer topicId,
                    TopicBO topicBO){
         // 修改时 才进行判断
         if (topicId != 0){
-            YoyoTopic yoyoById = this.getById(topicId);
+            TYoyoTopic yoyoById = this.getById(topicId);
             if (ObjectUtils.isEmpty(yoyoById)){
                 throw new ResultException("当前主题不存在, 请确认主题的有效性");
             }
@@ -44,7 +42,7 @@ public interface YoyoManagerTopicService extends IService<YoyoTopic> {
         // 进行时间的效验
         checkTime(topicBO);
 
-        YoyoTopic yoyoTopic = YoyoTopic.builder()
+        TYoyoTopic tYoyoTopic = TYoyoTopic.builder()
                 .topicName(topicName)
                 .topicCover(topicBO.getTopicCover())
                 .topicRule(topicBO.getTopicRule())
@@ -59,28 +57,28 @@ public interface YoyoManagerTopicService extends IService<YoyoTopic> {
         // 则为 新增
         if (0 == topicId){
             // 新增的都是未开始的
-            saveTopic(yoyoTopic);
+            saveTopic(tYoyoTopic);
         }
         // 为修改
         else {
-            yoyoTopic.setId(topicId);
-            updateTopic(yoyoTopic);
+            tYoyoTopic.setId(topicId);
+            updateTopic(tYoyoTopic);
         }
     }
     /**
      * 新增主题赛
      * 此处可以 添加注解 用于后端日志控制
      */
-    default void saveTopic(YoyoTopic yoyoTopic){
-        this.saveOrUpdate(yoyoTopic);
+    default void saveTopic(TYoyoTopic TYoyoTopic){
+        this.saveOrUpdate(TYoyoTopic);
     }
 
     /**
      * 修改 主题赛
-     * @param yoyoTopic 主题赛所需参数
+     * @param TYoyoTopic 主题赛所需参数
      */
-    default void updateTopic(YoyoTopic yoyoTopic){
-        this.saveOrUpdate(yoyoTopic);
+    default void updateTopic(TYoyoTopic TYoyoTopic){
+        this.saveOrUpdate(TYoyoTopic);
     }
 
     /**

@@ -1,14 +1,15 @@
 package com.sanyicloud.yoyo.topic.entity.po;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
     * yoyo 主题赛参赛 作品
     */
 @Data
-public class YoyoTopicEntry implements Serializable {
+public class TYoyoTopicEntry implements Serializable {
     /**
     * 自增主键
     */

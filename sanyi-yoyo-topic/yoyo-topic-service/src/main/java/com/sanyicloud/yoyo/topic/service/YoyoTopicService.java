@@ -9,21 +9,21 @@ import com.sanyicloud.sanyi.common.core.util.EnumUtils;
 import com.sanyicloud.sanyi.common.core.util.Result;
 import com.sanyicloud.sanyi.common.mybatis.utils.PageUtils;
 import com.sanyicloud.yoyo.topic.entity.enums.EnableStatusEnum;
-import com.sanyicloud.yoyo.topic.entity.po.YoyoTopic;
+import com.sanyicloud.yoyo.topic.entity.po.TYoyoTopic;
 
 /**
  * by zhaowenyuan create 2022/1/6 12:01
  */
-public interface YoyoTopicService extends IService<YoyoTopic> {
-    LambdaQueryWrapper<YoyoTopic> queryMapper = new LambdaQueryWrapper<YoyoTopic>()
-            .eq(YoyoTopic::getReleaseState, Boolean.TRUE);
+public interface YoyoTopicService extends IService<TYoyoTopic> {
+    LambdaQueryWrapper<TYoyoTopic> queryMapper = new LambdaQueryWrapper<TYoyoTopic>()
+            .eq(TYoyoTopic::getReleaseState, Boolean.TRUE);
 
     default Result home(){
-        YoyoTopic yoyoTopic = this.getOne(queryMapper
-                .eq(YoyoTopic::getEnableStatus, EnableStatusEnum.ONGOING)
+        TYoyoTopic tYoyoTopic = this.getOne(queryMapper
+                .eq(TYoyoTopic::getEnableStatus, EnableStatusEnum.ONGOING)
         );
         return Result.responseData()
-                .addParam("currentTopic", yoyoTopic)
+                .addParam("currentTopic", tYoyoTopic)
                 .build();
     }
 
@@ -32,12 +32,12 @@ public interface YoyoTopicService extends IService<YoyoTopic> {
         if (null == enableStatus || EnableStatusEnum.ONGOING.equals(enableStatus)){
             throw new ResultException("状态码不正确");
         }
-        IPage<YoyoTopic> page =
+        IPage<TYoyoTopic> page =
                 this.page(new Page<>(limit, pageSize),
-                        queryMapper.eq(YoyoTopic::getEnableStatus, enableStatus)
+                        queryMapper.eq(TYoyoTopic::getEnableStatus, enableStatus)
                                 .orderBy( true,
                                         EnableStatusEnum.FUTURE.equals(enableStatus),
-                                        YoyoTopic::getStartTime)
+                                        TYoyoTopic::getStartTime)
                 );
         return Result.ok(new PageUtils(page));
     }

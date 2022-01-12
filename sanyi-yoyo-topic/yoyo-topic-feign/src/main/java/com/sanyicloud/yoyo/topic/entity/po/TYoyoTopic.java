@@ -1,11 +1,11 @@
 package com.sanyicloud.yoyo.topic.entity.po;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.sanyicloud.yoyo.topic.entity.enums.EnableStatusEnum;
 import lombok.*;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
     * yoyo - 主题赛表
@@ -15,7 +15,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @ToString
-public class YoyoTopic implements Serializable {
+public class TYoyoTopic implements Serializable {
     /**
     * 主键Id
     */
