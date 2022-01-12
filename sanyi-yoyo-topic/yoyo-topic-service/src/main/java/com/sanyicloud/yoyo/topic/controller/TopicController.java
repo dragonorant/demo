@@ -1,6 +1,7 @@
 package com.sanyicloud.yoyo.topic.controller;
 
 import com.sanyicloud.sanyi.common.core.util.Result;
+import com.sanyicloud.yoyo.topic.entity.bo.UploadTopicBO;
 import com.sanyicloud.yoyo.topic.service.YoyoTopicService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +43,21 @@ public class TopicController {
         return yoyoTopicService.listTopic(code, page, pageSize);
     }
 
+    @PostMapping(value = "/upload")
+    public Result uploadTopic(@RequestBody UploadTopicBO uploadTopicBO)
+    {
+        return Result.ok();
+    }
+
+
     /**
      * 根据 主题Id 获取主题赛的奖励信息
-     * @param id
-     * @return
+     * @param topicId 主题id
      */
-    @GetMapping(value = "/reward/{id}")
-    public Result rewardTopic(@PathVariable Integer id)
+    @GetMapping(value = "/reward/{topicId}")
+    public Result rewardTopic(@PathVariable Integer topicId)
     {
-        return yoyoTopicService.rewardTopic(id);
+        return yoyoTopicService.rewardTopic(topicId);
     }
 
 
