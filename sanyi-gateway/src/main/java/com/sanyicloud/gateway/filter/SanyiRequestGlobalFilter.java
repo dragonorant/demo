@@ -56,7 +56,7 @@ import java.util.stream.Collectors;
  * <p>
  * 全局拦截器，作用所有的微服务
  * 针对性 进行请求头效验, 对于需要传递 token 值的接口都需要进行效验
- * 并且 将其 传递到 下一个项目的 body 或者 query 中
+ * 并且 将其 传递到 下游项目的 body 或者 query 中
  * <p>
  */
 @Slf4j
