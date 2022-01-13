@@ -36,7 +36,6 @@
         <swagger.fox.version>3.0.0</swagger.fox.version>
         <spring.checkstyle.plugin>0.0.28</spring.checkstyle.plugin>
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
-        <dynamic-ds.version>3.5.0</dynamic-ds.version>
         <fastjson.version>1.2.79</fastjson.version>
         <redisson.version>3.16.3</redisson.version>
         <common.version>1.0.0</common.version>
