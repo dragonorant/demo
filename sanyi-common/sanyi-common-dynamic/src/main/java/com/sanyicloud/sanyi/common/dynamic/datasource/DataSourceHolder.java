@@ -28,12 +28,26 @@ public class DataSourceHolder {
         return contextHolder.get();
     }
 
-    public void setMaster() {
-        setDataSource(masterNames);
+    public void setMaster(String name) {
+        if (name.equals("")) {
+            setDataSource(masterNames);
+        } else {
+            if (masterNames.contains(name))
+                set(name);
+            else
+                throw new RuntimeException(String.format("数据源 %s 不存在", name));
+        }
     }
 
-    public void setSlave() {
-        setDataSource(slaveNames);
+    public void setSlave(String name) {
+        if (name.equals("")) {
+            setDataSource(slaveNames);
+        } else {
+            if (slaveNames.contains(name))
+                set(name);
+            else
+                throw new RuntimeException(String.format("数据源 %s 不存在", name));
+        }
     }
 
     /**

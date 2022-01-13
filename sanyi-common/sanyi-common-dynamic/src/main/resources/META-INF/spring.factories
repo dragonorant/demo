@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.sanyicloud.sanyi.common.dynamic.config.RoutingDataSourceAutoConfiguration
+  com.sanyicloud.sanyi.common.dynamic.config.RoutingDataSourceAutoConfiguration, \
+  com.sanyicloud.sanyi.common.dynamic.aspect.DataSourceAspect, \
+  com.sanyicloud.sanyi.common.dynamic.datasource.DataSourceHolder

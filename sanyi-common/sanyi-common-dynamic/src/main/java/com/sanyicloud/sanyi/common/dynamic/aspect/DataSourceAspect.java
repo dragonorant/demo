@@ -1,19 +1,20 @@
 package com.sanyicloud.sanyi.common.dynamic.aspect;
 
+import com.sanyicloud.sanyi.common.dynamic.annotation.Read;
+import com.sanyicloud.sanyi.common.dynamic.annotation.Write;
 import com.sanyicloud.sanyi.common.dynamic.datasource.DataSourceHolder;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.Resource;
 
 @Aspect
 @Component
 public class DataSourceAspect {
 
-    @Resource
+    @Autowired
     private DataSourceHolder dataSourceHolder;
 
     /**
@@ -32,14 +33,14 @@ public class DataSourceAspect {
     public void readPointcut() {
     }
 
-    @Before("writePointcut()")
-    public void setWriteDataSource() {
-        dataSourceHolder.setMaster();
+    @Before("writePointcut() && @annotation(master) ")
+    public void setWriteDataSource(Write master) {
+        dataSourceHolder.setMaster(master.value());
     }
 
-    @Before("readPointcut()")
-    public void setReadDataSource() {
-        dataSourceHolder.setSlave();
+    @Before("readPointcut() && @annotation(slave) ")
+    public void setReadDataSource(Read slave) {
+        dataSourceHolder.setSlave(slave.value());
     }
 
     /**
@@ -47,6 +48,6 @@ public class DataSourceAspect {
      */
     @After("readPointcut()")
     public void setToWriteDataSource() {
-        dataSourceHolder.setMaster();
+        dataSourceHolder.setMaster("");
     }
 }
