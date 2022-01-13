@@ -37,7 +37,7 @@
         <spring.checkstyle.plugin>0.0.28</spring.checkstyle.plugin>
         <mybatis-plus.version>3.5.0</mybatis-plus.version>
         <dynamic-ds.version>3.5.0</dynamic-ds.version>
-        <fastjson.version>1.2.75</fastjson.version>
+        <fastjson.version>1.2.79</fastjson.version>
         <redisson.version>3.16.3</redisson.version>
         <common.version>1.0.0</common.version>
 
@@ -96,6 +96,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -133,8 +137,13 @@
 
             <dependency>
                 <groupId>com.baomidou</groupId>
-                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-                <version>${dynamic-ds.version}</version>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
