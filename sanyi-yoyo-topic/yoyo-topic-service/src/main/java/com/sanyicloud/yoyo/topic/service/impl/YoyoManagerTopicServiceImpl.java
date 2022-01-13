@@ -12,4 +12,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class YoyoManagerTopicServiceImpl extends ServiceImpl<YoyoTopicMapper, TYoyoTopic> implements YoyoManagerTopicService {
 
+    @Override
+    public void createTopicEntry(Integer topicId) {
+
+    }
 }

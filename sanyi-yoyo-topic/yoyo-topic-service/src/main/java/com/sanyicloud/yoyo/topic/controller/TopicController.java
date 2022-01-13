@@ -1,6 +1,8 @@
 package com.sanyicloud.yoyo.topic.controller;
 
 import com.sanyicloud.sanyi.common.core.util.Result;
+import com.sanyicloud.sanyi.common.dynamic.annotation.Read;
+import com.sanyicloud.sanyi.common.mybatis.mapper.DynamicTableNameMapper;
 import com.sanyicloud.yoyo.topic.entity.bo.UploadTopicBO;
 import com.sanyicloud.yoyo.topic.service.YoyoTopicService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +18,15 @@ import org.springframework.web.bind.annotation.*;
 public class TopicController {
     @Autowired
     YoyoTopicService yoyoTopicService;
+    @Autowired
+    DynamicTableNameMapper dynamicTableNameMapper;
 
-    @RequestMapping(value = "/test")
-    public String test(Integer topicId){
-        log.info("测试能否发送 kafka");
-        throw new RuntimeException("测试抛出一次");
+    @GetMapping(value = "/test")
+    @Read
+    public String test(String topicId){
+        int i = dynamicTableNameMapper.tableIsExist(topicId);
+        System.out.println(i);
+        return topicId;
     }
 
     /**

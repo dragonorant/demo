@@ -24,7 +24,6 @@ public class TopicManagerController {
      * todo -- 需要 添加 主题赛奖励信息的 创建
      * @param topicId 主题赛id
      * @param topicBO 主题赛信息
-     * @return
      */
     @PostMapping(value = "/{topicId}")
     public Result editTopic(@PathVariable Integer topicId,

@@ -4,9 +4,11 @@ import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.sanyicloud.sanyi.common.core.exception.ResultException;
+import com.sanyicloud.sanyi.common.dynamic.annotation.Write;
 import com.sanyicloud.yoyo.topic.entity.bo.TopicBO;
 import com.sanyicloud.yoyo.topic.entity.po.TYoyoTopic;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * by zhaowenyuan create 2022/1/6 12:01
@@ -69,9 +71,16 @@ public interface YoyoManagerTopicService extends IService<TYoyoTopic> {
      * 新增主题赛
      * 此处可以 添加注解 用于后端日志控制
      */
-    default void saveTopic(TYoyoTopic tYoyoTopic){
-        this.saveOrUpdate(tYoyoTopic);
+    @Transactional
+    @Write
+    default void saveTopic(TYoyoTopic tYoyoTopic)
+    {
+        if (this.saveOrUpdate(tYoyoTopic)){
+            createTopicEntry(tYoyoTopic.getId());
+        }
     }
+
+    void createTopicEntry(Integer topicId);
 
     /**
      * 修改 主题赛
