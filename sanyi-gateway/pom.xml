@@ -11,10 +11,7 @@
 
     <artifactId>sanyi-gateway</artifactId>
 
-    <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-    </properties>
+
 
     <dependencies>
         <!--gateway 网关依赖,内置webflux 依赖-->

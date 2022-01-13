@@ -17,8 +17,6 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
         <topic.version>1.0.0</topic.version>
         <account.version>1.0.0</account.version>
     </properties>
