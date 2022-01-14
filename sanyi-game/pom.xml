@@ -23,18 +23,4 @@
         <game.version>1.0.0</game.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.sanyicloud</groupId>
-            <artifactId>sanyi-common-core</artifactId>
-            <version>${common.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sanyicloud</groupId>
-            <artifactId>sanyi-common-mybatis</artifactId>
-            <version>${common.version}</version>
-        </dependency>
-    </dependencies>
-
-
 </project>

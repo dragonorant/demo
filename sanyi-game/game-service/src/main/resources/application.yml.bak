@@ -8,67 +8,62 @@ spring:
 #    username: root
 #    password: root
 #    url: jdbc:mysql://172.19.1.251:3306/yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-  shardingsphere:
-    datasource:
-#      common:
+
+# 单纯读写分离
+#  dynamic-datasource:
+#    masters:
+#      - dataSourceName: master
+#        hikari:
+#          driverClassName: com.mysql.cj.jdbc.Driver
+#          username: root
+#          password: root
+#          jdbcUrl: jdbc:mysql://172.19.1.251:3306/sanyi_yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+#    slaves:
+#      - dataSourceName: slave
+#        hikari:
+#          driverClassName: com.mysql.cj.jdbc.Driver
+#          username: root
+#          password: root
+#          jdbcUrl: jdbc:mysql://172.19.1.251:3306/sanyi_yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+
+# 可配置分库分表
+#  shardingsphere:
+#    datasource:
+#      #common:
+#      #  type: com.zaxxer.hikari.HikariDataSource
+#      #  driver-class-name: com.mysql.cj.jdbc.Driver
+#      names: master,slave
+#      master:
 #        type: com.zaxxer.hikari.HikariDataSource
 #        driver-class-name: com.mysql.cj.jdbc.Driver
-      names: master,slave
-      master:
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        username: root
-        password: root
-        ## 使用 lvs 搭建高可用
-        jdbc-url: jdbc:mysql://172.19.1.251:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-      slave: # 直接 slave 123
-        type: com.zaxxer.hikari.HikariDataSource
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        username: root
-        password: root
-        jdbc-url: jdbc:mysql://172.19.1.250:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-    props:
-      sql-show: true
-    rules:
-      # 读写分离
-      readwrite_splitting:
-        data-sources:
-          yoyo_account:
-            auto-aware-data-source-name: master,slave
-            write-data-source-name: master
-            read-data-source-names: slave
-            load-balancers-name: round-robin
-        load-balancers:
-          round-robin:
-            type: ROUND_ROBIN
-            props:
-              workId: 1
-      sharding:
-        tables:
-          sanyi_account:
-            actual-data-nodes: master.sanyi_account_$->{0..0}
-            table-strategy:
-              standard:
-                sharding-column: account_id
-                sharding-algorithm-name: account-inline
-          sanyi_third:
-            actual-data-nodes: master.sanyi_third_$->{0..0}
-            table-strategy:
-              standard:
-                sharding-column: account_id
-                sharding-algorithm-name: third-inline
-        sharding-algorithms:
-          account-inline:
-            type: MOD
-            props:
-              sharding-count: 1
-          third-inline:
-            type: MOD
-            props:
-              sharding-count: 1
-        binding-tables[0]: sanyi_account,sanyi_third
-      # 日期分表
-    enabled: true
+#        username: root
+#        password: root
+#        jdbc-url: jdbc:mysql://172.19.1.251:3306/sanyi_game?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+#      slave:
+#        type: com.zaxxer.hikari.HikariDataSource
+#        driver-class-name: com.mysql.cj.jdbc.Driver
+#        username: root
+#        password: root
+#        jdbc-url: jdbc:mysql://172.19.1.251:3306/sanyi_game?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+#    props:
+#      sql-show: true
+#    enabled: true
+#    rules:
+#      # 读写分离
+#      readwrite_splitting:
+#        data-sources:
+#          sanyi_account:
+#            auto-aware-data-source-name: master,slave
+#            write-data-source-name: master
+#            read-data-source-names: slave
+#            load-balancers-name: round-robin
+#        load-balancers:
+#          round-robin:
+#            type: ROUND_ROBIN
+#            props:
+#              workId: 1
+
+# 日期分表
 #      sharding:
 #        tables:
 #          yoyo_account:

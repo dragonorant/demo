@@ -24,6 +24,11 @@
             <artifactId>account-feign</artifactId>
             <version>${account.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.sanyicloud</groupId>
+            <artifactId>sanyi-common-dynamic</artifactId>
+            <version>${common.version}</version>
+        </dependency>
         <!--注册中心客户端-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>

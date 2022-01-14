@@ -1,6 +1,5 @@
 package com.sanyicloud;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -12,9 +11,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  */
 @EnableFeignClients(basePackages = "com.sanyicloud.game")
 @EnableDiscoveryClient
+// dynamic 读写分离
+//@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @SpringBootApplication
 @ServletComponentScan
-@MapperScan("com.sanyicloud.**.mapper")
 public class SanyiGameApplication {
     public static void main(String[] args) {
         SpringApplication.run(SanyiGameApplication.class,args);
