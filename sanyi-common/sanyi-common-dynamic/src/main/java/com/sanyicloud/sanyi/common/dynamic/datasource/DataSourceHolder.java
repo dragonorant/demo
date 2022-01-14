@@ -58,7 +58,8 @@ public class DataSourceHolder {
     private void setDataSource(List<String> nameList) {
         if (nameList.size() == 1) {
             set(nameList.get(0));
-            log.debug("Using {} DataSource.", nameList.get(0));
+            if (log.isDebugEnabled())
+                log.debug("dynamic Using {} DataSource.", nameList.get(0));
             return;
         }
 
@@ -66,7 +67,8 @@ public class DataSourceHolder {
         for (int i = 0; i < nameList.size(); i++) {
             int nextIndex = (index + 1) % nameList.size();
             set(nameList.get(index));
-            log.debug("Using {} DataSource.", nameList.get(index));
+            if (log.isDebugEnabled())
+                log.debug("dynamic Using {} DataSource.", nameList.get(index));
             index = nextIndex;
         }
     }

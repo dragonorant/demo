@@ -3,6 +3,8 @@ package com.sanyicloud.sanyi.common.dynamic.config;
 import com.sanyicloud.sanyi.common.dynamic.datasource.RoutingDataSource;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.AutoConfigureBefore;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,7 @@ import java.util.Map;
  * 配置主从数据源
  */
 @Configuration
+@AutoConfigureBefore(DataSourceAutoConfiguration.class)
 @EnableConfigurationProperties(SeparatedDataSourceConfig.class)
 public class RoutingDataSourceAutoConfiguration {
 

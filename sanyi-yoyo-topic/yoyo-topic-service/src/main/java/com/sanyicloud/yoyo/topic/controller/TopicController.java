@@ -1,6 +1,8 @@
 package com.sanyicloud.yoyo.topic.controller;
 
 import com.sanyicloud.sanyi.common.core.util.Result;
+import com.sanyicloud.sanyi.common.dynamic.annotation.Read;
+import com.sanyicloud.sanyi.common.mybatis.mapper.DynamicTableNameMapper;
 import com.sanyicloud.yoyo.topic.entity.bo.UploadTopicBO;
 import com.sanyicloud.yoyo.topic.service.YoyoTopicService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +18,23 @@ import org.springframework.web.bind.annotation.*;
 public class TopicController {
     @Autowired
     YoyoTopicService yoyoTopicService;
+    @Autowired
+    DynamicTableNameMapper dynamicTableNameMapper;
 
     @GetMapping(value = "/test")
     public String test(String topicId){
+        int t_yoyo_topic_entry_2 = dynamicTableNameMapper.tableIsExist("t_yoyo_topic_entry_2");
+        System.out.println("test t_yoyo_topic_entry_2 --> " + t_yoyo_topic_entry_2);
         return topicId;
     }
+
+    @PostMapping(value = "/test2")
+    public String test2(String topicId){
+        int t_yoyo_topic_entry_2 = dynamicTableNameMapper.tableIsExist("t_yoyo_topic_entry_2");
+        System.out.println("test2 t_yoyo_topic_entry_2 --> " + t_yoyo_topic_entry_2);
+        return topicId;
+    }
+
 
     /**
      * 获取主题赛首页列表
