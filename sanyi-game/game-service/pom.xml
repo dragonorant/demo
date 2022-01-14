@@ -18,11 +18,11 @@
             <version>${game.version}</version>
         </dependency>
         <!-- 单纯读写分离 -->
-<!--        <dependency>-->
-<!--            <groupId>com.sanyicloud</groupId>-->
-<!--            <artifactId>sanyi-common-dynamic</artifactId>-->
-<!--            <version>${common.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.sanyicloud</groupId>
+            <artifactId>sanyi-common-dynamic</artifactId>
+            <version>${common.version}</version>
+        </dependency>
         <!--shardingsphere 分库分表-->
 <!--        <dependency>-->
 <!--            <groupId>org.apache.shardingsphere</groupId>-->

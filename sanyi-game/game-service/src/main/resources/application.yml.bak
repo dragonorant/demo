@@ -10,21 +10,21 @@ spring:
 #    url: jdbc:mysql://172.19.1.251:3306/yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
 
 # 单纯读写分离
-#  dynamic-datasource:
-#    masters:
-#      - dataSourceName: master
-#        hikari:
-#          driverClassName: com.mysql.cj.jdbc.Driver
-#          username: root
-#          password: root
-#          jdbcUrl: jdbc:mysql://172.19.1.251:3306/sanyi_yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-#    slaves:
-#      - dataSourceName: slave
-#        hikari:
-#          driverClassName: com.mysql.cj.jdbc.Driver
-#          username: root
-#          password: root
-#          jdbcUrl: jdbc:mysql://172.19.1.251:3306/sanyi_yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+  dynamic-datasource:
+    masters:
+      - dataSourceName: master
+        hikari:
+          driverClassName: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root
+          jdbcUrl: jdbc:mysql://172.19.1.251:3306/sanyi_yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    slaves:
+      - dataSourceName: slave
+        hikari:
+          driverClassName: com.mysql.cj.jdbc.Driver
+          username: root
+          password: root
+          jdbcUrl: jdbc:mysql://172.19.1.251:3306/sanyi_yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
 
 # 可配置分库分表
 #  shardingsphere:
