@@ -1,7 +1,6 @@
 package com.sanyicloud.yoyo.topic.controller;
 
 import com.sanyicloud.sanyi.common.core.util.Result;
-import com.sanyicloud.sanyi.common.dynamic.annotation.Read;
 import com.sanyicloud.sanyi.common.mybatis.mapper.DynamicTableNameMapper;
 import com.sanyicloud.yoyo.topic.entity.bo.UploadTopicBO;
 import com.sanyicloud.yoyo.topic.service.YoyoTopicService;
@@ -32,6 +31,7 @@ public class TopicController {
     public String test2(String topicId){
         int t_yoyo_topic_entry_2 = dynamicTableNameMapper.tableIsExist("t_yoyo_topic_entry_2");
         System.out.println("test2 t_yoyo_topic_entry_2 --> " + t_yoyo_topic_entry_2);
+
         return topicId;
     }
 
