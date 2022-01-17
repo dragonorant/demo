@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sanyicloud.yoyo.topic.entity.po.TYoyoTopic;
 import com.sanyicloud.yoyo.topic.mapper.YoyoTopicMapper;
 import com.sanyicloud.yoyo.topic.service.YoyoManagerTopicService;
+import com.sanyicloud.yoyo.topic.service.YoyoTopicEntryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,8 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class YoyoManagerTopicServiceImpl extends ServiceImpl<YoyoTopicMapper, TYoyoTopic> implements YoyoManagerTopicService {
 
+    @Autowired
+    YoyoTopicEntryService yoyoTopicEntryService;
+
     @Override
     public void createTopicEntry(Integer topicId) {
-
+        yoyoTopicEntryService.createTopicEntry(topicId);
     }
 }

@@ -15,12 +15,12 @@ import com.sanyicloud.yoyo.topic.entity.po.TYoyoTopic;
  * by zhaowenyuan create 2022/1/6 12:01
  */
 public interface YoyoTopicService extends IService<TYoyoTopic> {
-    LambdaQueryWrapper<TYoyoTopic> queryMapper = new LambdaQueryWrapper<TYoyoTopic>()
-            .eq(TYoyoTopic::getReleaseState, Boolean.TRUE);
 
     default Result home(){
-        TYoyoTopic tYoyoTopic = this.getOne(queryMapper
-                .eq(TYoyoTopic::getEnableStatus, EnableStatusEnum.ONGOING)
+        TYoyoTopic tYoyoTopic = this.getOne(
+                new LambdaQueryWrapper<TYoyoTopic>()
+                    .eq(TYoyoTopic::getReleaseState, Boolean.TRUE)
+                    .eq(TYoyoTopic::getEnableStatus, EnableStatusEnum.ONGOING)
         );
         return Result.responseData()
                 .addParam("currentTopic", tYoyoTopic)
@@ -34,7 +34,9 @@ public interface YoyoTopicService extends IService<TYoyoTopic> {
         }
         IPage<TYoyoTopic> page =
                 this.page(new Page<>(limit, pageSize),
-                        queryMapper.eq(TYoyoTopic::getEnableStatus, enableStatus)
+                        new LambdaQueryWrapper<TYoyoTopic>()
+                                .eq(TYoyoTopic::getReleaseState, Boolean.TRUE)
+                                .eq(TYoyoTopic::getEnableStatus, enableStatus)
                                 .orderBy( true,
                                         EnableStatusEnum.FUTURE.equals(enableStatus),
                                         TYoyoTopic::getStartTime)

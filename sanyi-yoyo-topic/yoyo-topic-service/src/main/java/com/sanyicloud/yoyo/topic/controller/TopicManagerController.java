@@ -4,6 +4,7 @@ import com.sanyicloud.sanyi.common.core.util.Result;
 import com.sanyicloud.yoyo.topic.entity.bo.TopicBO;
 import com.sanyicloud.yoyo.topic.service.YoyoManagerTopicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,4 +33,22 @@ public class TopicManagerController {
         yoyoManagerTopicService.editTopic(topicId, topicBO);
         return Result.ok();
     }
+
+    /**
+     * 删除主题赛
+     * @param topicId 主题赛Id
+     */
+    @DeleteMapping(value = "/{topicId}")
+    public Result delTopic(@PathVariable Integer topicId){
+        yoyoManagerTopicService.delTopic(topicId);
+        return Result.ok();
+    }
+
+    @PostMapping(value = "/{topicId}/")
+    public Result releaseTopic(@PathVariable Integer topicId)
+    {
+        yoyoManagerTopicService.releaseTopic(topicId);
+        return Result.ok();
+    }
+
 }
