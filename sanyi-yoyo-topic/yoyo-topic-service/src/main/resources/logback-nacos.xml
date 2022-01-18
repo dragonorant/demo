@@ -69,6 +69,8 @@
 	<!-- Log file info output -->
 	<appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${log.path}/info.log</file>
+		<file>${log.path}/${log.hosts}.log</file>
+		<file>${log.path}/${spring.application.name}.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>${log.path}/%d{yyyy-MM}/info.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
 			<maxFileSize>5MB</maxFileSize>
@@ -88,10 +90,10 @@
 	</logger>
 
 	<!-- 使用kafka启用下面配置 -->
-<!--	<appender name="plumelog" class="com.plumelog.logback.appender.KafkaAppender">-->
-<!--		<appName>${spring.application.name}</appName>-->
-<!--		<kafkaHosts>${log.hosts}</kafkaHosts>-->
-<!--	</appender>-->
+	<appender name="plumelog" class="com.plumelog.logback.appender.KafkaAppender">
+		<appName>${spring.application.name}</appName>
+		<kafkaHosts>${log.hosts}</kafkaHosts>
+	</appender>
 
 	<!-- Level: FATAL 0  ERROR 3  WARN 4  INFO 6  DEBUG 7 -->
 	<root level="info">

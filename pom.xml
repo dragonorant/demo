@@ -43,6 +43,7 @@
         <sharding-sphere.version>5.0.0</sharding-sphere.version>
 
         <plumelog.version>3.5.2</plumelog.version>
+        <log4j.version>2.16.0</log4j.version>
     </properties>
 
     <!-- 以下依赖 全局所有的模块都会引入  -->
@@ -84,6 +85,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.plumelog</groupId>
+            <artifactId>plumelog-logback</artifactId>
+            <version>${plumelog.version}</version>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
@@ -95,6 +101,26 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-api</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-to-slf4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>${log4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-to-slf4j</artifactId>
+                <version>${log4j.version}</version>
             </dependency>
             <!-- spring cloud 依赖 -->
             <dependency>
@@ -128,11 +154,6 @@
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.plumelog</groupId>
-                <artifactId>plumelog-logback</artifactId>
-                <version>${plumelog.version}</version>
             </dependency>
             <!--监控客户端-->
             <dependency>

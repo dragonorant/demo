@@ -25,9 +25,17 @@ public class TopicController {
 
     @GetMapping(value = "/test")
     public String test(String topicId){
-        int t_yoyo_topic_entry_2 = dynamicTableNameMapper.tableIsExist("t_yoyo_topic_entry_2");
-        System.out.println("test t_yoyo_topic_entry_2 --> " + t_yoyo_topic_entry_2);
+        log1();
+        log.info("begin topic {}", topicId);
+        log2();
         return topicId;
+    }
+
+    private void log1(){
+        log.info("log 1");
+    }
+    private void log2(){
+        log.info("log 2");
     }
 
     /**
