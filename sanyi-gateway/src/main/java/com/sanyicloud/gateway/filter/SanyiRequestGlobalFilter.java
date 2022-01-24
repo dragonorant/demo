@@ -18,7 +18,8 @@ package com.sanyicloud.gateway.filter;
 
 import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.sanyicloud.sanyi.common.core.constant.CommonConstants;
 import com.sanyicloud.sanyi.common.core.exception.CheckedException;
 import com.sanyicloud.sanyi.common.core.util.DateUtils;
@@ -31,7 +32,7 @@ import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.filter.factory.rewrite.CachedBodyOutputMessage;
 import org.springframework.cloud.gateway.support.BodyInserterContext;
 import org.springframework.core.Ordered;
-import org.springframework.core.io.buffer.*;
+import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ReactiveHttpOutputMessage;
@@ -50,6 +51,8 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -143,12 +146,13 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
                 if (MediaType.APPLICATION_JSON.isCompatibleWith(mediaType) || MediaType.APPLICATION_JSON_UTF8.isCompatibleWith(mediaType)) {
                     JSONObject jsonObject;
                     if (org.apache.commons.lang3.StringUtils.isNotBlank(body)) {
-                        jsonObject = JSONObject.parseObject(body);
+                        jsonObject = JSONUtil.parseObj(body);
                     } else {
                         jsonObject = new JSONObject();
                     }
-                    jsonObject.put(CommonConstants.ACCOUNT_ID, accountId);
-                    return Mono.just(jsonObject.toJSONString());
+                    jsonObject.set(CommonConstants.ACCOUNT_ID, accountId);
+
+                    return Mono.just(JSONUtil.toJsonStr(jsonObject));
                 }
                 return Mono.empty();
             });

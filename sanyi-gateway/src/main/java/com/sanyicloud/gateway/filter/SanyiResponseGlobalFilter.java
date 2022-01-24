@@ -1,6 +1,7 @@
 package com.sanyicloud.gateway.filter;
 
-import com.alibaba.fastjson.JSONObject;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.sanyicloud.sanyi.common.core.util.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Publisher;
@@ -18,6 +19,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 @Slf4j
 @Configuration
@@ -38,12 +40,12 @@ public class SanyiResponseGlobalFilter implements GlobalFilter, Ordered {
                         byte[] content = new byte[dataBuffer.readableByteCount()];
                         dataBuffer.read(content);
                         DataBufferUtils.release(dataBuffer);
-                        JSONObject jsonObject = JSONObject.parseObject(new String(content, StandardCharsets.UTF_8));
+                        JSONObject jsonObject = JSONUtil.parseObj(new String(content, StandardCharsets.UTF_8));
                         if (jsonObject.containsKey("timestamp")){
-                            Result result = Result.restResult(jsonObject.getString("path"),
-                                    jsonObject.getInteger("status"),
-                                    jsonObject.getString("error"));
-                            return bufferFactory.wrap(JSONObject.toJSONString(result).getBytes(StandardCharsets.UTF_8));
+                            Result result = Result.restResult(jsonObject.get("path", String.class),
+                                    jsonObject.get("status", Integer.class),
+                                    jsonObject.get("error", String.class));
+                            return bufferFactory.wrap(JSONUtil.toJsonStr(result).getBytes(StandardCharsets.UTF_8));
                         }
                         return bufferFactory.wrap(content);
                     }));
