@@ -26,7 +26,6 @@ import com.sanyicloud.sanyi.common.core.util.DateUtils;
 import com.sanyicloud.sanyi.common.core.util.TokenUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.cloud.gateway.filter.factory.rewrite.CachedBodyOutputMessage;
@@ -51,8 +50,6 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -65,9 +62,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @RequiredArgsConstructor
 public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
-
-    @Value("${server.servlet.context-path}")
-    private String CONTEXT_PATH;
 
     /**
      * Process the Web request and (optionally) delegate to the next {@code WebFilter}
@@ -84,13 +78,13 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
 
         String rawPath = request.getURI().getRawPath();
         String newPath = "/" + Arrays.stream(StringUtils.tokenizeToStringArray(rawPath, "/"))
-                .skip(CONTEXT_PATH.length())
+                .skip(1)
                 .collect(Collectors.joining("/"));
         // 是否效验 请求头中的 token 有效性
         if (!IgnoreUri.tokenUrl(newPath)) {
             return checkToken(exchange, chain);
         }
-        log.info("白名单:{}", newPath);
+        log.info("white list : {}", newPath);
         return chain.filter(exchange);
     }
 
@@ -106,15 +100,15 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
         // 请求投 携带的 token
         String sanyiToken = headers.getFirst(CommonConstants.HEAD_TOKEN_KEY);
         if (org.apache.commons.lang3.StringUtils.isEmpty(sanyiToken)) {
-            throw new CheckedException("鉴权失败");
+            throw new CheckedException("authentication failed");
         }
         String account_request = TokenUtils.decryptStr(sanyiToken);
         if (org.apache.commons.lang3.StringUtils.isEmpty(account_request)) {
-            throw new CheckedException("鉴权失败");
+            throw new CheckedException("authentication failed");
         }
         String[] split = account_request.split("-");
         if (split.length != 2) {
-            throw new CheckedException("鉴权失败");
+            throw new CheckedException("authentication failed");
         }
         String _request = split[1];
         // 正负 300秒内的 请求都算 可靠请求
@@ -124,7 +118,8 @@ public class SanyiRequestGlobalFilter implements GlobalFilter, Ordered {
         long timestamp = DateUtils.getZoneOfMillis() / 1000;
         long difference = timestamp - request_timestamp;
         if (difference > 300 || difference < -300) {
-            throw new CheckedException("请求超时");
+            // 请求过期
+            throw new CheckedException("request is expired");
         }
         return modifyRequest(exchange, chain, split[0]);
     }

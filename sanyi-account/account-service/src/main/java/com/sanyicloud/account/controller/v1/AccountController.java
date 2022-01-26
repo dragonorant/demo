@@ -1,8 +1,9 @@
 package com.sanyicloud.account.controller.v1;
 
 import com.sanyicloud.account.entity.bo.AccountBO;
+import com.sanyicloud.account.entity.bo.DeviceBO;
+import com.sanyicloud.account.entity.bo.InviteBO;
 import com.sanyicloud.account.service.SanyiAccountService;
-import com.sanyicloud.sanyi.common.core.util.IdUtils;
 import com.sanyicloud.sanyi.common.core.util.RequestUtils;
 import com.sanyicloud.sanyi.common.core.util.Result;
 import lombok.extern.slf4j.Slf4j;
@@ -12,8 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.Enumeration;
 
 /**
@@ -39,16 +38,41 @@ public class AccountController {
         return sanyiAccountService.login(accountBO);
     }
 
+    /**
+     * 根据设备码 获取 本机设备 推广码
+     * 获取推广码
+     */
+    @GetMapping(value = "/promo/code")
+    public Result getPromoCode(@RequestBody @Valid DeviceBO deviceBO)
+    {
+        log.info("get promo code");
+        AccountBO accountBO = new AccountBO();
+        accountBO.setDeviceNum(deviceBO.getDeviceNum());
+        accountBO.setDeviceType(deviceBO.getDeviceType());
+        return sanyiAccountService.login(accountBO);
+    }
+
+    /**
+     * 填写 邀请码 推广
+     *
+     * todo  邀请人 获取 一份礼物
+     *      被邀请人 获取 另一份礼物
+     *      需要有一个推广通知表 -- 记录推广人的被邀请信息
+     *
+     *      需要有一个推广记录表 -- 记录邀请人的推广人
+     */
+    @PostMapping(value = "/invite")
+    public Result inviteAccount(@RequestBody @Valid InviteBO inviteBO)
+    {
+        sanyiAccountService.inviteAccount(inviteBO);
+        return Result.ok();
+    }
+
+
     @RequestMapping(value = "/demo")
     public void demo(HttpServletRequest request, @RequestParam String accountId, MultipartFile file){
         Enumeration<String> parameterNames = request.getParameterNames();
         String s = RequestUtils.ReadAsChars(request);
         System.out.println(s);
     }
-    public static void main(String[] args) {
-        String s = IdUtils.strConvertNum("s");
-        System.out.println(s);
-        System.out.println(s.length());
-    }
-
 }

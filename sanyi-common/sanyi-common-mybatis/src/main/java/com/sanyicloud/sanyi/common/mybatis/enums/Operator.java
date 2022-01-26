@@ -35,9 +35,9 @@ public enum Operator {
     /**
      * 比较符
      */
-    private String character;
+    private final String character;
 
-    private Operator(String character) {
+    Operator(String character) {
         this.character = character;
     }
 

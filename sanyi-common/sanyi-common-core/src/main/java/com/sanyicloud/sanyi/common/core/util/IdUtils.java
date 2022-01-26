@@ -23,7 +23,6 @@ public class IdUtils {
      * @return 根据设备码生成的 数值
      */
     public static String strConvertNum(String str,String sign) {
-
         BigInteger bigInteger = new BigInteger(1, md5.digest(str + ":" + sign));
         return Math.abs(bigInteger.longValue()) + "";
     }
@@ -46,7 +45,6 @@ public class IdUtils {
                 "I" , "J" , "K" , "L" , "M" , "N" , "O" , "P" , "Q" , "R" , "S" , "T" ,
                 "U" , "V" , "W" , "X" , "Y" , "Z"
         };
-        // 对传入网址进行 MD5 加密
         String[] resUrl = new String[4];
         for ( int i = 0; i < 4; i++) {
             // 把加密字符按照 8 位一组 16 进制与 0x3FFFFFFF 进行位与运算

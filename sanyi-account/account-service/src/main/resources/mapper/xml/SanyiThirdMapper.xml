@@ -3,17 +3,18 @@
 <mapper namespace="com.sanyicloud.account.mapper.SanyiThirdMapper">
   <resultMap id="BaseResultMap" type="com.sanyicloud.account.entity.po.SanyiThird">
     <!--@mbg.generated-->
-    <!--@Table yoyo_third_0-->
+    <!--@Table sanyi_third_0-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="account_id" jdbcType="VARCHAR" property="accountId" />
     <result column="device_num" jdbcType="VARCHAR" property="deviceNum" />
+    <result column="del_state" jdbcType="TINYINT" property="delState" />
     <result column="device_type" jdbcType="SMALLINT" property="deviceType" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, account_id, device_num, device_type, create_time, update_time
+    id, account_id, device_num, device_type, create_time, update_time, del_state
   </sql>
 
 </mapper>

@@ -19,7 +19,9 @@ public class IgnoreUri {
     private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     static {
-        TOKEN_PATH.add("/yoyo/account/v1/login");
+        TOKEN_PATH.add("/sanyi/account/v1/login");
+        TOKEN_PATH.add("/sanyi/account/v1/promo/code");
+        TOKEN_PATH.add("/sanyi/account/v1/invite");
     }
 
     public boolean tokenUrl(String url){

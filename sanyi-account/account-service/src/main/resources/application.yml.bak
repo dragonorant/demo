@@ -20,20 +20,21 @@ spring:
         username: root
         password: root
         ## 使用 lvs 搭建高可用
-        jdbc-url: jdbc:mysql://172.19.1.251:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+        jdbc-url: jdbc:mysql://172.19.1.251:3306/sanyi_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
       slave: # 直接 slave 123
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
         password: root
-        jdbc-url: jdbc:mysql://172.19.1.250:3306/yoyo_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+        jdbc-url: jdbc:mysql://172.19.1.251:3306/sanyi_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+    enabled: true
     props:
       sql-show: true
     rules:
-      # 读写分离
+#       读写分离
       readwrite_splitting:
         data-sources:
-          yoyo_account:
+          sanyi_account:
             auto-aware-data-source-name: master,slave
             write-data-source-name: master
             read-data-source-names: slave
@@ -56,19 +57,15 @@ spring:
             table-strategy:
               standard:
                 sharding-column: account_id
-                sharding-algorithm-name: third-inline
+                sharding-algorithm-name: account-inline
+        bindingTables:
+          - sanyi_account,sanyi_third,sanyi_account_short
         sharding-algorithms:
           account-inline:
             type: MOD
             props:
               sharding-count: 1
-          third-inline:
-            type: MOD
-            props:
-              sharding-count: 1
-        binding-tables[0]: sanyi_account,sanyi_third
-      # 日期分表
-    enabled: true
+
 #      sharding:
 #        tables:
 #          yoyo_account:
@@ -139,7 +136,6 @@ feign:
 
 # mybaits-plus配置
 mybatis-plus:
-  mapper-locations: classpath:mapper/*Mapper.xml
   global-config:
     db-config:
       id-type: INPUT
@@ -149,8 +145,9 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
-  type-handlers-package: com.sanyicloud.sanyi.common.mybatis.handler
-  type-enums-package: com.sanyicloud
+  type-handlers-package: com.baomidou.mybatisplus.core.handlers
+  type-aliases-package: com.sanyicloud.**.entity
+  type-enums-package: com.sanyicloud.**.enums
 server:
   servlet:
     context-path: /yoyo/account

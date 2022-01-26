@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sanyicloud.account.mapper.SanyiAccountPromoMapper">
+    <resultMap id="BaseResultMap" type="com.sanyicloud.account.entity.po.SanyiAccountPromo">
+        <!--@mbg.generated-->
+        <!--@Table sanyi_account_promo_0-->
+        <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+        <result column="promo_code" jdbcType="VARCHAR" property="promoCode" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        account_id, promo_code
+    </sql>
+</mapper>

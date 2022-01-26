@@ -1,28 +1,22 @@
 package com.sanyicloud.account.entity.po;
 
-import cn.hutool.core.date.DatePattern;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sanyicloud.sanyi.common.core.util.DateUtils;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
+import com.sanyicloud.sanyi.common.mybatis.base.BaseEntity;
+import lombok.*;
 
 /**
     * yoyo 三方账号 — 可以是 设备号 或者 是三方账号的 唯一值 每个 三方账号对应一个 yoyo_account 账号 
  third_0 对应的 必定是 account_0
     */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SanyiThird implements Serializable {
+@ToString
+public class SanyiThird extends BaseEntity {
     /**
     * 自增id
     */
@@ -52,34 +46,17 @@ public class SanyiThird implements Serializable {
     private Short deviceType;
 
     /**
-    * 创建时间
-    */
-    @TableField(value = "create_time")
-    @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
-    private LocalDateTime createTime;
-
+     * 推广码
+     */
+    @TableField(value = "promo_code")
+    private String promoCode;
     /**
-    * 更新时间
-    */
-    @TableField(value = "update_time")
-    @JsonFormat(pattern = DatePattern.NORM_DATETIME_PATTERN)
-    private LocalDateTime updateTime;
+     * 账号来源
+     * 邀请账号 -- 自来账号 -- 广告账号
+     * -- 此处需要 归因数据分析确定是广告下载还是自来下载
+     *      针对 邀请下载，只要有填写邀请码，则必定就是邀请下载
+     */
+    @TableField(value = "account_source")
+    private Short accountSource;
 
-    private static final long serialVersionUID = 1L;
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", accountId=").append(accountId);
-        sb.append(", deviceNum=").append(deviceNum);
-        sb.append(", deviceType=").append(deviceType);
-        sb.append(", createTime=").append(createTime);
-        sb.append(", updateTime=").append(updateTime);
-        sb.append("]");
-        return sb.toString();
-    }
 }

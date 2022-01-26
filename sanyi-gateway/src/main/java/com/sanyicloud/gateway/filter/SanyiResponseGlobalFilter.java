@@ -42,7 +42,7 @@ public class SanyiResponseGlobalFilter implements GlobalFilter, Ordered {
                         DataBufferUtils.release(dataBuffer);
                         JSONObject jsonObject = JSONUtil.parseObj(new String(content, StandardCharsets.UTF_8));
                         if (jsonObject.containsKey("timestamp")){
-                            Result result = Result.restResult(jsonObject.get("path", String.class),
+                            Result result = Result.restResult(jsonObject.getStr("path"),
                                     jsonObject.getInt("status"),
                                     jsonObject.getStr("error"));
                             return bufferFactory.wrap(JSONUtil.toJsonStr(result).getBytes(StandardCharsets.UTF_8));
