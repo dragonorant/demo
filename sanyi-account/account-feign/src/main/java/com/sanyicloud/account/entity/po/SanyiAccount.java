@@ -43,4 +43,11 @@ public class SanyiAccount extends BaseEntity {
      */
     @TableField(value = "invite_num")
     private Integer inviteNum;
+    /**
+     * 邀请状态
+     * true 代表 当前账号已填写邀请人
+     * false 代表 当前账号未填写邀请人
+     */
+    @TableField(value = "invite_state")
+    private Boolean inviteState;
 }

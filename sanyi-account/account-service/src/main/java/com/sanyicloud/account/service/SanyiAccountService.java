@@ -10,6 +10,7 @@ import com.sanyicloud.sanyi.common.core.util.Result;
  * by zhaowenyuan create 2021/12/29 14:32
  */
 public interface SanyiAccountService extends IService<SanyiAccount> {
+
     Result login(AccountBO accountBO);
 
     void inviteAccount(InviteBO inviteBO);

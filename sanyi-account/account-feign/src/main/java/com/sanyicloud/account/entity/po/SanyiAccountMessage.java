@@ -39,6 +39,8 @@ public class SanyiAccountMessage extends BaseEntity {
     private Boolean messageState;
     /**
      * 站内信类型
+     * shardingsphere 不支持 枚举类型
+     * {@link com.sanyicloud.account.entity.enums.MessageTypeEnum}
      */
     @TableField(value = "message_type")
     private Short messageType;

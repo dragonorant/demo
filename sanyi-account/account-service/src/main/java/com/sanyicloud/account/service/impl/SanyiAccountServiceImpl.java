@@ -47,6 +47,7 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
     RedissonClient redissonClient;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public Result login(AccountBO accountBO)
     {
         String deviceNum = accountBO.getDeviceNum();
@@ -87,7 +88,7 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
 
         String promoCode = shortNum[0];
 
-        SanyiAccountPromo accountShort = SanyiAccountPromo.builder()
+        SanyiAccountPromo accountPromo = SanyiAccountPromo.builder()
                 .accountId(accountId)
                 .promoCode(promoCode)
                 .build();
@@ -100,7 +101,7 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
                 .accountSource(AccountSourceEnum.COME_FROM.getCode())
                 .build();
 
-        createAccount(sanyiThird, sanyiAccount, accountShort);
+        createAccount(sanyiThird, sanyiAccount, accountPromo);
 
         return Result.ok(AccountVO.covert(sanyiAccount, sanyiThird));
     }
@@ -110,6 +111,7 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
      * @param inviteBO 邀请码 包含信息
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void inviteAccount(InviteBO inviteBO)
     {
         String accountId = inviteBO.getAccountId();
@@ -131,17 +133,18 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
             }
         }
         accountId = deviceAccountId;
-        // 根据 accountId 获取 数据信息
+        // 根据 邀请人 获取 数据信息
         SanyiAccount sanyiAccount = this.baseMapper.selectOne(
                 new LambdaQueryWrapper<SanyiAccount>()
                         .eq(SanyiAccount::getAccountId, accountId)
         );
 
-        // 如果不为空 -- 则说明  则在数据库中进行 查询, 看是否注册, 如未注册, 进行注册,
+        // 如果为空 -- 则说明 此账号未进行注册 则进行注册
         if (ObjectUtils.isEmpty(sanyiAccount))
         {
             sanyiAccount = SanyiAccount.builder()
                     .accountId(accountId)
+                    .inviteState(Boolean.FALSE)
                     .build();
             // short 数组
             String[] shortNum = IdUtils.shortNum(guid);
@@ -165,7 +168,6 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
             createAccount(sanyiThird, sanyiAccount, accountShort);
         }
         // 如注册, 进行邀请信息的绑定,   200
-
         // 判断邀请码的 有效性
         SanyiAccountPromo accountPromo = sanyiPromoService.getOne(
                 new LambdaQueryWrapper<SanyiAccountPromo>()
@@ -175,6 +177,17 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
         if (ObjectUtils.isEmpty(accountPromo)){
             throw new ResultException("The invitation code is invalid. Please fill in a valid invitation code");
         }
+        Boolean inviteState = sanyiAccount.getInviteState();
+        // todo 查询是否使用过此 邀请
+        long count = accountInviteService.count(
+                new LambdaQueryWrapper<SanyiAccountInvite>()
+                        .eq(SanyiAccountInvite::getInviteId, accountId)
+        );
+        if (count > 0 || inviteState){
+            // 当前 账号已经绑定过邀请人
+            throw new ResultException("The current account already has an invitee, which cannot be filled in repeatedly");
+        }
+        // 当前账号未填写过邀请码 -- 则其可以进行 邀请码的填写
         String directInviterId = accountPromo.getAccountId();
 
         String utcTime = ZonedDateTime.now(ZoneId.of("UTC")).format(DateTimeFormatter.ofPattern(DatePattern.NORM_DATETIME_PATTERN));
@@ -184,6 +197,7 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
                 .directInviterId(directInviterId)
                 .inviteTime(utcTime)
                 .build();
+
         // TODO 完善 通知消息
         SanyiAccountMessage accountMessage = SanyiAccountMessage.builder()
                 .accountId(directInviterId)
@@ -195,24 +209,20 @@ public class SanyiAccountServiceImpl extends ServiceImpl<SanyiAccountMapper, San
         createInvite(accountInvite, accountMessage);
     }
 
-    @Transactional
-    public void createInvite(SanyiAccountInvite accountInvite, SanyiAccountMessage accountMessage)
+    private void createInvite(SanyiAccountInvite accountInvite, SanyiAccountMessage accountMessage)
     {
         // 邀请关系 建立
         accountInviteService.save(accountInvite);
-
         // 通知被邀请人
         messageService.save(accountMessage);
-
         // 被邀请人 推广数 + 1
         this.baseMapper.updateInviteNum(accountInvite.getDirectInviterId());
     }
 
-    @Transactional
-    public void createAccount(SanyiThird sanyiThird, SanyiAccount sanyiAccount, SanyiAccountPromo accountShort)
+    private void createAccount(SanyiThird sanyiThird, SanyiAccount sanyiAccount, SanyiAccountPromo accountPromo)
     {
         // 保存 推广码 对应信息
-        sanyiPromoService.save(accountShort);
+        sanyiPromoService.save(accountPromo);
         // 保存 第三方信息 -- 推广码-设备码-
         sanyiThirdService.save(sanyiThird);
         // 保存账号信息 -- 账号id, 头像昵称之类的

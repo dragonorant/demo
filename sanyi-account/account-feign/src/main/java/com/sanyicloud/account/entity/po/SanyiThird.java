@@ -36,12 +36,13 @@ public class SanyiThird extends BaseEntity {
     private String deviceNum;
 
     /**
-    * 第三方类型 
-    目前仅这三种，后续可以添加
-    1 ios
-    2 安卓
-    3 其他
-    */
+     * 第三方类型
+     * 目前仅这三种，后续可以添加
+     * 1 ios
+     * 2 安卓
+     * 3 其他
+     * {@link com.sanyicloud.account.entity.enums.DeviceTypeEnum}
+     */
     @TableField(value = "device_type")
     private Short deviceType;
 

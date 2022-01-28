@@ -19,7 +19,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Map;
 
 @Slf4j
 @Configuration
@@ -41,6 +40,7 @@ public class SanyiResponseGlobalFilter implements GlobalFilter, Ordered {
                         dataBuffer.read(content);
                         DataBufferUtils.release(dataBuffer);
                         JSONObject jsonObject = JSONUtil.parseObj(new String(content, StandardCharsets.UTF_8));
+                        log.info("error : {}", jsonObject);
                         if (jsonObject.containsKey("timestamp")){
                             Result result = Result.restResult(jsonObject.getStr("path"),
                                     jsonObject.getInt("status"),
