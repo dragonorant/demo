@@ -214,7 +214,7 @@
             <id>dev</id>
             <properties>
                 <profiles.active>dev</profiles.active>
-                <nacos.host>172.19.1.251:8848</nacos.host>
+                <nacos.host>172.15.1.251:8848</nacos.host>
             </properties>
             <activation>
                 <!--默认环境-->
