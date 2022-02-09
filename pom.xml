@@ -10,10 +10,7 @@
     <version>1.0.0</version>
     <modules>
         <module>sanyi-common</module>
-        <module>sanyi-gateway</module>
-        <module>sanyi-yoyo-topic</module>
         <module>sanyi-account</module>
-        <module>sanyi-game</module>
     </modules>
     <packaging>pom</packaging>
 

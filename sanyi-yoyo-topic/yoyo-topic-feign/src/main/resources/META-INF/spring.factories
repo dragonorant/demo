@@ -1,2 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.sanyicloud.yoyo.topic.feign.fallback.YoyoServiceFallbackImpl

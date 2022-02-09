@@ -17,7 +17,6 @@
         <module>sanyi-common-mybatis</module>
         <module>sanyi-common-core</module>
         <module>sanyi-common-feign</module>
-        <module>sanyi-common-dynamic</module>
     </modules>
 
     <dependencies>

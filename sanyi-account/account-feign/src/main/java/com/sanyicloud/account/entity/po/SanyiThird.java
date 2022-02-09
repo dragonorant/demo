@@ -3,6 +3,7 @@ package com.sanyicloud.account.entity.po;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.sanyicloud.account.entity.enums.DeviceTypeEnum;
 import com.sanyicloud.sanyi.common.mybatis.base.BaseEntity;
 import lombok.*;
 
@@ -17,24 +18,12 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class SanyiThird extends BaseEntity {
-    /**
-    * 自增id
-    */
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
-    /**
-    * 账号id
-    */
     @TableField(value = "account_id")
     private String accountId;
-
-    /**
-    * 第三方唯一编码
-    */
     @TableField(value = "device_num")
     private String deviceNum;
-
     /**
      * 第三方类型
      * 目前仅这三种，后续可以添加
@@ -44,19 +33,9 @@ public class SanyiThird extends BaseEntity {
      * {@link com.sanyicloud.account.entity.enums.DeviceTypeEnum}
      */
     @TableField(value = "device_type")
-    private Short deviceType;
-
-    /**
-     * 推广码
-     */
+    private DeviceTypeEnum deviceType;
     @TableField(value = "promo_code")
     private String promoCode;
-    /**
-     * 账号来源
-     * 邀请账号 -- 自来账号 -- 广告账号
-     * -- 此处需要 归因数据分析确定是广告下载还是自来下载
-     *      针对 邀请下载，只要有填写邀请码，则必定就是邀请下载
-     */
     @TableField(value = "account_source")
     private Short accountSource;
 

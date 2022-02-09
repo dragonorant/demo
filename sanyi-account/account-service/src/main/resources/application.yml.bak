@@ -2,36 +2,26 @@
 spring:
   application:
     name: @artifactId@
-#  datasource:
-#    type: com.zaxxer.hikari.HikariDataSource
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    username: root
-#    password: root
-#    url: jdbc:mysql://172.19.1.251:3306/yoyo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
   shardingsphere:
     datasource:
-#      common:
-#        type: com.zaxxer.hikari.HikariDataSource
-#        driver-class-name: com.mysql.cj.jdbc.Driver
       names: master,slave
       master:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
         password: root
-        ## 使用 lvs 搭建高可用
-        jdbc-url: jdbc:mysql://172.19.1.251:3306/sanyi_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-      slave: # 直接 slave 123
+        jdbc-url: jdbc:mysql://172.15.1.251:3306/sanyi_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+      slave:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
         username: root
         password: root
-        jdbc-url: jdbc:mysql://172.19.1.251:3306/sanyi_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
-    enabled: true
+        jdbc-url: jdbc:mysql://172.15.1.251:3306/sanyi_account?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
     props:
       sql-show: true
+    enabled: true
     rules:
-#       读写分离
+      # 读写分离
       readwrite_splitting:
         data-sources:
           sanyi_account:
@@ -46,26 +36,18 @@ spring:
               workId: 1
       sharding:
         tables:
-          sanyi_account:
-            actual-data-nodes: master.sanyi_account_$->{0..0}
-            table-strategy:
-              standard:
-                sharding-column: account_id
-                sharding-algorithm-name: account-inline
           sanyi_third:
             actual-data-nodes: master.sanyi_third_$->{0..0}
             table-strategy:
               standard:
                 sharding-column: account_id
                 sharding-algorithm-name: account-inline
-        bindingTables:
-          - sanyi_account,sanyi_third,sanyi_account_short
         sharding-algorithms:
           account-inline:
             type: MOD
             props:
               sharding-count: 1
-
+        binding-tables[0]: sanyi_third
 #      sharding:
 #        tables:
 #          yoyo_account:
